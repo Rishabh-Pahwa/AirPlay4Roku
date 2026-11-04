@@ -3,17 +3,19 @@
 ' string operations.
 
 sub dbg(s as string)
-    print "[airplay] "; s
-    ' ring buffer served at http://<roku>:8888/log (the 8085 console allows
-    ' only one client and can get stuck on a stale session)
+    ' Log to a ring buffer served at http://<roku>:8888/log. Console output is
+    ' opt-in (registry key "console"): the 8085 debug console accepts one
+    ' client, and a stale session that stops reading makes every print block
+    ' for seconds, freezing the receiver.
     g = GetGlobalAA()
+    if g.consolePrint = true then print "[airplay] "; s
     if g.logRing = invalid then
         g.logRing = []
         g.logClock = CreateObject("roTimespan")
     end if
     t = g.logClock.TotalMilliseconds()
     g.logRing.push((t \ 1000).toStr() + "." + Right("00" + (t mod 1000).toStr(), 3) + " " + s)
-    if g.logRing.Count() > 600 then g.logRing.Shift()
+    if g.logRing.Count() > 2000 then g.logRing.Shift()
 end sub
 
 function CRLF() as string

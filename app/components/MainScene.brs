@@ -32,13 +32,13 @@ end sub
 
 sub onMirrorUrl()
     url = m.rx.mirrorUrl
-    print "[scene] mirrorUrl="; url
     if url = "" then
         m.video.control = "stop"
         m.video.visible = false
         m.idle.visible = true
         return
     end if
+    if m.global.noPlayer = true then return
     c = CreateObject("roSGNode", "ContentNode")
     c.url = url
     c.streamFormat = "hls"
@@ -51,7 +51,6 @@ end sub
 
 sub onAudioUrl()
     url = m.rx.audioUrl
-    print "[scene] audioUrl="; url
     if url = "" then
         m.audio.control = "stop"
         m.audioLabel.visible = false
@@ -67,7 +66,6 @@ sub onAudioUrl()
 end sub
 
 sub onVideoState()
-    print "[scene] video state="; m.video.state; " "; m.video.errorMsg
     m.rx.playerState = m.video.state
 end sub
 
@@ -80,11 +78,9 @@ end sub
 sub onVolume()
     v = m.rx.volume
     m.audio.mute = (v <= -29.9)
-    print "[scene] volume "; v; " dB mute="; m.audio.mute
 end sub
 
 sub onAudioState()
-    print "[scene] audio state="; m.audio.state; " "; m.audio.errorMsg
 end sub
 
 function onKeyEvent(key as string, press as boolean) as boolean

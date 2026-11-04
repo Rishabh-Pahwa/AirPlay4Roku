@@ -6,7 +6,11 @@ sub Main(args as dynamic)
     ' stream key, since FairPlay can't be emulated on the sending side.
     testMode = false
     if type(args) = "roAssociativeArray" and args.testmode = "1" then testMode = true
-    screen.getGlobalNode().addFields({testMode: testMode})
+    hlsTarget = 0
+    if testMode and args.hlstarget <> invalid then hlsTarget = Val(args.hlstarget, 10)
+    noFeedback = testMode and args.nofeedback = "1"
+    noPlayer = testMode and args.noplayer = "1"
+    screen.getGlobalNode().addFields({testMode: testMode, hlsTarget: hlsTarget, noFeedback: noFeedback, noPlayer: noPlayer})
     scene = screen.CreateScene("MainScene")
     screen.show()
     while true

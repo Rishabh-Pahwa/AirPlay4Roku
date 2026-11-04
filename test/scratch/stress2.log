@@ -1,0 +1,107 @@
+0.000 ed25519 identity ready in 1588 ms
+0.014 mdns bind=true join=true
+0.017 listen rtsp-listen :7000 ok=true
+0.019 listen mirror-listen :7100 ok=true
+0.021 listen http-listen :8888 ok=true
+0.356 ready as 'Roku 2 XS' on 192.168.1.16
+2.184 pairing precompute done in 1757 ms
+2.401 rtsp connection from 192.168.1.15:41496
+2.406 GET /info (70 bytes)
+2.423 GET /info (0 bytes)
+2.539 POST /pair-setup (32 bytes)
+2.549 POST /pair-verify (68 bytes)
+4.627   pair-verify step 1 computed in 2076 ms
+4.685 POST /pair-verify (68 bytes)
+4.694 POST /fp-setup (16 bytes)
+4.704 POST /fp-setup (164 bytes)
+4.716 SETUP rtsp://x/1 (411 bytes)
+4.728   TEST MODE: using plaintext testAesKey from sender
+4.754   session from fake_sender model=iPhone14,2
+4.782 SETUP rtsp://x/1 (140 bytes)
+4.795   mirror stream set up, id=13466835646104304308
+4.817 mirror stream connected from 192.168.1.15:59718
+4.839 mirror codec config 1280x720 avcC 42 bytes
+4.840   avcC 0164001fffe1001a6764001facd9405005bb0110000003001000000303c0f183196001000568ebecb22c
+6.151 player buffering
+6.815 POST /feedback (0 bytes)
+9.767 player playing
+9.773 hls depth 4567 ms -> rate 70%
+9.927 POST /feedback (0 bytes)
+9.934 sender gap 464 ms
+10.419 stats 10s: video frames=128 bytes=232022 audio pkts=0
+12.680 POST /feedback (0 bytes)
+15.626 sender gap 1448 ms
+15.638 hls depth 1823 ms -> rate 80%
+16.344 POST /feedback (0 bytes)
+17.261 hls depth 1529 ms -> rate 100%
+19.019 POST /feedback (0 bytes)
+20.448 stats 10s: video frames=212 bytes=408443 audio pkts=0
+21.129 POST /feedback (0 bytes)
+21.814 hls gap 510 ms, depth 997 ms -> bridging
+23.222 hls depth 2533 ms -> rate 80%
+23.735 player buffering
+24.645 player playing
+24.651 hls depth 3255 ms -> rate 70%
+24.700 POST /feedback (0 bytes)
+26.984 POST /feedback (0 bytes)
+27.525 hls depth 2191 ms -> rate 80%
+28.867 hls gap 996 ms, depth 962 ms -> bridging
+30.462 stats 10s: video frames=195 bytes=394441 audio pkts=0
+30.614 player buffering
+30.626 POST /feedback (0 bytes)
+32.178 player playing
+32.183 hls depth 3628 ms -> rate 70%
+32.903 POST /feedback (0 bytes)
+35.164 hls depth 1979 ms -> rate 80%
+35.342 sender gap 629 ms
+36.137 POST /feedback (0 bytes)
+39.057 POST /feedback (0 bytes)
+40.042 hls depth 1591 ms -> rate 100%
+40.454 stats 10s: video frames=215 bytes=415106 audio pkts=0
+41.721 hls depth 1153 ms -> rate 115%
+41.884 hls gap 159 ms, depth 1153 ms -> bridging
+41.894 hls depth 2140 ms -> rate 100%
+42.337 POST /feedback (0 bytes)
+43.799 hls depth 2454 ms -> rate 80%
+44.873 mirror codec config 332x720 avcC 42 bytes
+44.874   avcC 0164001effe1001a6764001eacd941505befc044000003000400000300f03c58b65801000568ebecb22c
+44.898   new codec config inside running stream -> discontinuity, init2.mp4
+45.053 POST /feedback (0 bytes)
+45.408 hls depth 1568 ms -> rate 100%
+46.540 sender gap 337 ms
+47.075 hls depth 1187 ms -> rate 115%
+47.464 hls depth 1633 ms -> rate 100%
+47.958 POST /feedback (0 bytes)
+50.486 stats 10s: video frames=204 bytes=569620 audio pkts=0
+50.798 POST /feedback (0 bytes)
+50.948 player buffering
+54.430 POST /feedback (0 bytes)
+55.064 player playing
+55.069 hls depth 4933 ms -> rate 70%
+56.967 POST /feedback (0 bytes)
+59.330 POST /feedback (0 bytes)
+60.523 stats 10s: video frames=189 bytes=626748 audio pkts=0
+60.632 sender gap 1104 ms
+62.449 hls depth 1904 ms -> rate 80%
+63.080 POST /feedback (0 bytes)
+66.194 hls gap 438 ms, depth 909 ms -> bridging
+66.496 POST /feedback (0 bytes)
+66.847 hls depth 1441 ms -> rate 100%
+67.679 player buffering
+68.766 POST /feedback (0 bytes)
+70.536 stats 10s: video frames=220 bytes=729140 audio pkts=0
+71.071 POST /feedback (0 bytes)
+73.411 POST /feedback (0 bytes)
+74.405 player playing
+74.409 hls depth 8700 ms -> rate 70%
+76.216 POST /feedback (0 bytes)
+78.652 POST /feedback (0 bytes)
+80.542 stats 10s: video frames=238 bytes=794018 audio pkts=0
+81.156 POST /feedback (0 bytes)
+82.645 sender gap 556 ms
+84.353 POST /feedback (0 bytes)
+84.865 mirror stream closed
+84.878 TEARDOWN rtsp://x/1 (42 bytes)
+84.883 session end: teardown
+84.994 rtsp connection closed (192.168.1.15:41496)
+86.866 pairing precompute done in 1870 ms

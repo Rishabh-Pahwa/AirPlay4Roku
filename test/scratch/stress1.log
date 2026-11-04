@@ -1,0 +1,91 @@
+0.000 ed25519 identity ready in 1574 ms
+0.012 mdns bind=true join=true
+0.016 listen rtsp-listen :7000 ok=true
+0.019 listen mirror-listen :7100 ok=true
+0.021 listen http-listen :8888 ok=true
+0.353 ready as 'Roku 2 XS' on 192.168.1.16
+2.295 pairing precompute done in 1871 ms
+2.434 rtsp connection from 192.168.1.15:57910
+2.439 GET /info (70 bytes)
+2.459 GET /info (0 bytes)
+2.586 POST /pair-setup (32 bytes)
+2.595 POST /pair-verify (68 bytes)
+4.646   pair-verify step 1 computed in 2049 ms
+4.695 POST /pair-verify (68 bytes)
+4.703 POST /fp-setup (16 bytes)
+4.714 POST /fp-setup (164 bytes)
+4.725 SETUP rtsp://x/1 (411 bytes)
+4.736   TEST MODE: using plaintext testAesKey from sender
+4.768   session from fake_sender model=iPhone14,2
+12.496 SETUP rtsp://x/1 (140 bytes)
+12.509   mirror stream set up, id=18167395206258937769
+12.530 mirror stream connected from 192.168.1.15:60902
+15.464 mirror codec config 1280x720 avcC 42 bytes
+16.794 player buffering
+17.430 POST /feedback (0 bytes)
+20.424 player playing
+20.429 hls depth 4597 ms -> rate 70%
+20.492 stats 10s: video frames=119 bytes=214880 audio pkts=0
+20.844 POST /feedback (0 bytes)
+23.601 POST /feedback (0 bytes)
+27.461 hls gap 2357 ms, depth 781 ms -> bridging
+27.472 hls depth 1481 ms -> rate 80%
+28.054 hls depth 1366 ms -> rate 100%
+28.229 POST /feedback (0 bytes)
+28.870 player buffering
+30.490 stats 10s: video frames=167 bytes=322790 audio pkts=0
+30.880 POST /feedback (0 bytes)
+31.096 player playing
+31.100 hls depth 4412 ms -> rate 70%
+33.001 POST /feedback (0 bytes)
+34.591 hls depth 1725 ms -> rate 80%
+36.203 hls depth 1454 ms -> rate 100%
+37.141 POST /feedback (0 bytes)
+38.309 player buffering
+39.427 POST /feedback (0 bytes)
+40.520 stats 10s: video frames=215 bytes=428271 audio pkts=0
+40.760 player playing
+40.765 hls depth 3482 ms -> rate 70%
+42.132 hls depth 1927 ms -> rate 80%
+43.781 POST /feedback (0 bytes)
+44.749 hls depth 1437 ms -> rate 100%
+46.080 POST /feedback (0 bytes)
+46.481 player buffering
+49.740 POST /feedback (0 bytes)
+50.554 stats 10s: video frames=179 bytes=341296 audio pkts=0
+51.565 player playing
+51.570 hls depth 5847 ms -> rate 70%
+52.656 POST /feedback (0 bytes)
+56.292 mirror codec config 332x720 avcC 42 bytes
+56.319   new codec config inside running stream -> discontinuity, init2.mp4
+56.331 POST /feedback (0 bytes)
+59.052 POST /feedback (0 bytes)
+60.610 stats 10s: video frames=189 bytes=495714 audio pkts=0
+61.783 hls depth 1727 ms -> rate 80%
+62.663 POST /feedback (0 bytes)
+64.485 hls depth 1478 ms -> rate 100%
+65.454 POST /feedback (0 bytes)
+68.319 POST /feedback (0 bytes)
+68.723 player buffering
+70.631 stats 10s: video frames=184 bytes=608351 audio pkts=0
+71.704 POST /feedback (0 bytes)
+74.117 POST /feedback (0 bytes)
+77.366 player playing
+77.375 hls depth 5613 ms -> rate 70%
+79.025 POST /feedback (0 bytes)
+80.653 stats 10s: video frames=183 bytes=620246 audio pkts=0
+81.761 POST /feedback (0 bytes)
+85.560 hls depth 2041 ms -> rate 80%
+85.872 POST /feedback (0 bytes)
+88.235 POST /feedback (0 bytes)
+88.586 hls depth 1405 ms -> rate 100%
+90.549 POST /feedback (0 bytes)
+90.672 stats 10s: video frames=205 bytes=680041 audio pkts=0
+91.685 hls gap 718 ms, depth 589 ms -> bridging
+93.297 player buffering
+95.117 POST /feedback (0 bytes)
+95.454 mirror stream closed
+95.462 TEARDOWN rtsp://x/1 (42 bytes)
+95.465 session end: teardown
+95.626 rtsp connection closed (192.168.1.15:57910)
+97.505 pairing precompute done in 1876 ms

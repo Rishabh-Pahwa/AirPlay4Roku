@@ -22,6 +22,7 @@
   <script type="text/brightscript" uri="pkg:/source/mdns.brs" />
   <script type="text/brightscript" uri="pkg:/source/mkv.brs" />
   <script type="text/brightscript" uri="pkg:/source/fmp4.brs" />
+  <script type="text/brightscript" uri="pkg:/source/h264.brs" />
   <script type="text/brightscript" uri="pkg:/source/receiver.brs" />
   <script type="text/brightscript">
     <![CDATA[

@@ -1,0 +1,182 @@
+0.000 ed25519 identity ready in 1659 ms
+0.014 mdns bind=true join=true
+0.016 listen rtsp-listen :7000 ok=true
+0.017 listen mirror-listen :7100 ok=true
+0.019 listen http-listen :8888 ok=true
+0.368 ready as 'Roku 2 XS' on 192.168.1.16
+2.295 pairing precompute done in 1857 ms
+2.303 slow timers 1881 ms
+3.615 rtsp connection from 192.168.1.15:36804
+3.620 GET /info (70 bytes)
+3.635 GET /info (0 bytes)
+3.748 POST /pair-setup (32 bytes)
+3.756 POST /pair-verify (68 bytes)
+5.877   pair-verify step 1 computed in 2120 ms
+5.880 slow event rtsp 2127 ms
+6.000 POST /pair-verify (68 bytes)
+6.034 POST /fp-setup (16 bytes)
+6.043 POST /fp-setup (164 bytes)
+6.052 SETUP rtsp://x/1 (411 bytes)
+6.062   TEST MODE: using plaintext testAesKey from sender
+6.088   session from fake_sender model=iPhone14,2
+6.118 SETUP rtsp://x/1 (140 bytes)
+6.130   mirror stream set up, id=9483532890321731749
+6.152 mirror stream connected from 192.168.1.15:54216
+6.167 mirror codec config 1280x720 avcC 42 bytes
+6.167   avcC 0164001fffe1001a6764001facd9405005bb0110000003001000000303c0f183196001000568ebecb22c
+6.585 hls seg 1 422ms 13 frames
+6.977 hls seg 2 401ms 9 frames
+7.461 hls seg 3 480ms 14 frames
+7.875 hls seg 4 411ms 17 frames
+8.121 POST /feedback (0 bytes)
+8.314 hls seg 5 448ms 9 frames
+8.747 hls seg 6 433ms 11 frames
+9.160 hls seg 7 416ms 10 frames
+9.561 hls seg 8 405ms 10 frames
+9.970 hls seg 9 410ms 8 frames
+10.449 hls seg 10 477ms 9 frames
+10.450 stats 10s: video frames=111 bytes=197602 audio pkts=0
+10.972 hls seg 11 527ms 9 frames
+11.216 POST /feedback (0 bytes)
+11.639 hls seg 12 415ms 6 frames
+12.085 hls seg 13 448ms 9 frames
+12.531 hls seg 14 445ms 12 frames
+13.014 hls seg 15 483ms 14 frames
+13.468 hls seg 16 460ms 7 frames
+13.888 hls seg 17 420ms 9 frames
+13.949 POST /feedback (0 bytes)
+14.329 hls seg 18 439ms 15 frames
+14.749 hls seg 19 425ms 9 frames
+15.147 hls seg 20 402ms 7 frames
+15.652 hls seg 21 505ms 10 frames
+16.392 hls seg 22 416ms 14 frames
+16.640 POST /feedback (0 bytes)
+16.795 hls seg 23 408ms 10 frames
+17.220 hls seg 24 428ms 9 frames
+17.625 hls seg 25 405ms 9 frames
+18.075 hls seg 26 449ms 10 frames
+18.475 hls seg 27 403ms 7 frames
+18.937 hls seg 28 463ms 10 frames
+19.294 POST /feedback (0 bytes)
+19.358 hls seg 29 412ms 14 frames
+19.762 hls seg 30 417ms 11 frames
+20.203 hls seg 31 438ms 10 frames
+20.469 stats 10s: video frames=221 bytes=425982 audio pkts=0
+20.671 hls seg 32 468ms 15 frames
+21.090 hls seg 33 421ms 15 frames
+21.393 POST /feedback (0 bytes)
+21.491 hls seg 34 401ms 12 frames
+21.951 hls seg 35 465ms 8 frames
+23.079 hls seg 36 417ms 9 frames
+23.484 hls seg 37 405ms 8 frames
+23.955 hls seg 38 472ms 10 frames
+24.363 hls seg 39 410ms 8 frames
+24.843 hls seg 40 479ms 10 frames
+25.034 POST /feedback (0 bytes)
+25.275 hls seg 41 434ms 11 frames
+25.726 hls seg 42 405ms 9 frames
+26.090 hls seg 43 404ms 10 frames
+26.509 hls seg 44 428ms 11 frames
+26.934 hls seg 45 427ms 9 frames
+27.097 hls seg 46 400ms 1 frames
+28.417 POST /feedback (0 bytes)
+28.433 hls seg 47 445ms 12 frames
+28.850 hls seg 48 424ms 10 frames
+29.304 hls seg 49 454ms 10 frames
+29.717 hls seg 50 416ms 10 frames
+30.139 hls seg 51 422ms 10 frames
+30.474 stats 10s: video frames=195 bytes=394365 audio pkts=0
+30.555 hls seg 52 416ms 10 frames
+30.964 hls seg 53 410ms 9 frames
+30.988 POST /feedback (0 bytes)
+31.361 hls seg 54 400ms 7 frames
+32.319 hls seg 55 404ms 12 frames
+32.770 hls seg 56 455ms 12 frames
+33.194 hls seg 57 422ms 11 frames
+33.677 hls seg 58 476ms 14 frames
+33.772 POST /feedback (0 bytes)
+34.079 hls seg 59 412ms 10 frames
+34.482 hls seg 60 404ms 12 frames
+34.902 hls seg 61 421ms 6 frames
+35.366 hls seg 62 460ms 14 frames
+35.527 hls seg 63 400ms 1 frames
+36.162 hls seg 64 426ms 8 frames
+36.572 hls seg 65 410ms 9 frames
+36.931 hls seg 66 400ms 5 frames
+36.936 POST /feedback (0 bytes)
+37.098 hls seg 67 400ms 1 frames
+37.486 hls seg 68 410ms 14 frames
+37.973 hls seg 69 405ms 7 frames
+38.138 hls seg 70 400ms 3 frames
+38.493 hls seg 71 437ms 7 frames
+38.899 hls seg 72 406ms 9 frames
+39.343 hls seg 73 444ms 9 frames
+39.750 hls seg 74 406ms 9 frames
+39.790 POST /feedback (0 bytes)
+40.281 hls seg 75 534ms 8 frames
+40.482 stats 10s: video frames=199 bytes=383039 audio pkts=0
+41.884 hls seg 76 405ms 10 frames
+42.292 hls seg 77 410ms 8 frames
+42.715 hls seg 78 423ms 8 frames
+43.151 hls seg 79 434ms 10 frames
+43.566 hls seg 80 416ms 9 frames
+43.830 POST /feedback (0 bytes)
+43.983 hls seg 81 415ms 10 frames
+44.429 hls seg 82 450ms 9 frames
+44.833 hls seg 83 405ms 11 frames
+45.290 hls seg 84 454ms 7 frames
+45.695 hls seg 85 407ms 8 frames
+46.118 hls seg 86 425ms 9 frames
+46.522 hls seg 87 402ms 13 frames
+46.558 POST /feedback (0 bytes)
+46.951 hls seg 88 429ms 12 frames
+47.383 hls seg 89 434ms 10 frames
+47.795 hls seg 90 415ms 10 frames
+48.269 hls seg 91 472ms 9 frames
+48.761 hls seg 92 492ms 7 frames
+49.819 hls seg 93 479ms 11 frames
+49.895 POST /feedback (0 bytes)
+50.245 hls seg 94 429ms 10 frames
+50.511 stats 10s: video frames=188 bytes=370234 audio pkts=0
+50.720 hls seg 95 466ms 11 frames
+51.135 hls seg 96 422ms 9 frames
+51.562 hls seg 97 427ms 9 frames
+51.965 hls seg 98 406ms 9 frames
+52.395 hls seg 99 425ms 8 frames
+52.624 POST /feedback (0 bytes)
+52.813 hls seg 100 421ms 9 frames
+53.216 hls seg 101 405ms 7 frames
+53.663 hls seg 102 445ms 10 frames
+54.093 hls seg 103 427ms 10 frames
+54.551 hls seg 104 462ms 8 frames
+56.245 hls seg 105 404ms 7 frames
+56.647 hls seg 106 400ms 10 frames
+56.829 POST /feedback (0 bytes)
+57.089 hls seg 107 438ms 9 frames
+57.494 hls seg 108 406ms 12 frames
+57.930 hls seg 109 438ms 7 frames
+58.351 hls seg 110 420ms 11 frames
+58.795 hls seg 111 440ms 10 frames
+59.246 hls seg 112 456ms 12 frames
+59.420 POST /feedback (0 bytes)
+59.693 hls seg 113 450ms 9 frames
+60.139 hls seg 114 445ms 14 frames
+60.526 stats 10s: video frames=196 bytes=387470 audio pkts=0
+60.540 hls seg 115 400ms 12 frames
+60.982 hls seg 116 446ms 8 frames
+62.390 hls seg 117 444ms 9 frames
+62.836 hls seg 118 448ms 10 frames
+62.928 POST /feedback (0 bytes)
+63.255 hls seg 119 421ms 8 frames
+63.659 hls seg 120 404ms 7 frames
+64.105 hls seg 121 444ms 9 frames
+64.549 hls seg 122 441ms 12 frames
+64.945 hls seg 123 400ms 11 frames
+65.351 hls seg 124 405ms 8 frames
+65.546 POST /feedback (0 bytes)
+65.636 mirror stream closed
+65.642 TEARDOWN rtsp://x/1 (42 bytes)
+65.645 session end: teardown
+65.667 rtsp connection closed (192.168.1.15:36804)
+67.457 pairing precompute done in 1782 ms
+67.457 slow timers 1789 ms

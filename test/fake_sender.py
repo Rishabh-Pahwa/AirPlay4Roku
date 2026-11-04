@@ -203,6 +203,12 @@ def setup_session(r, aeskey, aesiv):
 
 def annexb_to_frames(path):
     data = open(path, "rb").read()
+    if os.environ.get("MIRROR_IOS_LAYOUT", "1") == "1":
+        # re-express libx264 output in the iOS layout (POC type 0, 12-bit
+        # frame_num), like a real iPhone stream
+        sys.path.insert(0, os.path.join(HERE, "h264"))
+        import h264tool
+        data = h264tool.to_annexb(h264tool.convert_x264(h264tool.split_annexb(data)))
     starts, i = [], 0
     while True:
         j = data.find(b"\x00\x00\x01", i)
@@ -239,6 +245,7 @@ def do_mirror(r, aeskey, shared, seconds, w=1280, h=720, fps=30):
         vf = f"testsrc=size={w}x{h}:rate={fps}" + (f",noise=alls={noise}:allf=t" if noise != "0" else "")
         subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-f", "lavfi", "-i", vf, "-t", "40", "-c:v", "libx264",
                         "-profile:v", "high", "-pix_fmt", "yuv420p", "-g", "300", "-b:v", rate, "-maxrate", rate,
+                        "-x264-params", "bframes=0:weightp=0:slices=1",
                         "-bufsize", rate, "-bsf:v", "h264_mp4toannexb", "-f", "h264", src], check=True)
     sps, pps, frames = annexb_to_frames(src)
     conn_id = secrets.randbits(63) | (1 << 63)   # exercise the unsigned >= 2^63 path
@@ -256,31 +263,79 @@ def do_mirror(r, aeskey, shared, seconds, w=1280, h=720, fps=30):
         hdr += extra
         return hdr + b"\x00" * (128 - len(hdr))
 
-    avcc = bytes([1, sps[1], sps[2], sps[3], 0xFF, 0xE1]) + struct.pack(">H", len(sps)) + sps + b"\x01" + struct.pack(">H", len(pps)) + pps
-    dims = struct.pack("<ffff", w, h, 0, 0) + struct.pack("<ffff", w, h, 0, 0)  # offsets 40..71 approx
-    cfg_hdr = bytearray(header(len(avcc), 1, 0x0116))
-    struct.pack_into("<ff", cfg_hdr, 40, w, h)
-    struct.pack_into("<ff", cfg_hdr, 56, w, h)
-    m.sendall(bytes(cfg_hdr) + avcc)
+    def config_packet(sps, pps, w, h):
+        avcc = bytes([1, sps[1], sps[2], sps[3], 0xFF, 0xE1]) + struct.pack(">H", len(sps)) + sps + b"\x01" + struct.pack(">H", len(pps)) + pps
+        hdr = bytearray(header(len(avcc), 1, 0x0116))
+        struct.pack_into("<ff", hdr, 40, w, h)
+        struct.pack_into("<ff", hdr, 56, w, h)
+        return bytes(hdr) + avcc
+
+    # iPhone-like behaviour: irregular frame pacing with occasional still-screen
+    # pauses (MIRROR_JITTER=1) and a rotation to portrait halfway (MIRROR_ROTATE=1)
+    import random
+    rnd = random.Random(7)
+    jitter = os.environ.get("MIRROR_JITTER", "0") != "0"
+    max_pause = 2.5 if os.environ.get("MIRROR_JITTER") == "2" else 1.5
+    rotate = os.environ.get("MIRROR_ROTATE") == "1"
+    streams = [(sps, pps, frames, w, h)]
+    if rotate:
+        src2 = os.path.join(HERE, "scratch", "mirror_portrait.h264")
+        if not os.path.exists(src2):
+            subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-f", "lavfi", "-i", "testsrc2=size=332x720:rate=30", "-t", "40",
+                            "-c:v", "libx264", "-pix_fmt", "yuv420p", "-g", "9999", "-b:v", "800k",
+                            "-x264-params", "bframes=0:weightp=0:slices=1", "-bsf:v", "h264_mp4toannexb",
+                            "-f", "h264", src2], check=True)
+        s2, p2, f2 = annexb_to_frames(src2)
+        streams.append((s2, p2, f2, 332, 720))
+    m.sendall(config_packet(sps, pps, w, h))
     t0 = time.time()
-    ntp_base = int(time.time()) + 2208988800
     sent = 0
-    for i, f in enumerate(frames):
-        if time.time() - t0 > seconds:
+    i = 0
+    cur = 0
+    fi = 0
+    next_pause = t0 + rnd.uniform(3, 8)
+    while time.time() - t0 < seconds:
+        if rotate and cur == 0 and time.time() - t0 > seconds / 2:
+            cur = 1
+            fi = 0
+            s2, p2, f2, w2, h2 = streams[1]
+            log("rotating to", w2, "x", h2)
+            m.sendall(config_packet(s2, p2, w2, h2))
+        fr = streams[cur][2]
+        if fi >= len(fr):
             break
+        f = fr[fi]
+        fi += 1
         payload = b"".join(struct.pack(">I", len(n)) + n for n in f)
         enc = ctr.update(payload)
-        tsec = i / fps
-        ntp = ((ntp_base + int(tsec)) << 32) | int((tsec % 1) * (1 << 32))
+        now = time.time()
+        ntp_s = now + 2208988800
+        ntp = (int(ntp_s) << 32) | int((ntp_s % 1) * (1 << 32))
         key = any(n[0] & 31 == 5 for n in f)
         m.sendall(header(len(enc), 0, 0x10 if key else 0, ntp) + enc)
         sent += len(enc)
+        i += 1
         if i % 60 == 0:
             r.req("POST", "/feedback")
-        delay = t0 + (i + 1) / fps - time.time()
-        if delay > 0:
-            time.sleep(delay)
-    log(f"mirror: sent {i + 1} frames, {sent} bytes in {time.time() - t0:.1f}s")
+        if os.environ.get("MIRROR_JITTER") == "3":
+            # steady 30 fps with an exact 0.8 s pause every 6 s
+            if now >= next_pause:
+                log("still screen: pause 0.8s")
+                time.sleep(0.8)
+                next_pause = time.time() + 6
+            else:
+                time.sleep(1 / 30)
+        elif jitter:
+            if now >= next_pause:
+                gap = rnd.uniform(0.3, max_pause)
+                log(f"still screen: pause {gap:.1f}s")
+                time.sleep(gap)
+                next_pause = time.time() + rnd.uniform(3, 8)
+            else:
+                time.sleep(rnd.choice([1 / 30, 1 / 30, 1 / 20, 1 / 12, 0.005]))
+        else:
+            time.sleep(max(0, t0 + i / fps - time.time()))
+    log(f"mirror: sent {i} frames, {sent} bytes in {time.time() - t0:.1f}s")
     m.close()
 
 

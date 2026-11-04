@@ -31,8 +31,11 @@ sub rx_main()
     m.announceCount = 0
     m.nextNtpMs = 0
     m.nextStatsMs = 0
+    m.nextGcMs = 0
     m.stats = {vframes: 0, vbytes: 0, apkts: 0}
 
+    m.hlsTrace = (m.global.testMode = true)
+    GetGlobalAA().consolePrint = CreateObject("roRegistrySection", "airplay").Exists("console")
     rx_identity()
     rx_status("starting")
     m.mdns = mdns_start(m.port, m.cfg)
@@ -47,16 +50,49 @@ sub rx_main()
 
     fp_tables()
     m.top.info = {name: m.cfg.name, ip: m.cfg.ip, deviceId: m.cfg.deviceId}
+    ' Player feedback arrives as port events. Reading m.top fields from this
+    ' Task thread is a blocking rendezvous with the UI thread, which stalled the
+    ' whole receiver for seconds when the UI thread was busy.
+    m.playerPos = 0
+    m.playerState = ""
+    m.quit = false
+    if m.global.noFeedback <> true then
+        m.top.observeField("playerPos", m.port)
+        m.top.observeField("playerState", m.port)
+    end if
+    m.top.observeField("quit", m.port)
     rx_status("ready")
     dbg("ready as '" + m.cfg.name + "' on " + m.cfg.ip)
 
     while true
+        tw = now_ms()
         msg = wait(40, m.port)
-        if type(msg) = "roSocketEvent" then
-            rx_dispatch(msg.getSocketID().toStr())
+        t1 = now_ms()
+        if t1 - tw > 300 then dbg("slow wait " + (t1 - tw).toStr() + " ms")
+        mt = type(msg)
+        if mt = "roSocketEvent" then
+            sid = msg.getSocketID().toStr()
+            rx_dispatch(sid)
+            t2 = now_ms()
+            if t2 - t1 > 300 then
+                hk = "?"
+                if m.handlers[sid] <> invalid then hk = m.handlers[sid].kind
+                dbg("slow event " + hk + " " + (t2 - t1).toStr() + " ms")
+            end if
+        else if mt = "roSGNodeEvent" then
+            fld = msg.getField()
+            if fld = "playerPos" then
+                m.playerPos = msg.getData()
+            else if fld = "playerState" then
+                m.playerState = msg.getData()
+            else if fld = "quit" then
+                m.quit = msg.getData()
+            end if
         end if
+        t3 = now_ms()
         rx_timers()
-        if m.top.quit = true then exit while
+        if now_ms() - t3 > 300 then dbg("slow timers " + (now_ms() - t3).toStr() + " ms")
+        if m.quit = true then exit while
     end while
     mdns_goodbye(m.mdns)
 end sub
@@ -217,10 +253,23 @@ sub rx_timers()
         pool_refill()
     end if
     if m.vs <> invalid then hls_tick(m.vs)
+    if t >= m.nextGcMs then
+        ' Frequent small collections instead of occasional multi-second ones
+        m.nextGcMs = t + 2000
+        tg = now_ms()
+        gc = RunGarbageCollector()
+        dg = now_ms() - tg
+        if dg > 50 then dbg("gc " + dg.toStr() + " ms orphaned=" + lstr(gc.orphaned))
+    end if
     if t >= m.nextStatsMs then
         m.nextStatsMs = t + 10000
         if m.stats.vframes > 0 or m.stats.apkts > 0 then
-            dbg("stats 10s: video frames=" + m.stats.vframes.toStr() + " bytes=" + m.stats.vbytes.toStr() + " audio pkts=" + m.stats.apkts.toStr())
+            sk = 0
+            if m.vs <> invalid and m.vs.skipCount <> invalid then
+                sk = m.vs.skipCount
+                m.vs.skipCount = 0
+            end if
+            dbg("stats 10s: video frames=" + m.stats.vframes.toStr() + " skip=" + sk.toStr() + " bytes=" + m.stats.vbytes.toStr() + " audio pkts=" + m.stats.apkts.toStr())
             m.stats = {vframes: 0, vbytes: 0, apkts: 0}
         end if
     end if
@@ -600,6 +649,7 @@ sub h_teardown(c as object, req as object)
             if st["type"] = 110 then t110 = true
         end for
     end if
+    dbg("  teardown streams: audio=" + lstr(t96) + " mirror=" + lstr(t110))
     rtsp_reply(c, req, 200, {"Connection": "close"}, "", invalid)
     if t96 then audio_stop()
     if t110 then mirror_stop()
@@ -649,7 +699,7 @@ sub mirror_setup(streamId as dynamic)
     ciph = CreateObject("roEVPCipher")
     ciph.Setup(false, "aes-128-ctr", ba_slice(hk, 0, 16).ToHexString(), ba_slice(hv, 0, 16).ToHexString(), 0)
     m.gen = m.gen + 1
-    m.vs = {kind: "video", gen: m.gen, cipher: ciph, init: invalid, avcc: invalid, clients: {}, w: 0, h: 0}
+    m.vs = {kind: "video", gen: m.gen, cipher: ciph, init: invalid, avcc: invalid, clients: {}, w: 0, h: 0, lastCfgHex: ""}
     dbg("  mirror stream set up, id=" + idstr)
 end sub
 
@@ -740,11 +790,14 @@ sub mirror_packet(hdr as object, payload as object)
         ' codec config: payload is an avcC record (unencrypted)
         w = hdr_float_le(hdr, 56)
         h = hdr_float_le(hdr, 60)
-        dbg("mirror codec config " + w.toStr() + "x" + h.toStr() + " avcC " + payload.Count().toStr() + " bytes")
         if payload.Count() < 8 or payload[0] <> 1 then
-            dbg("  not an avcC record (HEVC?) - ignoring")
+            dbg("mirror codec config is not avcC (HEVC?) - ignoring")
             return
         end if
+        hx = payload.ToHexString()
+        if vs.lastCfgHex = hx then return
+        vs.lastCfgHex = hx
+        dbg("mirror codec config " + w.toStr() + "x" + h.toStr() + " opt " + hdr[6].toStr() + "," + hdr[7].toStr() + " avcC " + LCase(hx))
         mux_video_config(vs, payload, w, h)
     end if
 end sub
@@ -784,23 +837,41 @@ function HLS_SEG_TICKS() as integer
 end function
 
 function HLS_TARGET_MS() as integer
-    return 1500
+    ' The Roku reloads a live playlist once per second and stalls with ~0.5 s
+    ' left, so ~1.9 s is the practical floor for a bursty sender.
+    g = GetGlobalAA()
+    if g.hlsTarget = invalid then
+        g.hlsTarget = 1800
+        if m.global.hlsTarget <> invalid and m.global.hlsTarget > 0 then g.hlsTarget = m.global.hlsTarget
+    end if
+    return g.hlsTarget
 end function
 
 sub mux_video_config(vs as object, avcc as object, w as integer, h as integer)
     if w <= 0 then w = 1280
     if h <= 0 then h = 720
     if vs.init <> invalid and vs.avcc <> invalid and vs.avcc.ToHexString() = avcc.ToHexString() then
-        dbg("  same codec config, continuing stream")
         return
     end if
-    ' new stream generation (first config, rotation, resolution change)
-    m.gen = m.gen + 1
-    vs.gen = m.gen
     vs.avcc = avcc
-    vs.init = mp4_init(w, h, avcc)
     vs.w = w
     vs.h = h
+    m.top.mirrorSize = w.toStr() + "x" + h.toStr()
+    if vs.init <> invalid and vs.published then
+        hls_switch_format(vs, avcc, w, h)
+        return
+    end if
+    if vs.waiters <> invalid then hls_drop_waiters(vs)
+    ' first config of this mirror session
+    m.gen = m.gen + 1
+    vs.gen = m.gen
+    vs.initNo = 1
+    vs.initName = "init1.mp4"
+    vs.init = mp4_init(w, h, avcc)
+    vs.inits = {}
+    vs.inits[vs.initName] = vs.init
+    vs.discNext = false
+    vs.discSeq = 0
     vs.segs = []
     vs.nextSeq = 1
     vs.cur = []
@@ -812,8 +883,70 @@ sub mux_video_config(vs as object, avcc as object, w as integer, h as integer)
     vs.scale = 100
     vs.lastClose = now_ms()
     vs.lastState = ""
+    vs.nextPosCheck = 0
+    vs.nextSteerLog = 0
+    vs.skipCount = 0
+    vs.lastFrame = invalid
+    vs.waiters = {}
+    hls_skip_setup(vs, avcc)
     m.top.mirrorUrl = ""
-    m.top.mirrorSize = w.toStr() + "x" + h.toStr()
+end sub
+
+' Format change (rotation, app with a different aspect, landscape video) inside
+' a running stream. Keep the player: segments already promised to it are
+' finished in the old format with the last old frame, then an
+' EXT-X-DISCONTINUITY + new init segment start at the next IDR. Restarting the
+' player instead cost 4-7 s of black screen per change.
+sub hls_switch_format(vs as object, avcc as object, w as integer, h as integer)
+    dbg("format change -> " + w.toStr() + "x" + h.toStr() + " (discontinuity, player kept)")
+    last = vs.lastFrame
+    if vs.pend <> invalid then
+        last = vs.pend
+        vs.pend = invalid
+        sc = vs.scale
+        vs.scale = 100
+        hls_add_sample(vs, last, 33)
+        vs.scale = sc
+    end if
+    if vs.cur.Count() > 0 then hls_close_segment(vs)
+    ' the playlist always promises nextSeq and nextSeq+1; nextSeq is now the
+    ' first promised one that is still open - fill both in the old format
+    if last <> invalid then
+        for i = 1 to 2
+            fill = last.data
+            if vs.h264 <> invalid and vs.gotKey then
+                ' a generated repeat of the last picture (old format)
+                p = vs.h264
+                vs.lastPoc = (vs.lastPoc + 2) mod p.maxPoc
+                fill = h264_skip_frame(p, (vs.lastRefFn + 1) mod p.maxFn, vs.lastPoc)
+            end if
+            vs.cur.push({dur: 3000, key: false, data: fill})
+            vs.curTicks = 3000
+            hls_close_segment(vs)
+        end for
+    end if
+    vs.initNo = vs.initNo + 1
+    vs.initName = "init" + vs.initNo.toStr() + ".mp4"
+    vs.init = mp4_init(w, h, avcc)
+    vs.inits[vs.initName] = vs.init
+    vs.discNext = true
+    vs.gotKey = false
+    hls_skip_setup(vs, avcc)
+end sub
+
+' Prepare gap filling with generated skip frames for this codec config.
+sub hls_skip_setup(vs as object, avcc as object)
+    t = CreateObject("roTimespan")
+    vs.h264 = h264_params(avcc)
+    vs.pocShift = 0
+    vs.lastRefFn = 0
+    vs.lastPoc = 0
+    vs.lastEmitAt = now_ms()
+    if vs.h264 = invalid then
+        dbg("  skip frames: unsupported stream layout, using frame hold fallback")
+    else
+        dbg("  skip frames ready (" + vs.h264.mbs.toStr() + " MBs, cabac=" + vs.h264.cabac.toStr() + ") in " + t.TotalMilliseconds().toStr() + " ms")
+    end if
 end sub
 
 sub mux_video_frame(vs as object, msl as longinteger, key as boolean, data as object)
@@ -822,6 +955,21 @@ sub mux_video_frame(vs as object, msl as longinteger, key as boolean, data as ob
         if not key then return
         vs.gotKey = true
     end if
+    if vs.h264 <> invalid then
+        if key then vs.pocShift = 0
+        r = h264_process_frame(vs.h264, data, vs.pocShift)
+        data = r.data
+        if r.idr then vs.pocShift = 0
+        if r.isRef then vs.lastRefFn = r.frameNum
+        if r.poc >= 0 then vs.lastPoc = r.poc
+        vs.lastEmitAt = now_ms()
+    end if
+    mux_video_push(vs, msl, key, data)
+end sub
+
+' Queue one access unit (real or generated) on the media timeline. The newest
+' unit is held back until the next one arrives, which fixes its duration.
+sub mux_video_push(vs as object, msl as longinteger, key as boolean, data as object)
     if vs.pend <> invalid then
         d& = msl - vs.pend.ms
         if d& < 1& or d& > 1000& then d& = 33&
@@ -829,6 +977,7 @@ sub mux_video_frame(vs as object, msl as longinteger, key as boolean, data as ob
         hls_add_sample(vs, vs.pend, d%)
     end if
     vs.pend = {ms: msl, key: key, data: data, at: now_ms()}
+    vs.lastFrame = vs.pend
 end sub
 
 sub hls_add_sample(vs as object, f as object, dms as integer)
@@ -847,14 +996,24 @@ sub hls_close_segment(vs as object)
     while Len(frac) < 3
         frac = "0" + frac
     end while
-    vs.segs.push({seq: vs.nextSeq, data: data, dur: (ms \ 1000).toStr() + "." + frac})
+    if m.hlsTrace = true then dbg("hls seg " + vs.nextSeq.toStr() + " " + (vs.curTicks \ 90).toStr() + "ms " + vs.cur.Count().toStr() + " frames")
+    vs.segs.push({seq: vs.nextSeq, data: data, dur: (ms \ 1000).toStr() + "." + frac, init: vs.initName, disc: vs.discNext})
+    vs.discNext = false
+    k = vs.nextSeq.toStr()
+    if vs.waiters.DoesExist(k) then
+        for each c in vs.waiters[k]
+            if m.handlers[c.id] <> invalid then hls_respond(c, "video/mp4", data, "s" + k + ".m4s")
+        end for
+        vs.waiters.Delete(k)
+    end if
     vs.baseDts = vs.baseDts + vs.curTicks
     vs.nextSeq = vs.nextSeq + 1
     vs.cur = []
     vs.curTicks = 0
     vs.lastClose = now_ms()
     while vs.segs.Count() > 14
-        vs.segs.Shift()
+        gone = vs.segs.Shift()
+        if gone.disc then vs.discSeq = vs.discSeq + 1
     end while
     if not vs.published and vs.segs.Count() >= 2 then
         vs.published = true
@@ -863,64 +1022,130 @@ sub hls_close_segment(vs as object)
     hls_steer(vs)
 end sub
 
-' Adjust the media clock rate from the player's reported position, with
-' hysteresis: speed up (80%) above HLS_TARGET_MS + 500 until back at the
-' target, slow down (115%) below HLS_TARGET_MS - 350 until back at the target.
+' Adjust the media clock rate from the player's reported position. Called at
+' every segment close (a consistent measurement phase). Proportional control:
+' 1 s too far behind -> 75% durations (plays 1.33x), 0.6 s too close -> 115%.
+' The Roku rebuffers once its buffer dips below ~1 s even briefly, so the aim
+' is a steady depth rather than the lowest possible one.
 sub hls_steer(vs as object)
-    if m.top.playerState <> vs.lastState then
-        dbg("player " + m.top.playerState)
-        vs.lastState = m.top.playerState
+    if m.playerState <> vs.lastState then
+        dbg("player " + m.playerState)
+        vs.lastState = m.playerState
     end if
-    if m.top.playerState <> "playing" then
+    if m.playerState <> "playing" then
         vs.scale = 100
         return
     end if
     endMs& = vs.baseDts \ 90&
-    posMs& = Int(m.top.playerPos * 1000)
+    posMs& = Int(m.playerPos * 1000)
     depth& = endMs& - posMs&
-    tgt = HLS_TARGET_MS()
-    old = vs.scale
-    if vs.scale = 80 then
-        if depth& <= tgt then vs.scale = 100
-    else if vs.scale = 115 then
-        if depth& >= tgt then vs.scale = 100
-    else if depth& > tgt + 500 then
-        vs.scale = 80
-    else if depth& < tgt - 350 then
-        vs.scale = 115
+    e% = depth& - HLS_TARGET_MS()
+    sc = 100 - e% \ 40
+    if sc < 75 then sc = 75
+    if sc > 115 then sc = 115
+    if Abs(sc - vs.scale) >= 5 or vs.nextSteerLog < now_ms() then
+        dbg("hls depth " + depth&.toStr() + " ms -> rate " + sc.toStr() + "%")
+        vs.nextSteerLog = now_ms() + 5000
     end if
-    if old <> vs.scale then dbg("hls depth " + depth&.toStr() + " ms -> rate " + vs.scale.toStr() + "%")
-    dd% = depth&
-    m.top.mirrorDepth = dd%
+    vs.scale = sc
 end sub
 
-' called from the main loop: keep segments flowing when the sender pauses
+' Called from the main loop. iOS sends frames irregularly (12-30 fps, near
+' zero on a still screen). The newest frame is always held back one step;
+' while the player is running, release it only when the player's buffer runs
+' low, stretching its duration across the gap (a held picture costs a few
+' hundred ms of delay that hls_steer removes again; a stall costs ~15 s).
 sub hls_tick(vs as object)
     if vs = invalid or vs.init = invalid then return
     t = now_ms()
-    if vs.pend <> invalid and t - vs.pend.at > 200 then
-        d = t - vs.pend.at
-        if d > 1000 then d = 1000
-        f = vs.pend
-        vs.pend = invalid
-        hls_add_sample(vs, f, d)
+    if vs.h264 <> invalid then
+        ' No frame for 100 ms: insert a picture that repeats the previous one
+        if vs.gotKey and vs.pend <> invalid and t - vs.lastEmitAt >= 100 then
+            p = vs.h264
+            fn = (vs.lastRefFn + 1) mod p.maxFn
+            poc = (vs.lastPoc + 2) mod p.maxPoc
+            vs.lastPoc = poc
+            vs.pocShift = (vs.pocShift + 2) mod p.maxPoc
+            vms& = vs.pend.ms + (t - vs.pend.at)
+            vs.lastEmitAt = t
+            vs.skipCount = vs.skipCount + 1
+            mux_video_push(vs, vms&, false, h264_skip_frame(p, fn, poc))
+        end if
+        return
     end if
-    if vs.cur.Count() > 0 and t - vs.lastClose > 600 then hls_close_segment(vs)
+    if vs.pend <> invalid then
+        waited = t - vs.pend.at
+        if waited > 150 then
+            ' fill the rest of the in-progress segment with the held frame so the
+            ' parked player request is answered on time
+            remain = (HLS_SEG_TICKS() - vs.curTicks) \ 90
+            d = waited
+            if remain > d then d = remain
+            if d > 1000 then d = 1000
+            if waited > 400 then dbg("hls gap " + waited.toStr() + " ms -> holding frame " + d.toStr() + " ms")
+            f = vs.pend
+            vs.pend = invalid
+            ' bypass rate scaling: this covers real time
+            sc = vs.scale
+            vs.scale = 100
+            hls_add_sample(vs, f, d)
+            vs.scale = sc
+        end if
+    end if
+end sub
+
+sub hls_respond(c as object, ctype as string, body as object, name as string)
+    if m.hlsTrace = true then dbg("hls GET " + name + " " + body.Count().toStr())
+    c.q.push(ba_ascii("HTTP/1.1 200 OK" + CRLF() + "Content-Type: " + ctype + CRLF() + "Content-Length: " + body.Count().toStr() + CRLF() + "Cache-Control: no-cache" + CRLF() + "Connection: close" + CRLF() + CRLF()))
+    c.q.push(body)
+    c.closeWhenDone = true
+    c.stream = {kind: "hls", clients: {}}
+    http_pump(c)
+end sub
+
+sub hls_drop_waiters(vs as object)
+    for each k in vs.waiters
+        for each c in vs.waiters[k]
+            if m.handlers[c.id] <> invalid then rx_close(c)
+        end for
+    end for
+    vs.waiters = {}
 end sub
 
 function hls_playlist(vs as object) as object
     n = vs.segs.Count()
     first = 0
     if n > 8 then first = n - 8
+    ' discontinuities that slid out of the window still count
+    dseq = vs.discSeq
+    for i = 0 to first - 1
+        if vs.segs[i].disc then dseq = dseq + 1
+    end for
     pl = "#EXTM3U" + CRLF() + "#EXT-X-VERSION:7" + CRLF() + "#EXT-X-TARGETDURATION:1" + CRLF()
     seq = 1
     if n > 0 then seq = vs.segs[first].seq
     pl = pl + "#EXT-X-MEDIA-SEQUENCE:" + seq.toStr() + CRLF()
-    pl = pl + "#EXT-X-MAP:URI=" + Chr(34) + "init.mp4" + Chr(34) + CRLF()
+    pl = pl + "#EXT-X-DISCONTINUITY-SEQUENCE:" + dseq.toStr() + CRLF()
+    lastInit = ""
     for i = first to n - 1
         sg = vs.segs[i]
+        if sg.disc and i > first then pl = pl + "#EXT-X-DISCONTINUITY" + CRLF()
+        if sg.init <> lastInit then
+            pl = pl + "#EXT-X-MAP:URI=" + Chr(34) + sg.init + Chr(34) + CRLF()
+            lastInit = sg.init
+        end if
         pl = pl + "#EXTINF:" + sg.dur + "," + CRLF() + "s" + sg.seq.toStr() + ".m4s" + CRLF()
     end for
+    ' Advertise the next two segments before they exist; requests for them are
+    ' parked and answered the moment each segment closes. This removes the
+    ' Roku's once-per-second playlist refresh from the delay budget.
+    if n > 0 then
+        if vs.discNext then pl = pl + "#EXT-X-DISCONTINUITY" + CRLF()
+        if lastInit <> vs.initName then pl = pl + "#EXT-X-MAP:URI=" + Chr(34) + vs.initName + Chr(34) + CRLF()
+        for i = 0 to 1
+            pl = pl + "#EXTINF:0.400," + CRLF() + "s" + (vs.nextSeq + i).toStr() + ".m4s" + CRLF()
+        end for
+    end if
     return ba_ascii(pl)
 end function
 
@@ -1127,13 +1352,20 @@ sub http_serve_hls(c as object, req as object)
         if name = "live.m3u8" then
             body = hls_playlist(vs)
             ctype = "application/vnd.apple.mpegurl"
-        else if name = "init.mp4" then
-            body = vs.init
+        else if Left(name, 4) = "init" and vs.inits.DoesExist(name) then
+            body = vs.inits[name]
         else if Left(name, 1) = "s" and Right(name, 4) = ".m4s" then
             want = str_int(Mid(name, 2, Len(name) - 5))
             for each sg in vs.segs
                 if sg.seq = want then body = sg.data
             end for
+            if body = invalid and want >= vs.nextSeq and want <= vs.nextSeq + 2 then
+                k = want.toStr()
+                if not vs.waiters.DoesExist(k) then vs.waiters[k] = []
+                vs.waiters[k].push(c)
+                c.stream = {kind: "hlswait", clients: {}}
+                return
+            end if
         end if
     end if
     if body = invalid then
@@ -1142,6 +1374,7 @@ sub http_serve_hls(c as object, req as object)
         rx_close(c)
         return
     end if
+    if m.hlsTrace = true then dbg("hls GET " + parts[3] + " " + body.Count().toStr())
     c.q.push(ba_ascii("HTTP/1.1 200 OK" + CRLF() + "Content-Type: " + ctype + CRLF() + "Content-Length: " + body.Count().toStr() + CRLF() + "Cache-Control: no-cache" + CRLF() + "Connection: close" + CRLF() + CRLF()))
     if req.method <> "HEAD" then c.q.push(body)
     c.closeWhenDone = true

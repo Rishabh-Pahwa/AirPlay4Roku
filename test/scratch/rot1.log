@@ -1,0 +1,447 @@
+0.000 ed25519 identity ready in 1590 ms
+0.014 mdns bind=true join=true
+0.017 listen rtsp-listen :7000 ok=true
+0.018 listen mirror-listen :7100 ok=true
+0.020 listen http-listen :8888 ok=true
+0.345 ready as 'Roku 2 XS' on 192.168.1.16
+2.337 pairing precompute done in 1919 ms
+2.345 slow timers 1943 ms
+2.482 rtsp connection from 192.168.1.15:35008
+2.486 GET /info (70 bytes)
+2.501 GET /info (0 bytes)
+2.629 POST /pair-setup (32 bytes)
+2.641 POST /pair-verify (68 bytes)
+4.764   pair-verify step 1 computed in 2122 ms
+4.767 slow event rtsp 2128 ms
+4.863 POST /pair-verify (68 bytes)
+4.871 POST /fp-setup (16 bytes)
+4.880 POST /fp-setup (164 bytes)
+4.889 SETUP rtsp://x/1 (411 bytes)
+4.900   TEST MODE: using plaintext testAesKey from sender
+4.932   session from fake_sender model=iPhone14,2
+4.957 SETUP rtsp://x/1 (140 bytes)
+4.969   mirror stream set up, id=12752676846510201117
+4.988 mirror stream connected from 192.168.1.15:35510
+5.007 mirror codec config 1280x720 opt 1,0 avcC 0164001fffe1001a6764001facd9405005bb0110000003001000000303c0f183196001000568ebecb22c
+5.414 hls seg 1 400ms 12 frames
+5.814 hls seg 2 400ms 12 frames
+6.163 slow event mirror 362 ms
+6.265 hls seg 3 400ms 12 frames
+6.266 player buffering
+6.283 hls GET live.m3u8 258
+6.308 hls GET live.m3u8 258
+6.370 hls GET init1.mp4 661
+6.402 hls GET s1.m4s 21503
+6.447 hls GET s2.m4s 10274
+6.481 hls GET s3.m4s 19578
+6.635 hls seg 4 400ms 12 frames
+6.637 hls GET s4.m4s 19713
+6.973 POST /feedback (0 bytes)
+7.016 hls seg 5 400ms 12 frames
+7.017 hls GET s5.m4s 23757
+7.319 hls GET live.m3u8 306
+7.418 hls seg 6 400ms 12 frames
+7.419 hls GET s6.m4s 23351
+7.819 hls seg 7 400ms 12 frames
+7.820 hls GET s7.m4s 25104
+8.219 hls seg 8 400ms 12 frames
+8.327 hls GET live.m3u8 379
+8.420 hls GET s8.m4s 23808
+8.621 hls seg 9 400ms 12 frames
+8.621 hls GET s9.m4s 26712
+8.973 POST /feedback (0 bytes)
+9.017 hls seg 10 400ms 12 frames
+9.018 hls GET s10.m4s 25257
+9.026 player playing
+9.041 hls depth 3939 ms -> rate 75%
+9.347 hls GET live.m3u8 381
+9.588 hls seg 11 425ms 17 frames
+9.589 hls GET s11.m4s 34439
+10.159 hls seg 12 425ms 17 frames
+10.160 hls GET s12.m4s 33879
+10.354 hls GET live.m3u8 383
+10.404 stats 10s: video frames=162 bytes=300906 audio pkts=0
+10.728 hls seg 13 424ms 17 frames
+10.729 hls GET s13.m4s 35357
+10.977 POST /feedback (0 bytes)
+11.289 hls seg 14 425ms 17 frames
+11.290 hls GET s14.m4s 33963
+11.358 hls GET live.m3u8 385
+11.856 hls seg 15 424ms 17 frames
+11.857 hls GET s15.m4s 35534
+12.367 hls GET live.m3u8 386
+12.397 hls seg 16 400ms 16 frames
+12.398 hls GET s16.m4s 30610
+12.953 hls seg 17 424ms 17 frames
+12.954 hls GET s17.m4s 32444
+12.983 POST /feedback (0 bytes)
+13.379 hls GET live.m3u8 389
+13.521 hls seg 18 425ms 17 frames
+13.522 hls GET s18.m4s 33478
+14.051 hls seg 19 415ms 16 frames
+14.053 hls GET s19.m4s 27046
+14.065 hls depth 2629 ms -> rate 80%
+14.390 hls GET live.m3u8 389
+14.555 hls seg 20 400ms 15 frames
+14.556 hls GET s20.m4s 27215
+14.975 POST /feedback (0 bytes)
+15.056 hls seg 21 409ms 15 frames
+15.056 hls GET s21.m4s 40291
+15.398 hls GET live.m3u8 389
+15.553 hls seg 22 424ms 15 frames
+15.554 hls GET s22.m4s 19474
+16.019 hls seg 23 406ms 14 frames
+16.020 hls GET s23.m4s 24321
+16.409 hls GET live.m3u8 389
+16.498 hls seg 24 420ms 14 frames
+16.509 hls GET s24.m4s 28035
+16.955 hls seg 25 428ms 14 frames
+16.956 hls GET s25.m4s 29294
+16.984 POST /feedback (0 bytes)
+17.388 hls seg 26 407ms 13 frames
+17.424 hls GET live.m3u8 389
+17.457 hls GET s26.m4s 24819
+17.821 hls seg 27 419ms 13 frames
+17.822 hls GET s27.m4s 26578
+17.831 hls depth 2360 ms -> rate 86%
+18.289 hls seg 28 401ms 14 frames
+18.290 hls GET s28.m4s 27493
+18.427 hls GET live.m3u8 389
+18.751 hls seg 29 414ms 14 frames
+18.753 hls GET s29.m4s 26405
+18.973 POST /feedback (0 bytes)
+19.221 hls seg 30 424ms 14 frames
+19.230 hls GET s30.m4s 26134
+19.440 hls GET live.m3u8 389
+19.657 hls seg 31 406ms 13 frames
+19.658 hls GET s31.m4s 27887
+20.086 hls seg 32 416ms 13 frames
+20.087 hls GET s32.m4s 27552
+20.407 stats 10s: video frames=301 bytes=584426 audio pkts=0
+20.451 hls GET live.m3u8 389
+20.521 hls seg 33 424ms 13 frames
+20.523 hls GET s33.m4s 27685
+20.921 hls seg 34 400ms 12 frames
+20.922 hls GET s34.m4s 26584
+20.931 hls depth 2188 ms -> rate 91%
+20.976 POST /feedback (0 bytes)
+21.390 hls seg 35 424ms 14 frames
+21.457 hls GET live.m3u8 389
+21.524 hls GET s35.m4s 27849
+21.821 hls seg 36 402ms 13 frames
+21.827 hls GET s36.m4s 28631
+22.255 hls seg 37 415ms 13 frames
+22.256 hls GET s37.m4s 25096
+22.468 hls GET live.m3u8 389
+22.689 hls seg 38 429ms 13 frames
+22.689 hls GET s38.m4s 27224
+22.976 POST /feedback (0 bytes)
+23.087 hls seg 39 400ms 12 frames
+23.088 hls GET s39.m4s 23287
+23.479 hls GET live.m3u8 389
+23.510 hls seg 40 411ms 12 frames
+23.511 hls depth 2090 ms -> rate 93%
+23.569 hls GET s40.m4s 24323
+23.921 hls seg 41 402ms 13 frames
+23.922 hls GET s41.m4s 24349
+24.353 hls seg 42 415ms 13 frames
+24.493 hls GET live.m3u8 389
+24.527 hls GET s42.m4s 21299
+24.789 hls seg 43 429ms 13 frames
+24.790 hls GET s43.m4s 18927
+24.977 POST /feedback (0 bytes)
+25.186 hls seg 44 400ms 12 frames
+25.187 hls GET s44.m4s 32441
+25.499 hls GET live.m3u8 389
+25.587 hls seg 45 411ms 12 frames
+25.588 hls GET s45.m4s 15434
+25.601 hls depth 2068 ms -> rate 94%
+26.019 hls seg 46 406ms 13 frames
+26.020 hls GET s46.m4s 23272
+26.456 hls seg 47 415ms 13 frames
+26.510 hls GET live.m3u8 389
+26.615 hls GET s47.m4s 27374
+26.893 hls seg 48 429ms 13 frames
+26.894 hls GET s48.m4s 27863
+26.978 POST /feedback (0 bytes)
+27.290 hls seg 49 400ms 12 frames
+27.290 hls GET s49.m4s 22680
+27.523 hls GET live.m3u8 389
+27.688 hls seg 50 411ms 12 frames
+27.690 hls GET s50.m4s 24574
+28.089 hls seg 51 419ms 12 frames
+28.090 hls GET s51.m4s 24009
+28.104 hls depth 1984 ms -> rate 96%
+28.527 hls seg 52 415ms 13 frames
+28.544 hls GET live.m3u8 389
+28.581 hls GET s52.m4s 27095
+28.957 hls seg 53 424ms 13 frames
+28.958 hls GET s53.m4s 27973
+28.988 POST /feedback (0 bytes)
+29.357 hls seg 54 400ms 12 frames
+29.358 hls GET s54.m4s 23957
+29.538 hls GET live.m3u8 389
+29.755 hls seg 55 411ms 12 frames
+29.756 hls GET s55.m4s 25275
+30.157 hls seg 56 423ms 12 frames
+30.158 hls GET s56.m4s 22840
+30.167 hls depth 1981 ms -> rate 96%
+30.409 stats 10s: video frames=299 bytes=587089 audio pkts=0
+30.558 hls GET live.m3u8 389
+30.591 hls seg 57 416ms 13 frames
+30.639 hls GET s57.m4s 23714
+30.977 POST /feedback (0 bytes)
+31.021 hls seg 58 424ms 13 frames
+31.021 hls GET s58.m4s 26183
+31.440 hls seg 59 400ms 12 frames
+31.561 hls GET live.m3u8 389
+31.624 hls GET s59.m4s 24542
+31.828 hls seg 60 411ms 12 frames
+31.829 hls GET s60.m4s 26053
+31.843 hls depth 2084 ms -> rate 93%
+32.257 hls seg 61 402ms 13 frames
+32.258 hls GET s61.m4s 25710
+32.568 hls GET live.m3u8 389
+32.691 hls seg 62 416ms 13 frames
+32.693 hls GET s62.m4s 28399
+32.979 POST /feedback (0 bytes)
+33.127 hls seg 63 428ms 13 frames
+33.128 hls GET s63.m4s 25522
+33.525 hls seg 64 400ms 12 frames
+33.579 hls GET live.m3u8 389
+33.621 hls GET s64.m4s 24337
+33.926 hls seg 65 411ms 12 frames
+33.926 hls GET s65.m4s 23177
+34.326 hls seg 66 419ms 12 frames
+34.327 hls GET s66.m4s 18450
+34.336 hls depth 1983 ms -> rate 96%
+34.595 hls GET live.m3u8 389
+34.758 hls seg 67 415ms 13 frames
+34.759 hls GET s67.m4s 24884
+34.977 POST /feedback (0 bytes)
+35.014 mirror codec config 332x720 opt 1,0 avcC 0164001effe1001a6764001eacd941505befc044000003000400000300f03c58b65801000568ebecb22c
+35.016 format change -> 332x720 (discontinuity, player kept)
+35.026 hls seg 68 262ms 8 frames
+35.027 hls GET s68.m4s 13579
+35.038 hls depth 1614 ms -> rate 104%
+35.056 hls seg 69 33ms 1 frames
+35.062 hls seg 70 33ms 1 frames
+35.426 hls seg 71 406ms 12 frames
+35.427 hls depth 2088 ms -> rate 93%
+35.598 hls GET live.m3u8 439
+35.634 hls GET s69.m4s 1193
+35.675 hls GET s70.m4s 1193
+35.720 hls GET init2.mp4 661
+35.732 hls GET s71.m4s 39097
+35.856 hls seg 72 402ms 13 frames
+35.857 hls GET s72.m4s 35317
+36.293 hls seg 73 416ms 13 frames
+36.293 hls GET s73.m4s 38593
+36.610 hls GET live.m3u8 439
+36.724 hls seg 74 428ms 13 frames
+36.725 hls GET s74.m4s 43914
+36.988 POST /feedback (0 bytes)
+37.127 hls seg 75 400ms 12 frames
+37.127 hls GET s75.m4s 44417
+37.525 hls seg 76 407ms 12 frames
+37.620 hls GET live.m3u8 439
+37.658 hls GET s76.m4s 42312
+37.925 hls seg 77 419ms 12 frames
+37.926 hls GET s77.m4s 44045
+37.935 hls depth 2012 ms -> rate 95%
+38.359 hls seg 78 411ms 13 frames
+38.360 hls GET s78.m4s 45586
+38.634 hls GET live.m3u8 389
+38.793 hls seg 79 425ms 13 frames
+38.794 hls GET s79.m4s 43686
+38.980 POST /feedback (0 bytes)
+39.194 hls seg 80 400ms 12 frames
+39.195 hls GET s80.m4s 38703
+39.591 hls seg 81 407ms 12 frames
+39.648 hls GET live.m3u8 389
+39.684 hls GET s81.m4s 36128
+39.992 hls seg 82 419ms 12 frames
+39.993 hls GET s82.m4s 36615
+40.017 hls depth 2003 ms -> rate 95%
+40.410 stats 10s: video frames=300 bytes=793049 audio pkts=0
+40.428 hls seg 83 411ms 13 frames
+40.428 hls GET s83.m4s 41681
+40.655 hls GET live.m3u8 389
+40.860 hls seg 84 424ms 13 frames
+40.861 hls GET s84.m4s 44818
+40.981 POST /feedback (0 bytes)
+41.261 hls seg 85 400ms 12 frames
+41.261 hls GET s85.m4s 42759
+41.663 hls seg 86 411ms 12 frames
+41.685 hls GET live.m3u8 389
+41.738 hls GET s86.m4s 44863
+42.059 hls seg 87 423ms 12 frames
+42.060 hls GET s87.m4s 44341
+42.069 hls depth 1976 ms -> rate 96%
+42.494 hls seg 88 416ms 13 frames
+42.495 hls GET s88.m4s 44351
+42.667 hls GET live.m3u8 389
+42.927 hls seg 89 424ms 13 frames
+42.928 hls GET s89.m4s 44850
+42.984 POST /feedback (0 bytes)
+43.327 hls seg 90 400ms 12 frames
+43.328 hls GET s90.m4s 36470
+43.680 hls GET live.m3u8 389
+43.738 hls seg 91 411ms 12 frames
+43.739 hls GET s91.m4s 36268
+44.131 hls seg 92 423ms 12 frames
+44.133 hls GET s92.m4s 37062
+44.141 hls depth 1982 ms -> rate 96%
+44.561 hls seg 93 415ms 13 frames
+44.689 hls GET live.m3u8 389
+44.731 hls GET s93.m4s 43527
+44.979 POST /feedback (0 bytes)
+44.998 hls seg 94 425ms 13 frames
+44.999 hls GET s94.m4s 46595
+45.394 hls seg 95 400ms 12 frames
+45.395 hls GET s95.m4s 41752
+45.699 hls GET live.m3u8 389
+45.798 hls seg 96 411ms 12 frames
+45.799 hls GET s96.m4s 41560
+45.813 hls depth 2084 ms -> rate 93%
+46.226 hls seg 97 402ms 13 frames
+46.227 hls GET s97.m4s 46429
+46.663 hls seg 98 415ms 13 frames
+46.707 hls GET live.m3u8 390
+46.740 hls GET s98.m4s 42597
+46.983 POST /feedback (0 bytes)
+47.099 hls seg 99 429ms 13 frames
+47.100 hls GET s99.m4s 41870
+47.495 hls seg 100 400ms 12 frames
+47.496 hls GET s100.m4s 38750
+47.719 hls GET live.m3u8 392
+47.893 hls seg 101 411ms 12 frames
+47.894 hls GET s101.m4s 37130
+48.295 hls seg 102 419ms 12 frames
+48.296 hls GET s102.m4s 37470
+48.305 hls depth 1983 ms -> rate 96%
+48.736 hls seg 103 415ms 13 frames
+48.749 hls GET live.m3u8 395
+48.799 hls GET s103.m4s 43681
+48.983 POST /feedback (0 bytes)
+49.164 hls seg 104 424ms 13 frames
+49.165 hls GET s104.m4s 45913
+49.560 hls seg 105 400ms 12 frames
+49.561 hls GET s105.m4s 43676
+49.736 hls GET live.m3u8 397
+49.963 hls seg 106 411ms 12 frames
+49.963 hls GET s106.m4s 42169
+50.358 hls seg 107 423ms 12 frames
+50.359 hls GET s107.m4s 43786
+50.368 hls depth 1983 ms -> rate 96%
+50.412 stats 10s: video frames=300 bytes=1014026 audio pkts=0
+50.749 hls GET live.m3u8 400
+50.797 hls seg 108 416ms 13 frames
+50.838 hls GET s108.m4s 45160
+50.980 POST /feedback (0 bytes)
+51.229 hls seg 109 424ms 13 frames
+51.230 hls GET s109.m4s 41568
+51.630 hls seg 110 400ms 12 frames
+51.763 hls GET live.m3u8 400
+51.834 hls GET s110.m4s 35597
+52.028 hls seg 111 411ms 12 frames
+52.029 hls GET s111.m4s 37496
+52.429 hls seg 112 423ms 12 frames
+52.430 hls GET s112.m4s 40275
+52.439 hls depth 1982 ms -> rate 96%
+52.769 hls GET live.m3u8 400
+52.862 hls seg 113 416ms 13 frames
+52.863 hls GET s113.m4s 44167
+53.011 POST /feedback (0 bytes)
+53.297 hls seg 114 424ms 13 frames
+53.298 hls GET s114.m4s 46568
+53.699 hls seg 115 400ms 12 frames
+53.779 hls GET live.m3u8 400
+53.811 hls GET s115.m4s 44144
+54.096 hls seg 116 415ms 12 frames
+54.097 hls GET s116.m4s 42229
+54.114 hls depth 2053 ms -> rate 94%
+54.529 hls seg 117 406ms 13 frames
+54.530 hls GET s117.m4s 45237
+54.790 hls GET live.m3u8 400
+54.969 hls seg 118 419ms 13 frames
+54.970 hls GET s118.m4s 44911
+55.016 POST /feedback (0 bytes)
+55.394 hls seg 119 429ms 13 frames
+55.395 hls GET s119.m4s 41432
+55.801 hls seg 120 403ms 12 frames
+55.817 hls GET live.m3u8 400
+55.879 hls GET s120.m4s 33894
+56.196 hls seg 121 415ms 12 frames
+56.197 hls GET s121.m4s 37457
+56.601 hls seg 122 423ms 12 frames
+56.602 hls GET s122.m4s 39549
+56.615 hls depth 1967 ms -> rate 96%
+56.807 hls GET live.m3u8 400
+56.983 POST /feedback (0 bytes)
+57.027 hls seg 123 415ms 13 frames
+57.028 hls GET s123.m4s 46447
+57.464 hls seg 124 428ms 13 frames
+57.464 hls GET s124.m4s 47133
+57.819 hls GET live.m3u8 400
+57.863 hls seg 125 403ms 12 frames
+57.869 hls GET s125.m4s 41279
+58.265 hls seg 126 411ms 12 frames
+58.266 hls GET s126.m4s 40168
+58.275 hls depth 2059 ms -> rate 94%
+58.698 hls seg 127 407ms 13 frames
+58.832 hls GET live.m3u8 400
+58.865 hls GET s127.m4s 44208
+58.987 POST /feedback (0 bytes)
+59.131 hls seg 128 419ms 13 frames
+59.132 hls GET s128.m4s 41723
+59.564 hls seg 129 428ms 13 frames
+59.565 hls GET s129.m4s 41086
+59.838 hls GET live.m3u8 400
+59.964 hls seg 130 403ms 12 frames
+59.964 hls GET s130.m4s 37684
+60.365 hls seg 131 416ms 12 frames
+60.366 hls GET s131.m4s 37600
+60.416 stats 10s: video frames=300 bytes=991350 audio pkts=0
+60.773 hls seg 132 422ms 12 frames
+60.774 hls depth 1966 ms -> rate 96%
+60.853 hls GET live.m3u8 400
+60.888 hls GET s132.m4s 40563
+60.985 POST /feedback (0 bytes)
+61.197 hls seg 133 416ms 13 frames
+61.198 hls GET s133.m4s 48939
+61.630 hls seg 134 428ms 13 frames
+61.630 hls GET s134.m4s 45349
+61.860 hls GET live.m3u8 400
+62.020 hls seg 135 403ms 12 frames
+62.021 hls GET s135.m4s 42659
+62.416 hls seg 136 411ms 12 frames
+62.416 hls GET s136.m4s 43890
+62.428 hls depth 2058 ms -> rate 94%
+62.846 hls seg 137 407ms 13 frames
+62.873 hls GET live.m3u8 400
+62.906 hls GET s137.m4s 43010
+62.961 POST /feedback (0 bytes)
+63.272 hls seg 138 419ms 13 frames
+63.273 hls GET s138.m4s 42862
+63.702 hls seg 139 428ms 13 frames
+63.703 hls GET s139.m4s 37160
+63.878 hls GET live.m3u8 400
+64.097 hls seg 140 403ms 12 frames
+64.097 hls GET s140.m4s 37816
+64.495 hls seg 141 415ms 12 frames
+64.495 hls GET s141.m4s 37895
+64.505 hls depth 2050 ms -> rate 94%
+64.892 hls GET live.m3u8 400
+64.921 hls seg 142 407ms 13 frames
+64.943 POST /feedback (0 bytes)
+64.977 mirror stream closed
+64.982 hls GET s142.m4s 45795
+65.005 TEARDOWN rtsp://x/1 (42 bytes)
+65.013   teardown streams: audio=false mirror=false
+65.019 session end: teardown
+65.305 slow event rtsp 313 ms
+65.329 rtsp connection closed (192.168.1.15:35008)
+67.280 pairing precompute done in 1949 ms
+67.280 slow timers 1951 ms
+67.284 hls 404 /hls/2/s143.m4s
