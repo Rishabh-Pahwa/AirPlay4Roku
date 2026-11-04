@@ -1,0 +1,17 @@
+# Local BrightScript interpreter: reinstall with `cd tools/node && npm install`
+tools/node/node_modules/
+
+# Generated test output, captures and logs (all reproducible)
+test/scratch/
+test/build/
+test/h264/build/
+test/fairplay/build/
+test/brs-crypto-*/
+test/tmp*/
+
+# Downloaded reference source (see test/h264/range_tab_lps.json for the table extracted from it)
+test/h264/ref_ffmpeg/
+
+# Python bytecode
+__pycache__/
+*.pyc
