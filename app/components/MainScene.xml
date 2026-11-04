@@ -4,7 +4,7 @@
   <children>
     <Rectangle id="bg" width="1280" height="720" color="0x101418FF" />
     <Group id="idle">
-      <Label id="title" translation="[0,200]" width="1280" horizAlign="center" text="AirPlay Receiver" color="0xFFFFFFFF">
+      <Label id="title" translation="[0,200]" width="1280" horizAlign="center" text="AirPlay4Roku" color="0xFFFFFFFF">
         <Font role="font" uri="font:LargeBoldSystemFontFile" size="48" />
       </Label>
       <Label id="name" translation="[0,290]" width="1280" horizAlign="center" text="" color="0x8FD3FFFF">
