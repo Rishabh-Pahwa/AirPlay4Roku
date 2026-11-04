@@ -1,0 +1,37 @@
+[sender] GET /info -> 200 (275 bytes, 0.02s)
+[sender] info(txtAirPlay) keys: ['txtAirPlay']
+[sender] GET /info -> 200 (1104 bytes, 0.10s)
+[sender] info: {'deviceID': '8A:40:15:67:CD:E5', 'macAddress': '8A:40:15:67:CD:E5', 'pk': '389a6c8416f4364fbbd021e305de9e9c5ec5a708cc5bddb6c4eead634e0d6430', 'features': 1518337766, 'name': 'Roku 2 XS', 'pi': '2e388006-13ba-4041-9a67-25dd4a43d536', 'vv': 2, 'statusFlags': 68, 'keepAliveLowPower': True, 'sourceVersion': '220.68', 'keepAliveSendStatsAsBody': True, 'model': 'AppleTV3,2', 'initialVolume': 0.0, 'displays': [{'uuid': 'e0ff8a27-6738-3d56-8a16-cc53aacee925', 'widthPhysical': 0, 'heightPhysical': 0, 'width': 1280, 'height': 720, 'widthPixels': 1280, 'heightPixels': 720, 'rotation': False, 'refreshRate': 0.016666666666666666, 'maxFPS': 30, 'overscanned': False, 'features': 14}]}
+[sender] POST /pair-setup -> 200 (32 bytes, 0.01s)
+[sender] POST /pair-verify -> 200 (96 bytes, 2.19s)
+[sender] pair-verify: receiver signature VERIFIED, shared secret established
+[sender] POST /pair-verify -> 200 (0 bytes, 0.02s)
+[sender] POST /fp-setup -> 200 (142 bytes, 0.01s)
+[sender] POST /fp-setup -> 200 (32 bytes, 0.01s)
+[sender] fp-setup ok (reply echoes last 20 bytes)
+[sender] SETUP rtsp://x/1 -> 200 (76 bytes, 0.06s)
+[sender] SETUP 1 -> {'eventPort': 0, 'timingPort': 6010}
+[sender] SETUP rtsp://x/1 -> 200 (85 bytes, 0.04s)
+[sender] mirror connected to 7100
+[sender] POST /feedback -> 200 (0 bytes, 0.03s)
+[sender] POST /feedback -> 200 (0 bytes, 0.01s)
+[sender] POST /feedback -> 200 (0 bytes, 5.02s)
+[sender] POST /feedback -> 200 (0 bytes, 0.03s)
+[sender] POST /feedback -> 200 (0 bytes, 0.06s)
+[sender] POST /feedback -> 200 (0 bytes, 0.01s)
+[sender] POST /feedback -> 200 (0 bytes, 0.01s)
+[sender] POST /feedback -> 200 (0 bytes, 0.04s)
+[sender] POST /feedback -> 200 (0 bytes, 0.01s)
+[sender] POST /feedback -> 200 (0 bytes, 0.01s)
+[sender] POST /feedback -> 200 (0 bytes, 0.01s)
+[sender] POST /feedback -> 200 (0 bytes, 0.02s)
+[sender] POST /feedback -> 200 (0 bytes, 0.01s)
+[sender] POST /feedback -> 200 (0 bytes, 0.01s)
+[sender] POST /feedback -> 200 (0 bytes, 0.02s)
+[sender] POST /feedback -> 200 (0 bytes, 0.02s)
+[sender] POST /feedback -> 200 (0 bytes, 0.01s)
+[sender] POST /feedback -> 200 (0 bytes, 0.02s)
+[sender] POST /feedback -> 200 (0 bytes, 0.01s)
+[sender] POST /feedback -> 200 (0 bytes, 0.01s)
+[sender] mirror: sent 1200 frames, 1505804 bytes in 40.0s
+[sender] TEARDOWN rtsp://x/1 -> 200 (0 bytes, 0.02s)

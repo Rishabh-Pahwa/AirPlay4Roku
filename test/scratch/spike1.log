@@ -1,0 +1,44 @@
+11-04 08:30:42.671 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+11-04 08:30:42.672 [beacon.signal] |AppCompileInitiate --------> TimeBase(2 ms)
+11-04 08:30:42.673 [scrpt.cmpl] Compiling 'AirPlay Spike', id 'dev'
+11-04 08:30:42.692 [scrpt.load.mkup] Loading markup dev 'AirPlay Spike'
+11-04 08:30:42.706 [scrpt.unload.mkup] Unloading markup dev 'AirPlay Spike'
+11-04 08:30:42.721 [scrpt.parse.mkup.time] Parsed markup dev 'AirPlay Spike' in 29 milliseconds
+
+------ Compiling dev 'AirPlay Spike' ------
+11-04 08:30:42.737 [scrpt.ctx.cmpl.time] Compiled 'AirPlay Spike', id 'dev' in 13 milliseconds
+11-04 08:30:42.816 [scrpt.proc.mkup.time] Processed markup dev 'AirPlay Spike' in 76 milliseconds
+11-04 08:30:42.819 [beacon.signal] |AppCompileComplete --------> Duration(147 ms), 13.96 KiP
+11-04 08:30:42.870 [ui.frm.plugin.running.enter] Entering PLUGIN_RUNNING for dev
+11-04 08:30:45.111 [scrpt.ctx.run.enter] UI: Entering 'AirPlay Spike', id 'dev'
+
+------ Running dev 'AirPlay Spike' main ------
+
+BrightScript Micro Debugger.
+Enter any BrightScript statement, debug commands, or HELP.
+
+Suspending threads...
+Thread selected:  1*   pkg:/components/SpikeTask.brs(14)       log("task start")
+
+Current Function:
+013:  sub run()
+014:*     log("task start")
+015:      testEnv()
+016:      testInts()
+017:      testCrypto()
+018:      bench()
+Type Mismatch. (runtime error &h18) in pkg:/components/SpikeTask.brs(14)
+014:     log("task start")
+Backtrace:
+#0  Function run() As Void
+   file/line: pkg:/components/SpikeTask.brs(14)
+Local Variables:
+global           Interface:ifGlobal
+m                roAssociativeArray refcnt=2 count:2
+Threads:
+ID    Location                                Source Code
+ 0    pkg:/source/main.brs(8)                 msg = wait(0, port)
+ 1*   pkg:/components/SpikeTask.brs(14)       log("task start")
+  *selected
+
+Brightscript Debugger> 

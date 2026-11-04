@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="Spike3Scene" extends="Scene">
+  <script type="text/brightscript" uri="pkg:/components/Spike3Scene.brs" />
+  <children>
+    <Video id="video" width="1280" height="720" />
+    <Audio id="audio" />
+  </children>
+</component>

@@ -1,0 +1,91 @@
+p  3 t= 508ms] audio state=error err=-2 The connection timed out.
+SPIKE: [step  3 t= 518ms] audio state=finished err=-2 The connection timed out.
+SPIKE: [step  3 t= 7035ms] audio state=stopped err=-2 The connection timed out.
+SPIKE: step  4 live=false audio mp4 http://127.0.0.1:8888/v5_escape.m4a
+SPIKE: [step  4 t= 55ms] audio state=buffering err=-2 The connection timed out.
+SPIKE: http req GET /v5_escape.m4a HTTP/1.1
+SPIKE: http req GET /v5_escape.m4a HTTP/1.1
+SPIKE:   Range: bytes=3538516-
+SPIKE: [step  4 t= 1416ms] audio state=error err=-2 The connection timed out.
+SPIKE: [step  4 t= 1425ms] audio state=finished err=-2 The connection timed out.
+SPIKE: [step  4 t= 7046ms] audio state=stopped err=-2 The connection timed out.
+SPIKE: all steps done
+11-04 09:10:11.383 [beacon.signal] |AppExitInitiate -----------> TimeBase(63948 ms)
+11-04 09:10:11.395 [beacon.signal] |AppExitComplete -----------> Duration(11 ms), 8.59 KiP
+11-04 09:10:11.400 [beacon.header] __________________________________________
+11-04 09:10:11.401 [beacon.report] |AppLaunchInitiate ---------> TimeBase(0)
+11-04 09:10:11.402 [beacon.report] |AppCompileInitiate --------> TimeBase(1 ms)
+11-04 09:10:11.403 [beacon.report] |AppCompileComplete --------> Duration(131 ms), 12.14 KiP
+11-04 09:10:11.404 [beacon.report] |VODStartInitiate ----------> TimeBase(4471 ms)
+11-04 09:10:11.405 [beacon.report] |VODStartComplete ----------> Duration(2600 ms), 11.83 KiP
+11-04 09:10:11.405 [beacon.report] |AppExitInitiate -----------> TimeBase(63948 ms)
+11-04 09:10:11.406 [beacon.report] |AppExitComplete -----------> Duration(11 ms), 8.59 KiP
+11-04 09:10:11.406 [beacon.footer] __________________________________________
+11-04 09:10:11.561 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+11-04 09:10:11.561 [beacon.signal] |AppCompileInitiate --------> TimeBase(1 ms)
+11-04 09:10:11.562 [scrpt.cmpl] Compiling 'AirPlay Receiver', id 'dev'
+11-04 09:10:11.595 [scrpt.load.mkup] Loading markup dev 'AirPlay Receiver'
+11-04 09:10:11.603 [scrpt.unload.mkup] Unloading markup dev 'AirPlay Receiver'
+11-04 09:10:11.615 [scrpt.parse.mkup.time] Parsed markup dev 'AirPlay Receiver' in 19 milliseconds
+
+------ Compiling dev 'AirPlay Receiver' ------
+11-04 09:10:12.572 [scrpt.ctx.cmpl.time] Compiled 'AirPlay Receiver', id 'dev' in 955 milliseconds
+11-04 09:10:13.544 [scrpt.proc.mkup.time] Processed markup dev 'AirPlay Receiver' in 956 milliseconds
+11-04 09:10:13.557 [beacon.signal] |AppCompileComplete --------> Duration(1996 ms), 281.19 KiP
+11-04 09:10:13.635 [ui.frm.plugin.running.enter] Entering PLUGIN_RUNNING for dev
+11-04 09:10:16.332 [scrpt.ctx.run.enter] UI: Entering 'AirPlay Receiver', id 'dev'
+
+------ Running dev 'AirPlay Receiver' main ------
+11-04 09:10:17.607 [beacon.signal] |AppExitInitiate -----------> TimeBase(6047 ms)
+11-04 09:10:17.611 [beacon.signal] |AppExitComplete -----------> Duration(4 ms), 290.91 KiP
+11-04 09:10:17.614 [beacon.header] __________________________________________
+11-04 09:10:17.615 [beacon.report] |AppLaunchInitiate ---------> TimeBase(0)
+11-04 09:10:17.613 [ui.frm.plugin.running.enter] Entering PLUGIN_RUNNING for dev
+11-04 09:10:17.619 [beacon.report] |AppCompileInitiate --------> TimeBase(1 ms)
+11-04 09:10:17.620 [beacon.report] |AppCompileComplete --------> Duration(1996 ms), 281.19 KiP
+11-04 09:10:17.620 [beacon.report] |AppExitInitiate -----------> TimeBase(6047 ms)
+11-04 09:10:17.621 [beacon.report] |AppExitComplete -----------> Duration(4 ms), 290.91 KiP
+11-04 09:10:17.622 [beacon.footer] __________________________________________
+11-04 09:10:17.629 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+11-04 09:10:19.746 [scrpt.ctx.run.enter] UI: Entering 'AirPlay Receiver', id 'dev'
+
+------ Running dev 'AirPlay Receiver' main ------
+[airplay] ed25519 identity ready in 1606 ms
+[airplay] mdns bind=true join=true
+[airplay] listen rtsp-listen :7000 ok=true
+[airplay] listen mirror-listen :7100 ok=true
+[airplay] listen http-listen :8888 ok=true
+[airplay] ready as 'Roku 2 XS' on 192.168.1.16
+[airplay] pairing precompute done in 1930 ms
+[airplay] rtsp connection from 192.168.1.15:36648
+[airplay] GET /info (70 bytes)
+[airplay] GET /info (0 bytes)
+[airplay] POST /pair-setup (32 bytes)
+[airplay] POST /pair-verify (68 bytes)
+[airplay]   pair-verify step 1 computed in 2108 ms
+[airplay] POST /pair-verify (68 bytes)
+[airplay] POST /fp-setup (16 bytes)
+[airplay] POST /fp-setup (164 bytes)
+[airplay] SETUP rtsp://x/1 (411 bytes)
+[airplay]   TEST MODE: using plaintext testAesKey from sender
+[airplay]   session from fake_sender model=iPhone14,2
+[airplay] SETUP rtsp://x/1 (142 bytes)
+[airplay]   audio stream ct=2 spf=352
+[airplay] RECORD rtsp://x/1 (0 bytes)
+[scene] audioUrl=http://127.0.0.1:8888/audio/1.mka
+[scene] audio state=buffering 
+[airplay] player GET /audio/1.mka from 0
+[airplay] player GET /audio/1.mka from 166
+[airplay] player GET /audio/1.mka from 0
+[scene] audio state=playing 
+11-04 09:10:50.021 [beacon.signal] |VODStartInitiate ----------> TimeBase(29478 ms)
+11-04 09:10:50.057 [beacon.signal] |VODStartComplete ----------> Duration(2900 ms), 8.35 KiP
+[airplay] stats 10s: video frames=0 bytes=0 audio pkts=703
+[airplay] stats 10s: video frames=0 bytes=0 audio pkts=1254
+[airplay] TEARDOWN rtsp://x/1 (42 bytes)
+[airplay] session end: teardown
+[scene] audioUrl=
+[scene] audio state=stopped 
+[airplay] rtsp connection closed (192.168.1.15:36648)
+[airplay] pairing precompute done in 1972 ms
+[airplay] stats 10s: video frames=0 bytes=0 audio pkts=549

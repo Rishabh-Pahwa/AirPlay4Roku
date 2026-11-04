@@ -1,0 +1,682 @@
+y] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] stats 10s: video frames=301 bytes=7367703 audio pkts=0
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] mirror stream closed
+[airplay] TEARDOWN rtsp://x/1 (42 bytes)
+[airplay] session end: teardown
+[scene] mirrorUrl=
+[scene] video state=stopped 
+[airplay] rtsp connection closed (192.168.1.15:44244)
+[airplay] pairing precompute done in 1950 ms
+[airplay] stats 10s: video frames=280 bytes=6801341 audio pkts=0
+11-04 09:15:12.458 [beacon.signal] |AppExitInitiate -----------> TimeBase(294829 ms)
+11-04 09:15:12.483 [beacon.signal] |AppExitComplete -----------> Duration(24 ms), 6.93 KiP
+11-04 09:15:12.487 [beacon.header] __________________________________________
+11-04 09:15:12.488 [beacon.report] |AppLaunchInitiate ---------> TimeBase(0)
+11-04 09:15:12.488 [beacon.report] |VODStartInitiate ----------> TimeBase(79471 ms)
+11-04 09:15:12.490 [beacon.report] |VODStartComplete ----------> Duration(3228 ms), 7.64 KiP
+11-04 09:15:12.490 [beacon.report] |AppExitInitiate -----------> TimeBase(294829 ms)
+11-04 09:15:12.491 [beacon.report] |AppExitComplete -----------> Duration(24 ms), 6.93 KiP
+11-04 09:15:12.492 [beacon.footer] __________________________________________
+11-04 09:15:12.687 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+11-04 09:15:12.689 [beacon.signal] |AppCompileInitiate --------> TimeBase(3 ms)
+11-04 09:15:12.690 [scrpt.cmpl] Compiling 'FairPlay Test', id 'dev'
+
+------ Compiling dev 'FairPlay Test' ------
+11-04 09:15:12.983 [scrpt.ctx.cmpl.time] Compiled 'FairPlay Test', id 'dev' in 274 milliseconds
+11-04 09:15:12.987 [scrpt.proc.mkup.time] Processed markup dev 'FairPlay Test' in 0 milliseconds
+11-04 09:15:12.990 [beacon.signal] |AppCompileComplete --------> Duration(300 ms), 52.15 KiP
+11-04 09:15:13.051 [ui.frm.plugin.running.enter] Entering PLUGIN_RUNNING for dev
+11-04 09:15:15.814 [scrpt.ctx.run.enter] UI: Entering 'FairPlay Test', id 'dev'
+
+------ Running dev 'FairPlay Test' main ------
+FAIRPLAY_SELFTEST tables_ms= 236
+FAIRPLAY_SELFTEST decrypt ms= 275 true
+FAIRPLAY_SELFTEST decrypt ms= 217 true
+FAIRPLAY_SELFTEST decrypt ms= 198 true
+FAIRPLAY_SELFTEST decrypt ms= 201 true
+FAIRPLAY_SELFTEST decrypt ms= 205 true
+FAIRPLAY_SELFTEST decrypt ms= 202 true
+FAIRPLAY_SELFTEST decrypt ms= 211 true
+FAIRPLAY_SELFTEST decrypt ms= 197 true
+FAIRPLAY_SELFTEST decrypt ms= 200 true
+FAIRPLAY_SELFTEST decrypt ms= 199 true
+FAIRPLAY_SELFTEST decrypt ms= 206 true
+FAIRPLAY_SELFTEST decrypt ms= 213 true
+FAIRPLAY_SELFTEST  12/ 12 ok, avg_ms= 210
+FP_SELFTEST_RESULT invalid
+11-04 09:16:23.219 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+11-04 09:16:23.220 [beacon.signal] |AppCompileInitiate --------> TimeBase(1 ms)
+11-04 09:16:23.221 [scrpt.cmpl] Compiling 'AirPlay Receiver', id 'dev'
+11-04 09:16:23.250 [scrpt.load.mkup] Loading markup dev 'AirPlay Receiver'
+11-04 09:16:23.258 [scrpt.unload.mkup] Unloading markup dev 'AirPlay Receiver'
+11-04 09:16:23.276 [scrpt.parse.mkup.time] Parsed markup dev 'AirPlay Receiver' in 26 milliseconds
+
+------ Compiling dev 'AirPlay Receiver' ------
+11-04 09:16:24.075 [scrpt.ctx.cmpl.time] Compiled 'AirPlay Receiver', id 'dev' in 796 milliseconds
+11-04 09:16:24.955 [scrpt.proc.mkup.time] Processed markup dev 'AirPlay Receiver' in 873 milliseconds
+11-04 09:16:24.968 [beacon.signal] |AppCompileComplete --------> Duration(1748 ms), 281.53 KiP
+11-04 09:16:25.010 [ui.frm.plugin.running.enter] Entering PLUGIN_RUNNING for dev
+11-04 09:16:26.745 [scrpt.ctx.run.enter] UI: Entering 'AirPlay Receiver', id 'dev'
+
+------ Running dev 'AirPlay Receiver' main ------
+[airplay] ed25519 identity ready in 1599 ms
+[airplay] mdns bind=true join=true
+[airplay] listen rtsp-listen :7000 ok=true
+[airplay] listen mirror-listen :7100 ok=true
+[airplay] listen http-listen :8888 ok=true
+[airplay] ready as 'Roku 2 XS' on 192.168.1.16
+[airplay] pairing precompute done in 1809 ms
+[airplay] rtsp connection from 192.168.1.20:60826
+[airplay] GET /info (70 bytes)
+[airplay] POST /pair-setup (32 bytes)
+[airplay] POST /pair-verify (68 bytes)
+[airplay]   pair-verify step 1 computed in 2192 ms
+[airplay] POST /pair-verify (68 bytes)
+[airplay] POST /fp-setup (16 bytes)
+[airplay] POST /fp-setup (164 bytes)
+[airplay] SETUP rtsp://192.168.1.16/14065507691801561001 (667 bytes)
+[airplay]   fairplay decrypt 199 ms
+[airplay]   session from Rishabh's iPhone model=iPhone15,4
+[airplay] GET /info (0 bytes)
+[airplay] RECORD rtsp://192.168.1.16/14065507691801561001 (0 bytes)
+[airplay] SETUP rtsp://192.168.1.16/14065507691801561001 (204 bytes)
+[airplay]   mirror stream set up, id=9536275342574702493
+[airplay] mirror stream connected from 192.168.1.20:60827
+[airplay] mirror codec config 332x720 avcC 36 bytes
+[scene] mirrorUrl=http://127.0.0.1:8888/mirror/2.mkv
+[scene] video state=buffering 
+[airplay] player GET /mirror/2.mkv from 0
+[airplay] player GET /mirror/2.mkv from 178
+[airplay] player GET /mirror/2.mkv from 0
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] stats 10s: video frames=112 bytes=35157 audio pkts=0
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] stats 10s: video frames=212 bytes=14924 audio pkts=0
+[airplay] POST /feedback (0 bytes)
+[scene] video state=playing 
+11-04 09:21:32.890 [beacon.signal] |VODStartInitiate ----------> TimeBase(292898 ms)
+11-04 09:21:32.895 [beacon.signal] |VODStartComplete ----------> Duration(16769 ms), 289.62 KiP
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] stats 10s: video frames=246 bytes=624846 audio pkts=0
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] stats 10s: video frames=203 bytes=234297 audio pkts=0
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] stats 10s: video frames=211 bytes=321560 audio pkts=0
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] stats 10s: video frames=263 bytes=30402 audio pkts=0
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] stats 10s: video frames=272 bytes=31377 audio pkts=0
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] mirror codec config 332x720 avcC 36 bytes
+[airplay]   same codec config, continuing stream
+[airplay] mirror stream closed
+[airplay] TEARDOWN rtsp://192.168.1.16/14065507691801561001 (69 bytes)
+[scene] mirrorUrl=
+[scene] video state=stopped 
+[airplay] TEARDOWN rtsp://192.168.1.16/14065507691801561001 (42 bytes)
+[airplay] session end: teardown
+[airplay] rtsp connection closed (192.168.1.20:60826)
+[airplay] pairing precompute done in 1987 ms
+[airplay] stats 10s: video frames=162 bytes=393137 audio pkts=0
+[airplay] rtsp connection from 192.168.1.20:60829
+[airplay] GET /info (70 bytes)
+[airplay] POST /pair-verify (68 bytes)
+[airplay]   pair-verify step 1 computed in 2196 ms
+[airplay] POST /pair-verify (68 bytes)
+[airplay] POST /fp-setup (16 bytes)
+[airplay] POST /fp-setup (164 bytes)
+[airplay] SETUP rtsp://192.168.1.16/9605379932673819945 (633 bytes)
+[airplay]   fairplay decrypt 222 ms
+[airplay]   session from Rishabh's iPhone model=iPhone15,4
+[airplay] GET /info (0 bytes)
+[airplay] RECORD rtsp://192.168.1.16/9605379932673819945 (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] SETUP rtsp://192.168.1.16/9605379932673819945 (243 bytes)
+[airplay]   audio stream ct=2 spf=352
+[scene] audioUrl=http://127.0.0.1:8888/audio/3.mka
+[scene] audio state=buffering 
+[airplay] FLUSH rtsp://192.168.1.16/9605379932673819945 (0 bytes)
+[airplay] player GET /audio/3.mka from 0
+[airplay] player GET /audio/3.mka from 166
+[airplay] player GET /audio/3.mka from 0
+[airplay] POST /feedback (0 bytes)
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (138282 bytes)
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (43 bytes)
+[airplay]   progress: 3732681832/3732852250/3744335477
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (186 bytes)
+[airplay] POST /feedback (0 bytes)
+[scene] audio state=playing 
+11-04 09:23:37.796 [beacon.signal] |VODStartInitiate ----------> TimeBase(430954 ms)
+11-04 09:23:37.796 [beacon.signal] |VODStartComplete ----------> Duration(3567 ms), 289.30 KiP
+[airplay] POST /feedback (0 bytes)
+[airplay] stats 10s: video frames=0 bytes=0 audio pkts=863
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (145 bytes)
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (43 bytes)
+[airplay]   progress: 3732688720/3733308794/3744342365
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (0 bytes)
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (145 bytes)
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (138282 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] stats 10s: video frames=0 bytes=0 audio pkts=1254
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (145 bytes)
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (0 bytes)
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (145 bytes)
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (138282 bytes)
+[airplay] POST /feedback (0 bytes)
+[scene] audio state=buffering 
+[airplay] TEARDOWN rtsp://192.168.1.16/9605379932673819945 (200 bytes)
+[scene] audioUrl=
+[scene] audio state=stopped 
+[airplay] POST /feedback (0 bytes)
+[airplay] stats 10s: video frames=0 bytes=0 audio pkts=842
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] SETUP rtsp://192.168.1.16/9605379932673819945 (243 bytes)
+[airplay]   audio stream ct=2 spf=352
+[scene] audioUrl=http://127.0.0.1:8888/audio/4.mka
+[scene] audio state=buffering 
+[airplay] FLUSH rtsp://192.168.1.16/9605379932673819945 (0 bytes)
+[airplay] player GET /audio/4.mka from 0
+[airplay] player GET /audio/4.mka from 166
+[airplay] player GET /audio/4.mka from 0
+[airplay] POST /feedback (0 bytes)
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (138282 bytes)
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (43 bytes)
+[airplay]   progress: 3605105446/3606199995/3616759091
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (186 bytes)
+[scene] audio state=playing 
+11-04 09:24:39.695 [beacon.signal] |VODStartInitiate ----------> TimeBase(493662 ms)
+11-04 09:24:39.696 [beacon.signal] |VODStartComplete ----------> Duration(2779 ms), 288.59 KiP
+[airplay] POST /feedback (0 bytes)
+[airplay] stats 10s: video frames=0 bytes=0 audio pkts=531
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] stats 10s: video frames=0 bytes=0 audio pkts=1252
+[airplay] POST /feedback (0 bytes)
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (145 bytes)
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (43 bytes)
+[airplay]   progress: 3605089288/3606795931/3616742933
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (0 bytes)
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (145 bytes)
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (138282 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (145 bytes)
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (0 bytes)
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (145 bytes)
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (138282 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] TEARDOWN rtsp://192.168.1.16/9605379932673819945 (200 bytes)
+[scene] audioUrl=
+[scene] audio state=stopped 
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] stats 10s: video frames=0 bytes=0 audio pkts=580
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] SETUP rtsp://192.168.1.16/9605379932673819945 (243 bytes)
+[airplay]   audio stream ct=2 spf=352
+[scene] audioUrl=http://127.0.0.1:8888/audio/5.mka
+[scene] audio state=buffering 
+[airplay] FLUSH rtsp://192.168.1.16/9605379932673819945 (0 bytes)
+[airplay] player GET /audio/5.mka from 0
+[airplay] player GET /audio/5.mka from 166
+[airplay] player GET /audio/5.mka from 0
+[airplay] stats 10s: video frames=0 bytes=0 audio pkts=133
+[airplay] POST /feedback (0 bytes)
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (138282 bytes)
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (43 bytes)
+[airplay]   progress: 3945889391/3947743014/3957543036
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (186 bytes)
+[scene] audio state=playing 
+11-04 09:25:12.822 [beacon.signal] |VODStartInitiate ----------> TimeBase(526891 ms)
+11-04 09:25:12.859 [beacon.signal] |VODStartComplete ----------> Duration(2698 ms), 287.88 KiP
+[airplay] POST /feedback (0 bytes)
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (19 bytes)
+[airplay]   volume: -1.875000
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (19 bytes)
+[airplay]   volume: -3.750000
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] stats 10s: video frames=0 bytes=0 audio pkts=1253
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] stats 10s: video frames=0 bytes=0 audio pkts=1288
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] stats 10s: video frames=0 bytes=0 audio pkts=1257
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] stats 10s: video frames=0 bytes=0 audio pkts=1253
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] stats 10s: video frames=0 bytes=0 audio pkts=1254
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] stats 10s: video frames=0 bytes=0 audio pkts=1251
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] stats 10s: video frames=0 bytes=0 audio pkts=1283
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] stats 10s: video frames=0 bytes=0 audio pkts=1254
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] stats 10s: video frames=0 bytes=0 audio pkts=1258
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] stats 10s: video frames=0 bytes=0 audio pkts=1249
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (19 bytes)
+[airplay]   volume: -5.625000
+[airplay] POST /feedback (0 bytes)
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (19 bytes)
+[airplay]   volume: -7.500000
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (19 bytes)
+[airplay]   volume: -9.375000
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (20 bytes)
+[airplay]   volume: -11.250000
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (20 bytes)
+[airplay]   volume: -13.125000
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (20 bytes)
+[airplay]   volume: -15.000000
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] stats 10s: video frames=0 bytes=0 audio pkts=1231
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] stats 10s: video frames=0 bytes=0 audio pkts=1269
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] stats 10s: video frames=0 bytes=0 audio pkts=1267
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] stats 10s: video frames=0 bytes=0 audio pkts=1257
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (20 bytes)
+[airplay]   volume: -16.875000
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (20 bytes)
+[airplay]   volume: -18.750000
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (20 bytes)
+[airplay]   volume: -20.625000
+[airplay] POST /feedback (0 bytes)
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (20 bytes)
+[airplay]   volume: -22.500000
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (20 bytes)
+[airplay]   volume: -24.375000
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (20 bytes)
+[airplay]   volume: -26.250000
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (20 bytes)
+[airplay]   volume: -28.125000
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (20 bytes)
+[airplay]   volume: -30.000000
+[airplay] POST /feedback (0 bytes)
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (20 bytes)
+[airplay]   volume: -28.125000
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (20 bytes)
+[airplay]   volume: -26.250000
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (20 bytes)
+[airplay]   volume: -24.375000
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (20 bytes)
+[airplay]   volume: -22.500000
+[airplay] POST /feedback (0 bytes)
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (20 bytes)
+[airplay]   volume: -24.375000
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (20 bytes)
+[airplay]   volume: -26.250000
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (20 bytes)
+[airplay]   volume: -28.125000
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (20 bytes)
+[airplay]   volume: -30.000000
+[airplay] stats 10s: video frames=0 bytes=0 audio pkts=1250
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] stats 10s: video frames=0 bytes=0 audio pkts=1261
+[airplay] POST /feedback (0 bytes)
+[scene] audio state=buffering 
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (145 bytes)
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (0 bytes)
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (145 bytes)
+[airplay] SET_PARAMETER rtsp://192.168.1.16/9605379932673819945 (138282 bytes)
+[airplay] POST /feedback (0 bytes)
+[scene] audio state=playing 
+[airplay] TEARDOWN rtsp://192.168.1.16/9605379932673819945 (200 bytes)
+[scene] audioUrl=
+[scene] audio state=stopped 
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] stats 10s: video frames=0 bytes=0 audio pkts=554
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] TEARDOWN rtsp://192.168.1.16/9605379932673819945 (42 bytes)
+[airplay] session end: teardown
+[airplay] rtsp connection closed (192.168.1.20:60829)
+[airplay] pairing precompute done in 2076 ms
+[airplay] rtsp connection from 192.168.1.5:56279
+[airplay] GET /info (70 bytes)
+[airplay] POST /pair-setup (32 bytes)
+[airplay] POST /pair-verify (68 bytes)
+[airplay]   pair-verify step 1 computed in 2365 ms
+[airplay] POST /pair-verify (68 bytes)
+[airplay] POST /fp-setup (16 bytes)
+[airplay] POST /fp-setup (164 bytes)
+[airplay] SETUP rtsp://192.168.1.16/15802616950369764314 (647 bytes)
+[airplay]   fairplay decrypt 206 ms
+[airplay]   session from Ruhani?s iPhone model=iPhone17,3
+[airplay] GET /info (0 bytes)
+[airplay] RECORD rtsp://192.168.1.16/15802616950369764314 (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] SETUP rtsp://192.168.1.16/15802616950369764314 (243 bytes)
+[airplay]   audio stream ct=2 spf=352
+[airplay] FLUSH rtsp://192.168.1.16/15802616950369764314 (0 bytes)
+[scene] audioUrl=http://127.0.0.1:8888/audio/6.mka
+[scene] audio state=buffering 
+[airplay] player GET /audio/6.mka from 0
+[airplay] player GET /audio/6.mka from 166
+[airplay] player GET /audio/6.mka from 0
+[airplay] POST /feedback (0 bytes)
+[airplay] stats 10s: video frames=0 bytes=0 audio pkts=130
+[airplay] SET_PARAMETER rtsp://192.168.1.16/15802616950369764314 (148253 bytes)
+[airplay] SET_PARAMETER rtsp://192.168.1.16/15802616950369764314 (43 bytes)
+[airplay]   progress: 3218476238/3219549105/3232375367
+[airplay] SET_PARAMETER rtsp://192.168.1.16/15802616950369764314 (201 bytes)
+[airplay] POST /feedback (0 bytes)
+[scene] audio state=playing 
+11-04 09:33:27.037 [beacon.signal] |VODStartInitiate ----------> TimeBase(1020464 ms)
+11-04 09:33:27.038 [beacon.signal] |VODStartComplete ----------> Duration(3324 ms), 283.90 KiP
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] SET_PARAMETER rtsp://192.168.1.16/15802616950369764314 (160 bytes)
+[airplay] SET_PARAMETER rtsp://192.168.1.16/15802616950369764314 (0 bytes)
+[airplay] SET_PARAMETER rtsp://192.168.1.16/15802616950369764314 (160 bytes)
+[airplay] SET_PARAMETER rtsp://192.168.1.16/15802616950369764314 (148253 bytes)
+[airplay] POST /feedback (0 bytes)
+[scene] audio state=buffering 
+[airplay] stats 10s: video frames=0 bytes=0 audio pkts=1254
+[airplay] TEARDOWN rtsp://192.168.1.16/15802616950369764314 (200 bytes)
+[scene] audioUrl=
+[scene] audio state=stopped 
+[airplay] POST /feedback (0 bytes)
+[airplay] TEARDOWN rtsp://192.168.1.16/15802616950369764314 (42 bytes)
+[airplay] session end: teardown
+[airplay] rtsp connection closed (192.168.1.5:56279)
+[airplay] pairing precompute done in 1929 ms
+[airplay] stats 10s: video frames=0 bytes=0 audio pkts=11
+11-04 09:35:44.203 [beacon.signal] |AppExitInitiate -----------> TimeBase(1160984 ms)
+11-04 09:35:44.222 [beacon.signal] |AppExitComplete -----------> Duration(19 ms), 283.51 KiP
+11-04 09:35:44.223 [beacon.header] __________________________________________
+11-04 09:35:44.224 [beacon.report] |AppLaunchInitiate ---------> TimeBase(0)
+11-04 09:35:44.225 [beacon.report] |AppCompileInitiate --------> TimeBase(1 ms)
+11-04 09:35:44.225 [beacon.report] |AppCompileComplete --------> Duration(1748 ms), 281.53 KiP
+11-04 09:35:44.226 [beacon.report] |VODStartInitiate ----------> TimeBase(292898 ms)
+11-04 09:35:44.227 [beacon.report] |VODStartComplete ----------> Duration(16769 ms), 289.62 KiP
+11-04 09:35:44.228 [beacon.report] |AppExitInitiate -----------> TimeBase(1160984 ms)
+11-04 09:35:44.228 [beacon.report] |AppExitComplete -----------> Duration(19 ms), 283.51 KiP
+11-04 09:35:44.236 [beacon.footer] __________________________________________
+11-04 09:35:44.500 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+11-04 09:35:44.502 [beacon.signal] |AppCompileInitiate --------> TimeBase(1 ms)
+11-04 09:35:44.502 [scrpt.cmpl] Compiling 'AirPlay Spike3', id 'dev'
+11-04 09:35:44.521 [scrpt.load.mkup] Loading markup dev 'AirPlay Spike3'
+11-04 09:35:44.531 [scrpt.unload.mkup] Unloading markup dev 'AirPlay Spike3'
+11-04 09:35:44.541 [scrpt.parse.mkup.time] Parsed markup dev 'AirPlay Spike3' in 20 milliseconds
+
+------ Compiling dev 'AirPlay Spike3' ------
+11-04 09:35:44.552 [scrpt.ctx.cmpl.time] Compiled 'AirPlay Spike3', id 'dev' in 8 milliseconds
+
+=================================================================
+Found 2 compile errors in file pkg:/components/Spike3Scene.brs included from file pkg:/components/Spike3Scene.xml
+--- Syntax Error. Builtin function call expected. (compile error &h9d) in pkg:/components/Spike3Scene.brs(66)
+--- Syntax Error. Builtin function call expected. (compile error &h9d) in pkg:/components/Spike3Scene.brs(68)
+11-04 09:35:44.615 [scrpt.unload.mkup] Unloading markup dev 'AirPlay Spike3'
+
+
+=================================================================
+An error occurred while attempting to compile the application's components:
+-------> Error parsing XML component Spike3Scene
+11-04 09:38:25.876 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+11-04 09:38:25.877 [beacon.signal] |AppCompileInitiate --------> TimeBase(2 ms)
+11-04 09:38:25.878 [scrpt.cmpl] Compiling 'AirPlay Spike3', id 'dev'
+11-04 09:38:25.895 [scrpt.load.mkup] Loading markup dev 'AirPlay Spike3'
+11-04 09:38:25.904 [scrpt.unload.mkup] Unloading markup dev 'AirPlay Spike3'
+11-04 09:38:25.916 [scrpt.parse.mkup.time] Parsed markup dev 'AirPlay Spike3' in 22 milliseconds
+
+------ Compiling dev 'AirPlay Spike3' ------
+11-04 09:38:25.926 [scrpt.ctx.cmpl.time] Compiled 'AirPlay Spike3', id 'dev' in 6 milliseconds
+
+=================================================================
+Found 2 compile errors in file pkg:/components/Spike3Scene.brs included from file pkg:/components/Spike3Scene.xml
+--- Syntax Error. Builtin function call expected. (compile error &h9d) in pkg:/components/Spike3Scene.brs(66)
+--- Syntax Error. Builtin function call expected. (compile error &h9d) in pkg:/components/Spike3Scene.brs(68)
+11-04 09:38:25.986 [scrpt.unload.mkup] Unloading markup dev 'AirPlay Spike3'
+
+
+=================================================================
+An error occurred while attempting to compile the application's components:
+-------> Error parsing XML component Spike3Scene
+11-04 09:38:50.779 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+11-04 09:38:50.780 [beacon.signal] |AppCompileInitiate --------> TimeBase(2 ms)
+11-04 09:38:50.781 [scrpt.cmpl] Compiling 'AirPlay Spike3', id 'dev'
+11-04 09:38:50.798 [scrpt.load.mkup] Loading markup dev 'AirPlay Spike3'
+11-04 09:38:50.807 [scrpt.unload.mkup] Unloading markup dev 'AirPlay Spike3'
+11-04 09:38:50.824 [scrpt.parse.mkup.time] Parsed markup dev 'AirPlay Spike3' in 26 milliseconds
+
+------ Compiling dev 'AirPlay Spike3' ------
+11-04 09:38:50.833 [scrpt.ctx.cmpl.time] Compiled 'AirPlay Spike3', id 'dev' in 6 milliseconds
+11-04 09:38:50.888 [scrpt.proc.mkup.time] Processed markup dev 'AirPlay Spike3' in 52 milliseconds
+11-04 09:38:50.892 [beacon.signal] |AppCompileComplete --------> Duration(111 ms), 8.30 KiP
+11-04 09:38:50.920 [ui.frm.plugin.running.enter] Entering PLUGIN_RUNNING for dev
+11-04 09:38:52.704 [scrpt.ctx.run.enter] UI: Entering 'AirPlay Spike3', id 'dev'
+
+------ Running dev 'AirPlay Spike3' main ------
+SPIKE: fields Video: allowOptionsKeyOverride,alwaysShowVideoPlanes,audioFormat,audioTrack,autoPlayAfte

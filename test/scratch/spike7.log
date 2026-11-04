@@ -1,0 +1,370 @@
+5/live.m3u8 range= 0 t= 20
+SPIKE: [h05 t= 168] state=error An unexpected problem (but not server timeout or HTTP error) has been detected.
+SPIKE: [h05 t= 177] state=finished An unexpected problem (but not server timeout or HTTP error) has been detected.
+SPIKE: [h05 t= 1025] finished pos_ms= 0 released_ms= 500 DEPTH_ms= 500
+SPIKE: [h05 t= 2025] finished pos_ms= 0 released_ms= 1500 DEPTH_ms= 1500
+SPIKE: [h05 t= 3017] finished pos_ms= 0 released_ms= 2500 DEPTH_ms= 2500
+SPIKE: [h05 t= 4025] finished pos_ms= 0 released_ms= 3500 DEPTH_ms= 3500
+SPIKE: [h05 t= 5017] finished pos_ms= 0 released_ms= 4500 DEPTH_ms= 4500
+SPIKE: [h05 t= 6025] finished pos_ms= 0 released_ms= 5500 DEPTH_ms= 5500
+SPIKE: [h05 t= 7025] finished pos_ms= 0 released_ms= 6500 DEPTH_ms= 6500
+SPIKE: [h05 t= 8025] finished pos_ms= 0 released_ms= 7500 DEPTH_ms= 7500
+SPIKE: [h05 t= 9025] finished pos_ms= 0 released_ms= 8500 DEPTH_ms= 8500
+SPIKE: [h05 t= 10025] finished pos_ms= 0 released_ms= 9500 DEPTH_ms= 9500
+SPIKE: [h05 t= 11025] finished pos_ms= 0 released_ms= 10500 DEPTH_ms= 10500
+SPIKE: [h05 t= 12025] finished pos_ms= 0 released_ms= 11500 DEPTH_ms= 11500
+SPIKE: [h05 t= 13017] finished pos_ms= 0 released_ms= 12500 DEPTH_ms= 12500
+SPIKE: [h05 t= 14025] finished pos_ms= 0 released_ms= 13500 DEPTH_ms= 13500
+SPIKE: [h05 t= 15017] finished pos_ms= 0 released_ms= 14500 DEPTH_ms= 14500
+SPIKE: [h05 t= 16025] finished pos_ms= 0 released_ms= 15500 DEPTH_ms= 15500
+SPIKE: [h05 t= 17025] finished pos_ms= 0 released_ms= 16500 DEPTH_ms= 16500
+SPIKE: [h05 t= 18017] finished pos_ms= 0 released_ms= 17500 DEPTH_ms= 17500
+SPIKE: [h05 t= 19025] finished pos_ms= 0 released_ms= 18500 DEPTH_ms= 18500
+SPIKE: [h05 t= 20025] finished pos_ms= 0 released_ms= 19500 DEPTH_ms= 19500
+SPIKE: [h05 t= 21017] finished pos_ms= 0 released_ms= 20500 DEPTH_ms= 20500
+SPIKE: [h05 t= 22040] state=stopped An unexpected problem (but not server timeout or HTTP error) has been detected.
+SPIKE: === step h10
+SPIKE: [h10 t= 72] state=buffering An unexpected problem (but not server timeout or HTTP error) has been detected.
+SPIKE:   GET /hls/h10/live.m3u8 range= 0 t= 54
+SPIKE: [h10 t= 125] state=error An unexpected problem (but not server timeout or HTTP error) has been detected.
+SPIKE: [h10 t= 136] state=finished An unexpected problem (but not server timeout or HTTP error) has been detected.
+SPIKE: [h10 t= 1026] finished pos_ms= 0 released_ms= 0 DEPTH_ms= 0
+SPIKE: [h10 t= 2026] finished pos_ms= 0 released_ms= 1000 DEPTH_ms= 1000
+SPIKE: [h10 t= 3026] finished pos_ms= 0 released_ms= 2000 DEPTH_ms= 2000
+SPIKE: [h10 t= 4026] finished pos_ms= 0 released_ms= 3000 DEPTH_ms= 3000
+SPIKE: [h10 t= 5026] finished pos_ms= 0 released_ms= 4000 DEPTH_ms= 4000
+SPIKE: [h10 t= 6035] finished pos_ms= 0 released_ms= 5000 DEPTH_ms= 5000
+SPIKE: [h10 t= 7026] finished pos_ms= 0 released_ms= 6000 DEPTH_ms= 6000
+SPIKE: [h10 t= 8026] finished pos_ms= 0 released_ms= 7000 DEPTH_ms= 7000
+SPIKE: [h10 t= 9026] finished pos_ms= 0 released_ms= 8000 DEPTH_ms= 8000
+SPIKE: [h10 t= 10026] finished pos_ms= 0 released_ms= 9000 DEPTH_ms= 9000
+SPIKE: [h10 t= 11026] finished pos_ms= 0 released_ms= 10000 DEPTH_ms= 10000
+SPIKE: [h10 t= 12026] finished pos_ms= 0 released_ms= 11000 DEPTH_ms= 11000
+SPIKE: [h10 t= 13027] finished pos_ms= 0 released_ms= 12000 DEPTH_ms= 12000
+SPIKE: [h10 t= 14035] finished pos_ms= 0 released_ms= 13000 DEPTH_ms= 13000
+SPIKE: [h10 t= 15026] finished pos_ms= 0 released_ms= 14000 DEPTH_ms= 14000
+SPIKE: [h10 t= 16026] finished pos_ms= 0 released_ms= 15000 DEPTH_ms= 15000
+SPIKE: [h10 t= 17026] finished pos_ms= 0 released_ms= 16000 DEPTH_ms= 16000
+SPIKE: [h10 t= 18026] finished pos_ms= 0 released_ms= 17000 DEPTH_ms= 17000
+SPIKE: [h10 t= 19027] finished pos_ms= 0 released_ms= 18000 DEPTH_ms= 18000
+SPIKE: [h10 t= 20035] finished pos_ms= 0 released_ms= 19000 DEPTH_ms= 19000
+SPIKE: [h10 t= 21026] finished pos_ms= 0 released_ms= 20000 DEPTH_ms= 20000
+SPIKE: [h10 t= 22041] state=stopped An unexpected problem (but not server timeout or HTTP error) has been detected.
+SPIKE: all steps done
+11-04 09:51:52.210 [beacon.signal] |AppExitInitiate -----------> TimeBase(211190 ms)
+11-04 09:51:52.228 [beacon.signal] |AppExitComplete -----------> Duration(17 ms), 4.33 KiP
+11-04 09:51:52.230 [beacon.header] __________________________________________
+11-04 09:51:52.231 [beacon.report] |AppLaunchInitiate ---------> TimeBase(0)
+11-04 09:51:52.233 [beacon.report] |AppCompileInitiate --------> TimeBase(1 ms)
+11-04 09:51:52.237 [beacon.report] |AppCompileComplete --------> Duration(106 ms), 8.81 KiP
+11-04 09:51:52.239 [beacon.report] |VODStartInitiate ----------> TimeBase(3648 ms)
+11-04 09:51:52.239 [beacon.report] |VODStartComplete ----------> Duration(15971 ms), 7.56 KiP
+11-04 09:51:52.240 [beacon.report] |AppExitInitiate -----------> TimeBase(211190 ms)
+11-04 09:51:52.241 [beacon.report] |AppExitComplete -----------> Duration(17 ms), 4.33 KiP
+11-04 09:51:52.242 [beacon.footer] __________________________________________
+11-04 09:51:52.428 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+11-04 09:51:52.429 [beacon.signal] |AppCompileInitiate --------> TimeBase(1 ms)
+11-04 09:51:52.429 [scrpt.cmpl] Compiling 'AirPlay Spike3', id 'dev'
+11-04 09:51:52.446 [scrpt.load.mkup] Loading markup dev 'AirPlay Spike3'
+11-04 09:51:52.455 [scrpt.unload.mkup] Unloading markup dev 'AirPlay Spike3'
+11-04 09:51:52.464 [scrpt.parse.mkup.time] Parsed markup dev 'AirPlay Spike3' in 18 milliseconds
+
+------ Compiling dev 'AirPlay Spike3' ------
+11-04 09:51:52.470 [scrpt.ctx.cmpl.time] Compiled 'AirPlay Spike3', id 'dev' in 4 milliseconds
+11-04 09:51:52.526 [scrpt.proc.mkup.time] Processed markup dev 'AirPlay Spike3' in 54 milliseconds
+11-04 09:51:52.528 [beacon.signal] |AppCompileComplete --------> Duration(99 ms), 9.03 KiP
+11-04 09:51:52.623 [ui.frm.plugin.running.enter] Entering PLUGIN_RUNNING for dev
+11-04 09:51:55.459 [scrpt.ctx.run.enter] UI: Entering 'AirPlay Spike3', id 'dev'
+
+------ Running dev 'AirPlay Spike3' main ------
+SPIKE: fields Video: allowOptionsKeyOverride,alwaysShowVideoPlanes,audioFormat,audioTrack,autoPlayAfterSeek,availableAudioTracks,availableSubtitleTracks,bifDisplay,bufferingBar,bufferingBarVisibilityAuto,bufferingBarVisibilityBounds,bufferingBarVisibilityHint,bufferingStatus,bufferingTextColor,captionStyle,cgms,change,childRenderOrder,clipId,clippingRect,completedStreamInfo,content,contentBlocked,contentIndex,contentIsPlaylist,control,currentSubtitleTrack,disableScreenSaver,downloadedSegment,duration,enableRenderTracking,enableScreenSaverWhilePlaying,enableTrickPlay,enableUI,errorCode,errorInfo,errorMsg,errorStr,focusable,focusedChild,globalCaptionMode,height,id,inheritParentOpacity,inheritParentTransform,licenseStatus,loop,manifestData,maxVideoDecodeResolution,mute,muteAudioGuide,nextContentIndex,notificationInterval,opacity,pauseBufferEnd,pauseBufferOverflow,pauseBufferPosition,pauseBufferStart,position,renderPass,renderTracking,retrievingBar,retrievingBarVisibilityAuto,retrievingBarVisibilityBounds,retrievingBarVisibilityHint,retrievingTextColor,rotation,scale,scaleRotateCenter,seek,seekClip,state,streamInfo,streamingSegment,subtitleTrack,supplementaryAudioVolume,suppressCaptions,timeToStartStreaming,timedMetaData,timedMetaData2,timedMetaDataSelectionKeys,tracks,translation,trickPlayBar,trickPlayBarVisibilityAuto,trickPlayBarVisibilityHint,videoFormat,visible,width
+SPIKE: fields Audio: audioFormat,autoPlayAfterSeek,bufferingStatus,change,content,contentIndex,contentIsPlaylist,control,duration,errorCode,errorMsg,focusable,focusedChild,id,loop,mute,nextContentIndex,notificationInterval,position,seek,state,streamInfo,streamingSegment,timeToStartStreaming,timedMetaData,timedMetaDataSelectionKeys
+SPIKE: fields ContentNode: change,focusable,focusedChild,id
+SPIKE: [- t= 112] state=stopped 
+SPIKE: === step lowfill
+SPIKE: [lowfill t= 85] state=buffering 
+SPIKE:   GET /mkv/lowfill.mkv range= 0 t= 31
+SPIKE:   GET /mkv/lowfill.mkv range= 184 t= 161
+SPIKE:   GET /mkv/lowfill.mkv range= 0 t= 228
+SPIKE: [lowfill t= 1018] buffering pos_ms= 0 released_ms= 433 DEPTH_ms= 433
+SPIKE: [lowfill t= 2025] buffering pos_ms= 0 released_ms= 1466 DEPTH_ms= 1466
+SPIKE: [lowfill t= 3025] buffering pos_ms= 0 released_ms= 2466 DEPTH_ms= 2466
+SPIKE: [lowfill t= 4025] buffering pos_ms= 0 released_ms= 3466 DEPTH_ms= 3466
+SPIKE: [lowfill t= 5025] buffering pos_ms= 0 released_ms= 4466 DEPTH_ms= 4466
+SPIKE: [lowfill t= 6025] buffering pos_ms= 0 released_ms= 5466 DEPTH_ms= 5466
+SPIKE: [lowfill t= 7025] buffering pos_ms= 0 released_ms= 6466 DEPTH_ms= 6466
+SPIKE: [lowfill t= 8025] buffering pos_ms= 0 released_ms= 7466 DEPTH_ms= 7466
+SPIKE: [lowfill t= 9020] buffering pos_ms= 0 released_ms= 8433 DEPTH_ms= 8433
+SPIKE: [lowfill t= 10025] buffering pos_ms= 0 released_ms= 9433 DEPTH_ms= 9433
+SPIKE: [lowfill t= 11025] buffering pos_ms= 0 released_ms= 10433 DEPTH_ms= 10433
+SPIKE: [lowfill t= 12011] buffering pos_ms= 0 released_ms= 11433 DEPTH_ms= 11433
+SPIKE: [lowfill t= 13021] buffering pos_ms= 0 released_ms= 12433 DEPTH_ms= 12433
+SPIKE: [lowfill t= 14022] buffering pos_ms= 0 released_ms= 13433 DEPTH_ms= 13433
+SPIKE: [lowfill t= 15025] buffering pos_ms= 0 released_ms= 14433 DEPTH_ms= 14433
+SPIKE: [lowfill t= 16013] buffering pos_ms= 0 released_ms= 15433 DEPTH_ms= 15433
+SPIKE: [lowfill t= 17025] buffering pos_ms= 0 released_ms= 16433 DEPTH_ms= 16433
+SPIKE: [lowfill t= 18025] buffering pos_ms= 0 released_ms= 17466 DEPTH_ms= 17466
+SPIKE: [lowfill t= 19023] buffering pos_ms= 0 released_ms= 18433 DEPTH_ms= 18433
+SPIKE: [lowfill t= 20025] buffering pos_ms= 0 released_ms= 19466 DEPTH_ms= 19466
+SPIKE: [lowfill t= 21024] buffering pos_ms= 0 released_ms= 20433 DEPTH_ms= 20433
+SPIKE: [lowfill t= 22567] state=stopped 
+SPIKE: === step h05
+SPIKE: [h05 t= 1015] stopped pos_ms= 0 released_ms= 500 DEPTH_ms= 500
+SPIKE:   player start t= 1115
+SPIKE: [h05 t= 1146] state=buffering 
+SPIKE:   GET /hls/h05/live.m3u8 range= 0 t= 1142
+SPIKE:   GET /hls/h05/live.m3u8 range= 0 t= 1166
+SPIKE:   GET /hls/h05/init.mp4 range= 0 t= 1242
+SPIKE:   GET /hls/h05/s0.m4s range= 0 t= 1274
+SPIKE:   GET /hls/h05/s1.m4s range= 0 t= 1319
+SPIKE: [h05 t= 2015] buffering pos_ms= 0 released_ms= 1500 DEPTH_ms= 1500
+SPIKE:   GET /hls/h05/live.m3u8 range= 0 t= 2172
+SPIKE:   GET /hls/h05/s2.m4s range= 0 t= 2245
+SPIKE:   GET /hls/h05/s3.m4s range= 0 t= 2291
+SPIKE: [h05 t= 3015] buffering pos_ms= 0 released_ms= 2500 DEPTH_ms= 2500
+SPIKE:   GET /hls/h05/live.m3u8 range= 0 t= 3183
+SPIKE:   GET /hls/h05/s4.m4s range= 0 t= 3245
+SPIKE:   GET /hls/h05/s5.m4s range= 0 t= 3292
+SPIKE: [h05 t= 4015] buffering pos_ms= 0 released_ms= 3500 DEPTH_ms= 3500
+SPIKE:   GET /hls/h05/live.m3u8 range= 0 t= 4193
+SPIKE:   GET /hls/h05/s6.m4s range= 0 t= 4218
+SPIKE:   GET /hls/h05/s7.m4s range= 0 t= 4256
+SPIKE: [h05 t= 4510] state=playing 
+11-04 09:52:23.960 [beacon.signal] |LiveStartInitiate ---------> TimeBase(28137 ms)
+11-04 09:52:23.963 [beacon.signal] |LiveStartComplete ---------> Duration(3383 ms), 7.51 KiP
+SPIKE: [h05 t= 5016] playing pos_ms= 556 released_ms= 4500 DEPTH_ms= 3944
+SPIKE:   GET /hls/h05/live.m3u8 range= 0 t= 5200
+SPIKE:   GET /hls/h05/s8.m4s range= 0 t= 5305
+SPIKE:   GET /hls/h05/s9.m4s range= 0 t= 5363
+SPIKE: [h05 t= 6015] playing pos_ms= 1556 released_ms= 5500 DEPTH_ms= 3944
+SPIKE:   GET /hls/h05/live.m3u8 range= 0 t= 6211
+SPIKE:   GET /hls/h05/s10.m4s range= 0 t= 6286
+SPIKE:   GET /hls/h05/s11.m4s range= 0 t= 6324
+SPIKE: [h05 t= 7007] playing pos_ms= 2556 released_ms= 6500 DEPTH_ms= 3944
+SPIKE:   GET /hls/h05/live.m3u8 range= 0 t= 7220
+SPIKE:   GET /hls/h05/s12.m4s range= 0 t= 7252
+SPIKE:   GET /hls/h05/s13.m4s range= 0 t= 7291
+SPIKE: [h05 t= 8015] playing pos_ms= 3556 released_ms= 7500 DEPTH_ms= 3944
+SPIKE:   GET /hls/h05/live.m3u8 range= 0 t= 8233
+SPIKE:   GET /hls/h05/s14.m4s range= 0 t= 8264
+SPIKE:   GET /hls/h05/s15.m4s range= 0 t= 8303
+SPIKE: [h05 t= 9015] playing pos_ms= 4556 released_ms= 8500 DEPTH_ms= 3944
+SPIKE:   GET /hls/h05/live.m3u8 range= 0 t= 9243
+SPIKE:   GET /hls/h05/s16.m4s range= 0 t= 9338
+SPIKE:   GET /hls/h05/s17.m4s range= 0 t= 9378
+SPIKE: [h05 t= 10007] playing pos_ms= 5556 released_ms= 9500 DEPTH_ms= 3944
+SPIKE:   GET /hls/h05/live.m3u8 range= 0 t= 10253
+SPIKE:   GET /hls/h05/s18.m4s range= 0 t= 10319
+SPIKE:   GET /hls/h05/s19.m4s range= 0 t= 10358
+SPIKE: [h05 t= 11015] playing pos_ms= 6556 released_ms= 10500 DEPTH_ms= 3944
+SPIKE:   GET /hls/h05/live.m3u8 range= 0 t= 11263
+SPIKE:   GET /hls/h05/s20.m4s range= 0 t= 11298
+SPIKE:   GET /hls/h05/s21.m4s range= 0 t= 11339
+SPIKE: [h05 t= 12015] playing pos_ms= 7556 released_ms= 11500 DEPTH_ms= 3944
+SPIKE:   GET /hls/h05/live.m3u8 range= 0 t= 12271
+SPIKE:   GET /hls/h05/s22.m4s range= 0 t= 12306
+SPIKE:   GET /hls/h05/s23.m4s range= 0 t= 12347
+SPIKE: [h05 t= 13015] playing pos_ms= 8556 released_ms= 12500 DEPTH_ms= 3944
+SPIKE:   GET /hls/h05/live.m3u8 range= 0 t= 13281
+SPIKE:   GET /hls/h05/s24.m4s range= 0 t= 13378
+SPIKE:   GET /hls/h05/s25.m4s range= 0 t= 13423
+SPIKE: [h05 t= 14015] playing pos_ms= 9556 released_ms= 13500 DEPTH_ms= 3944
+SPIKE:   GET /hls/h05/live.m3u8 range= 0 t= 14293
+SPIKE:   GET /hls/h05/s26.m4s range= 0 t= 14368
+SPIKE:   GET /hls/h05/s27.m4s range= 0 t= 14415
+SPIKE: [h05 t= 15015] playing pos_ms= 10556 released_ms= 14500 DEPTH_ms= 3944
+SPIKE:   GET /hls/h05/live.m3u8 range= 0 t= 15301
+SPIKE:   GET /hls/h05/s28.m4s range= 0 t= 15338
+SPIKE:   GET /hls/h05/s29.m4s range= 0 t= 15378
+SPIKE: [h05 t= 16007] playing pos_ms= 11556 released_ms= 15500 DEPTH_ms= 3944
+SPIKE:   GET /hls/h05/live.m3u8 range= 0 t= 16311
+SPIKE:   GET /hls/h05/s30.m4s range= 0 t= 16350
+SPIKE:   GET /hls/h05/s31.m4s range= 0 t= 16390
+SPIKE: [h05 t= 17015] playing pos_ms= 12556 released_ms= 16500 DEPTH_ms= 3944
+SPIKE:   GET /hls/h05/live.m3u8 range= 0 t= 17323
+SPIKE:   GET /hls/h05/s32.m4s range= 0 t= 17428
+SPIKE:   GET /hls/h05/s33.m4s range= 0 t= 17471
+SPIKE: [h05 t= 18015] playing pos_ms= 13556 released_ms= 17500 DEPTH_ms= 3944
+SPIKE:   GET /hls/h05/live.m3u8 range= 0 t= 18331
+SPIKE:   GET /hls/h05/s34.m4s range= 0 t= 18411
+SPIKE:   GET /hls/h05/s35.m4s range= 0 t= 18452
+SPIKE: [h05 t= 19008] playing pos_ms= 14556 released_ms= 18500 DEPTH_ms= 3944
+SPIKE:   GET /hls/h05/live.m3u8 range= 0 t= 19344
+SPIKE:   GET /hls/h05/s36.m4s range= 0 t= 19386
+SPIKE:   GET /hls/h05/s37.m4s range= 0 t= 19428
+SPIKE: [h05 t= 20015] playing pos_ms= 15556 released_ms= 19500 DEPTH_ms= 3944
+SPIKE:   GET /hls/h05/live.m3u8 range= 0 t= 20354
+SPIKE:   GET /hls/h05/s38.m4s range= 0 t= 20399
+SPIKE:   GET /hls/h05/s39.m4s range= 0 t= 20444
+SPIKE: [h05 t= 21007] playing pos_ms= 16556 released_ms= 20500 DEPTH_ms= 3944
+SPIKE:   GET /hls/h05/live.m3u8 range= 0 t= 21361
+SPIKE:   GET /hls/h05/s40.m4s range= 0 t= 21405
+SPIKE:   GET /hls/h05/s41.m4s range= 0 t= 21453
+SPIKE: [h05 t= 22015] playing pos_ms= 17556 released_ms= 21500 DEPTH_ms= 3944
+SPIKE: [h05 t= 22130] state=stopped 
+SPIKE: === step h10
+SPIKE: [h10 t= 1008] stopped pos_ms= 17556 released_ms= 0 DEPTH_ms=-17556
+SPIKE: [h10 t= 2017] stopped pos_ms= 17556 released_ms= 1000 DEPTH_ms=-16556
+SPIKE:   player start t= 2116
+SPIKE: [h10 t= 2147] state=buffering 
+SPIKE:   GET /hls/h10/live.m3u8 range= 0 t= 2162
+SPIKE:   GET /hls/h10/live.m3u8 range= 0 t= 2189
+SPIKE:   GET /hls/h10/init.mp4 range= 0 t= 2267
+SPIKE:   GET /hls/h10/s0.m4s range= 0 t= 2301
+SPIKE:   GET /hls/h10/s1.m4s range= 0 t= 2344
+SPIKE: [h10 t= 3017] buffering pos_ms= 0 released_ms= 2000 DEPTH_ms= 2000
+SPIKE:   GET /hls/h10/live.m3u8 range= 0 t= 3205
+SPIKE:   GET /hls/h10/s2.m4s range= 0 t= 3276
+SPIKE: [h10 t= 4008] buffering pos_ms= 0 released_ms= 3000 DEPTH_ms= 3000
+SPIKE:   GET /hls/h10/live.m3u8 range= 0 t= 4214
+SPIKE:   GET /hls/h10/s3.m4s range= 0 t= 4244
+SPIKE: [h10 t= 4493] state=playing 
+11-04 09:52:46.089 [beacon.signal] |LiveChannelChangeInitiate -> TimeBase(51287 ms)
+11-04 09:52:46.093 [beacon.signal] |LiveChannelChangeComplete -> Duration(2364 ms), 6.80 KiP
+SPIKE: [h10 t= 5017] playing pos_ms= 560 released_ms= 4000 DEPTH_ms= 3440
+SPIKE:   GET /hls/h10/live.m3u8 range= 0 t= 5223
+SPIKE:   GET /hls/h10/s4.m4s range= 0 t= 5289
+SPIKE: [h10 t= 6011] playing pos_ms= 1060 released_ms= 5000 DEPTH_ms= 3940
+SPIKE:   GET /hls/h10/live.m3u8 range= 0 t= 6235
+SPIKE:   GET /hls/h10/s5.m4s range= 0 t= 6330
+SPIKE: [h10 t= 7011] playing pos_ms= 2093 released_ms= 6000 DEPTH_ms= 3907
+SPIKE:   GET /hls/h10/live.m3u8 range= 0 t= 7243
+SPIKE:   GET /hls/h10/s6.m4s range= 0 t= 7272
+SPIKE: [h10 t= 8011] playing pos_ms= 3093 released_ms= 7000 DEPTH_ms= 3907
+SPIKE:   GET /hls/h10/live.m3u8 range= 0 t= 8256
+SPIKE:   GET /hls/h10/s7.m4s range= 0 t= 8328
+SPIKE: [h10 t= 9011] playing pos_ms= 4093 released_ms= 8000 DEPTH_ms= 3907
+SPIKE:   GET /hls/h10/live.m3u8 range= 0 t= 9266
+SPIKE:   GET /hls/h10/s8.m4s range= 0 t= 9295
+SPIKE: [h10 t= 10009] playing pos_ms= 5093 released_ms= 9000 DEPTH_ms= 3907
+SPIKE:   GET /hls/h10/live.m3u8 range= 0 t= 10273
+SPIKE:   GET /hls/h10/s9.m4s range= 0 t= 10330
+SPIKE: [h10 t= 11011] playing pos_ms= 6093 released_ms= 10000 DEPTH_ms= 3907
+SPIKE:   GET /hls/h10/live.m3u8 range= 0 t= 11286
+SPIKE:   GET /hls/h10/s10.m4s range= 0 t= 11381
+SPIKE: [h10 t= 12009] playing pos_ms= 7093 released_ms= 11000 DEPTH_ms= 3907
+SPIKE:   GET /hls/h10/live.m3u8 range= 0 t= 12295
+SPIKE:   GET /hls/h10/s11.m4s range= 0 t= 12326
+SPIKE: [h10 t= 13011] playing pos_ms= 8093 released_ms= 12000 DEPTH_ms= 3907
+SPIKE:   GET /hls/h10/live.m3u8 range= 0 t= 13304
+SPIKE:   GET /hls/h10/s12.m4s range= 0 t= 13361
+SPIKE: [h10 t= 14011] playing pos_ms= 9093 released_ms= 13000 DEPTH_ms= 3907
+SPIKE:   GET /hls/h10/live.m3u8 range= 0 t= 14315
+SPIKE:   GET /hls/h10/s13.m4s range= 0 t= 14400
+SPIKE: [h10 t= 15008] playing pos_ms= 10093 released_ms= 14000 DEPTH_ms= 3907
+SPIKE:   GET /hls/h10/live.m3u8 range= 0 t= 15326
+SPIKE:   GET /hls/h10/s14.m4s range= 0 t= 15356
+SPIKE: [h10 t= 16011] playing pos_ms= 11093 released_ms= 15000 DEPTH_ms= 3907
+SPIKE:   GET /hls/h10/live.m3u8 range= 0 t= 16333
+SPIKE:   GET /hls/h10/s15.m4s range= 0 t= 16406
+SPIKE: [h10 t= 17011] playing pos_ms= 12093 released_ms= 16000 DEPTH_ms= 3907
+SPIKE:   GET /hls/h10/live.m3u8 range= 0 t= 17344
+SPIKE:   GET /hls/h10/s16.m4s range= 0 t= 17376
+SPIKE: [h10 t= 18008] playing pos_ms= 13093 released_ms= 17000 DEPTH_ms= 3907
+SPIKE:   GET /hls/h10/live.m3u8 range= 0 t= 18356
+SPIKE:   GET /hls/h10/s17.m4s range= 0 t= 18418
+SPIKE: [h10 t= 19011] playing pos_ms= 14093 released_ms= 18000 DEPTH_ms= 3907
+SPIKE:   GET /hls/h10/live.m3u8 range= 0 t= 19363
+SPIKE:   GET /hls/h10/s18.m4s range= 0 t= 19461
+SPIKE: [h10 t= 20011] playing pos_ms= 15093 released_ms= 19000 DEPTH_ms= 3907
+SPIKE:   GET /hls/h10/live.m3u8 range= 0 t= 20373
+SPIKE:   GET /hls/h10/s19.m4s range= 0 t= 20412
+SPIKE: [h10 t= 21008] playing pos_ms= 16093 released_ms= 20000 DEPTH_ms= 3907
+SPIKE:   GET /hls/h10/live.m3u8 range= 0 t= 21386
+SPIKE:   GET /hls/h10/s20.m4s range= 0 t= 21459
+SPIKE: [h10 t= 22129] state=stopped 
+SPIKE: === step h05w
+BRIGHTSCRIPT: ERROR: ReadAsciiFile: file open for read failed: pkg:/components/Spike3Task.brs(8)
+SPIKE: [h05w t= 1018] stopped pos_ms= 17093 released_ms= 500 DEPTH_ms=-16593
+SPIKE:   player start t= 1108
+SPIKE: [h05w t= 1137] state=buffering 
+SPIKE:   GET /hls/h05/win.m3u8 range= 0 t= 1144
+SPIKE:   GET /hls/h05/win.m3u8 range= 0 t= 1170
+SPIKE:   GET /hls/h05/init.mp4 range= 0 t= 1253
+SPIKE:   GET /hls/h05/s0.m4s range= 0 t= 1287
+SPIKE:   GET /hls/h05/s1.m4s range= 0 t= 1328
+SPIKE: [h05w t= 2018] buffering pos_ms= 0 released_ms= 1500 DEPTH_ms= 1500
+SPIKE:   GET /hls/h05/win.m3u8 range= 0 t= 2184
+SPIKE:   GET /hls/h05/s2.m4s range= 0 t= 2247
+SPIKE:   GET /hls/h05/s3.m4s range= 0 t= 2302
+SPIKE: [h05w t= 3018] buffering pos_ms= 0 released_ms= 2500 DEPTH_ms= 2500
+SPIKE:   GET /hls/h05/win.m3u8 range= 0 t= 3192
+SPIKE:   GET /hls/h05/s4.m4s range= 0 t= 3247
+SPIKE:   GET /hls/h05/s5.m4s range= 0 t= 3293
+SPIKE: [h05w t= 4010] buffering pos_ms= 0 released_ms= 3500 DEPTH_ms= 3500
+SPIKE:   GET /hls/h05/win.m3u8 range= 0 t= 4203
+SPIKE:   GET /hls/h05/s6.m4s range= 0 t= 4233
+SPIKE:   GET /hls/h05/s7.m4s range= 0 t= 4287
+SPIKE: [h05w t= 4493] state=playing 
+11-04 09:53:08.231 [beacon.signal] |LiveChannelChangeInitiate -> TimeBase(72417 ms)
+11-04 09:53:08.231 [beacon.signal] |LiveChannelChangeComplete -> Duration(3372 ms), 6.09 KiP
+SPIKE: [h05w t= 5018] playing pos_ms= 554 released_ms= 4500 DEPTH_ms= 3946
+SPIKE:   GET /hls/h05/win.m3u8 range= 0 t= 5215
+SPIKE:   GET /hls/h05/s8.m4s range= 0 t= 5243
+SPIKE:   GET /hls/h05/s9.m4s range= 0 t= 5284
+SPIKE: [h05w t= 6011] playing pos_ms= 1554 released_ms= 5500 DEPTH_ms= 3946
+SPIKE:   GET /hls/h05/win.m3u8 range= 0 t= 6225
+SPIKE:   GET /hls/h05/s10.m4s range= 0 t= 6326
+SPIKE:   GET /hls/h05/s11.m4s range= 0 t= 6368
+SPIKE: [h05w t= 7018] playing pos_ms= 2554 released_ms= 6500 DEPTH_ms= 3946
+SPIKE:   GET /hls/h05/win.m3u8 range= 0 t= 7235
+SPIKE:   GET /hls/h05/s12.m4s range= 0 t= 7292
+SPIKE:   GET /hls/h05/s13.m4s range= 0 t= 7349
+SPIKE: [h05w t= 8018] playing pos_ms= 3554 released_ms= 7500 DEPTH_ms= 3946
+SPIKE:   GET /hls/h05/win.m3u8 range= 0 t= 8242
+SPIKE:   GET /hls/h05/s14.m4s range= 0 t= 8278
+SPIKE:   GET /hls/h05/s15.m4s range= 0 t= 8331
+SPIKE: [h05w t= 9018] playing pos_ms= 4554 released_ms= 8500 DEPTH_ms= 3946
+SPIKE:   GET /hls/h05/win.m3u8 range= 0 t= 9255
+SPIKE:   GET /hls/h05/s16.m4s range= 0 t= 9281
+SPIKE:   GET /hls/h05/s17.m4s range= 0 t= 9321
+SPIKE: [h05w t= 10018] playing pos_ms= 5554 released_ms= 9500 DEPTH_ms= 3946
+SPIKE:   GET /hls/h05/win.m3u8 range= 0 t= 10265
+SPIKE:   GET /hls/h05/s18.m4s range= 0 t= 10362
+SPIKE:   GET /hls/h05/s19.m4s range= 0 t= 10407
+SPIKE: [h05w t= 11018] playing pos_ms= 6554 released_ms= 10500 DEPTH_ms= 3946
+SPIKE:   GET /hls/h05/win.m3u8 range= 0 t= 11273
+SPIKE:   GET /hls/h05/s20.m4s range= 0 t= 11338
+SPIKE:   GET /hls/h05/s21.m4s range= 0 t= 11401
+SPIKE: [h05w t= 12018] playing pos_ms= 7554 released_ms= 11500 DEPTH_ms= 3946
+SPIKE:   GET /hls/h05/win.m3u8 range= 0 t= 12285
+SPIKE:   GET /hls/h05/s22.m4s range= 0 t= 12330
+SPIKE:   GET /hls/h05/s23.m4s range= 0 t= 12375
+SPIKE: [h05w t= 13018] playing pos_ms= 8554 released_ms= 12500 DEPTH_ms= 3946
+SPIKE:   GET /hls/h05/win.m3u8 range= 0 t= 13295
+SPIKE:   GET /hls/h05/s24.m4s range= 0 t= 13328
+SPIKE:   GET /hls/h05/s25.m4s range= 0 t= 13368
+SPIKE: [h05w t= 14011] playing pos_ms= 9554 released_ms= 13500 DEPTH_ms= 3946
+SPIKE:   GET /hls/h05/win.m3u8 range= 0 t= 14306
+SPIKE:   GET /hls/h05/s26.m4s range= 0 t= 14404
+SPIKE:   GET /hls/h05/s27.m4s range= 0 t= 14445
+SPIKE: [h05w t= 15018] playing pos_ms= 10554 released_ms= 14500 DEPTH_ms= 3946
+SPIKE:   GET /hls/h05/win.m3u8 range= 0 t= 15315
+SPIKE:   GET /hls/h05/s28.m4s range= 0 t= 15405
+SPIKE:   GET /hls/h05/s29.m4s range= 0 t= 15444
+SPIKE: [h05w t= 16018] playing pos_ms= 11554 released_ms= 15500 DEPTH_ms= 3946
+SPIKE:   GET /hls/h05/win.m3u8 range= 0 t= 16326
+SPIKE:   GET /hls/h05/s30.m4s range= 0 t= 16371
+SPIKE:   GET /hls/h05/s31.m4s range= 0 t= 16412
+SPIKE: [h05w t= 17018] playing pos_ms= 12554 released_ms= 16500 DEPTH_ms= 3946
+SPIKE:   GET /hls/h05/win.m3u8 range= 0 t= 17333
+SPIKE:   GET /hls/h05/s32.m4s range= 0 t= 17360
+SPIKE:   GET /hls/h05/s33.m4s range= 0 t= 17404
+SPIKE: [h05w t= 18018] playing pos_ms= 13554 released_ms= 17500 DEPTH_ms= 3946
+SPIKE:   GET /hls/h05/win.m3u8 range= 0 t= 18347
+SPIKE:   GET /hls/h05/s34.m4s range= 0 t= 18443
+SPIKE:   GET /hls/h05/s35.m4s range= 0 t= 18483
+SPIKE: [h05w t= 19018] playing pos_ms= 14554 released_ms= 18500 DEPTH_ms= 3946
+SPIKE:   GET /hls/h05/win.m3u8 range= 0 t= 19366
+SPIKE:   GET /hls/h05/s36.m4s range= 0 t= 19421
+SPIKE:   GET /hls/h05/s37.m4s range= 0 t= 19462
+SPIKE: [h05w t= 20018] playing pos_ms= 15554 released_ms= 19500 DEPTH_ms= 3946
+SPIKE:   GET /hls/h05/win.m3u8 range= 0 t= 20376
+SPIKE:   GET /hls/h05/s38.m4s range= 0 t= 20409
+SPIKE:   GET /hls/h05/s39.m4s range= 0 t= 20450
+SPIKE: [h05w t= 21018] playing pos_ms= 16554 released_ms= 20500 DEPTH_ms= 3946
+SPIKE:   GET /hls/h05/win.m3u8 range= 0 t= 21383
+SPIKE:   GET /hls/h05/s40.m4s range= 0 t= 21413
+SPIKE:   GET /hls/h05/s41.m4s range= 0 t= 21458
+SPIKE: [h05w t= 22107] state=stopped 
+SPIKE: all steps done

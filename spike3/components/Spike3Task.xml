@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="Spike3Task" extends="Task">
+  <interface>
+    <field id="ready" type="boolean" value="false" />
+    <field id="step" type="string" value="" />
+    <field id="releasedMs" type="integer" value="0" />
+  </interface>
+  <script type="text/brightscript" uri="pkg:/components/Spike3Task.brs" />
+</component>

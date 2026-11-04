@@ -1,0 +1,124 @@
+ls depth 2218 ms -> rate 80%
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] hls depth 1106 ms -> rate 100%
+[airplay] stats 10s: video frames=301 bytes=369971 audio pkts=0
+[airplay] hls depth 1592 ms -> rate 80%
+[airplay] POST /feedback (0 bytes)
+[airplay] hls depth 1078 ms -> rate 100%
+[airplay] hls depth 1578 ms -> rate 80%
+[airplay] hls depth 1026 ms -> rate 100%
+[airplay] POST /feedback (0 bytes)
+[scene] video state=buffering 
+[airplay] POST /feedback (0 bytes)
+[scene] video state=playing 
+[airplay] hls depth 3439 ms -> rate 80%
+[airplay] mirror stream closed
+[airplay] TEARDOWN rtsp://x/1 (42 bytes)
+[airplay] session end: teardown
+[scene] mirrorUrl=
+[scene] video state=stopped 
+[airplay] rtsp connection closed (192.168.1.15:40592)
+[airplay] pairing precompute done in 2008 ms
+[airplay] stats 10s: video frames=229 bytes=310201 audio pkts=0
+11-04 10:05:30.960 [beacon.signal] |AppExitInitiate -----------> TimeBase(98583 ms)
+11-04 10:05:30.972 [beacon.signal] |AppExitComplete -----------> Duration(11 ms), 8.05 KiP
+11-04 10:05:30.983 [beacon.header] __________________________________________
+11-04 10:05:30.984 [beacon.report] |AppLaunchInitiate ---------> TimeBase(0)
+11-04 10:05:30.984 [beacon.report] |LiveStartInitiate ---------> TimeBase(23992 ms)
+11-04 10:05:30.985 [beacon.report] |LiveStartComplete ---------> Duration(3503 ms), 8.45 KiP
+11-04 10:05:30.986 [beacon.report] |AppExitInitiate -----------> TimeBase(98583 ms)
+11-04 10:05:30.986 [beacon.report] |AppExitComplete -----------> Duration(11 ms), 8.05 KiP
+11-04 10:05:30.987 [beacon.footer] __________________________________________
+11-04 10:05:31.125 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+11-04 10:05:31.125 [beacon.signal] |AppCompileInitiate --------> TimeBase(1 ms)
+11-04 10:05:31.126 [scrpt.cmpl] Compiling 'AirPlay Receiver', id 'dev'
+11-04 10:05:31.177 [scrpt.load.mkup] Loading markup dev 'AirPlay Receiver'
+11-04 10:05:31.184 [scrpt.unload.mkup] Unloading markup dev 'AirPlay Receiver'
+11-04 10:05:31.197 [scrpt.parse.mkup.time] Parsed markup dev 'AirPlay Receiver' in 20 milliseconds
+
+------ Compiling dev 'AirPlay Receiver' ------
+11-04 10:05:32.114 [scrpt.ctx.cmpl.time] Compiled 'AirPlay Receiver', id 'dev' in 915 milliseconds
+11-04 10:05:33.070 [scrpt.proc.mkup.time] Processed markup dev 'AirPlay Receiver' in 950 milliseconds
+11-04 10:05:33.083 [beacon.signal] |AppCompileComplete --------> Duration(1958 ms), 299.52 KiP
+11-04 10:05:33.143 [ui.frm.plugin.running.enter] Entering PLUGIN_RUNNING for dev
+11-04 10:05:35.071 [scrpt.ctx.run.enter] UI: Entering 'AirPlay Receiver', id 'dev'
+
+------ Running dev 'AirPlay Receiver' main ------
+11-04 10:05:37.496 [beacon.signal] |AppExitInitiate -----------> TimeBase(6371 ms)
+11-04 10:05:37.500 [beacon.signal] |AppExitComplete -----------> Duration(4 ms), 307.63 KiP
+11-04 10:05:37.511 [beacon.header] __________________________________________
+11-04 10:05:37.512 [beacon.report] |AppLaunchInitiate ---------> TimeBase(0)
+11-04 10:05:37.502 [ui.frm.plugin.running.enter] Entering PLUGIN_RUNNING for dev
+11-04 10:05:37.513 [beacon.report] |AppCompileInitiate --------> TimeBase(1 ms)
+11-04 10:05:37.514 [beacon.report] |AppCompileComplete --------> Duration(1958 ms), 299.52 KiP
+11-04 10:05:37.514 [beacon.report] |AppExitInitiate -----------> TimeBase(6371 ms)
+11-04 10:05:37.515 [beacon.report] |AppExitComplete -----------> Duration(4 ms), 307.63 KiP
+11-04 10:05:37.515 [beacon.footer] __________________________________________
+11-04 10:05:37.532 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+11-04 10:05:39.605 [scrpt.ctx.run.enter] UI: Entering 'AirPlay Receiver', id 'dev'
+
+------ Running dev 'AirPlay Receiver' main ------
+[airplay] ed25519 identity ready in 1630 ms
+[airplay] mdns bind=true join=true
+[airplay] listen rtsp-listen :7000 ok=true
+[airplay] listen mirror-listen :7100 ok=true
+[airplay] listen http-listen :8888 ok=true
+[airplay] ready as 'Roku 2 XS' on 192.168.1.16
+[airplay] pairing precompute done in 1823 ms
+[airplay] rtsp connection from 192.168.1.15:38950
+[airplay] GET /info (70 bytes)
+[airplay] GET /info (0 bytes)
+[airplay] POST /pair-setup (32 bytes)
+[airplay] POST /pair-verify (68 bytes)
+[airplay]   pair-verify step 1 computed in 2120 ms
+[airplay] POST /pair-verify (68 bytes)
+[airplay] POST /fp-setup (16 bytes)
+[airplay] POST /fp-setup (164 bytes)
+[airplay] SETUP rtsp://x/1 (411 bytes)
+[airplay]   TEST MODE: using plaintext testAesKey from sender
+[airplay]   session from fake_sender model=iPhone14,2
+[airplay] SETUP rtsp://x/1 (140 bytes)
+[airplay]   mirror stream set up, id=17933120416843723926
+[airplay] mirror stream connected from 192.168.1.15:46548
+[airplay] mirror codec config 1280x720 avcC 42 bytes
+[airplay] POST /feedback (0 bytes)
+[scene] mirrorUrl=http://127.0.0.1:8888/hls/2/live.m3u8
+[scene] video state=buffering 
+[airplay] stats 10s: video frames=44 bytes=48843 audio pkts=0
+[airplay] POST /feedback (0 bytes)
+[scene] video state=playing 
+11-04 10:06:04.807 [beacon.signal] |LiveStartInitiate ---------> TimeBase(24646 ms)
+11-04 10:06:04.817 [beacon.signal] |LiveStartComplete ---------> Duration(2624 ms), 8.45 KiP
+[airplay] POST /feedback (0 bytes)
+[airplay] hls depth 3973 ms -> rate 80%
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] stats 10s: video frames=301 bytes=375010 audio pkts=0
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] hls depth 1481 ms -> rate 100%
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] stats 10s: video frames=300 bytes=370630 audio pkts=0
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] stats 10s: video frames=302 bytes=373580 audio pkts=0
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] POST /feedback (0 bytes)
+[airplay] mirror stream closed
+[airplay] TEARDOWN rtsp://x/1 (42 bytes)
+[airplay] session end: teardown
+[scene] mirrorUrl=
+[scene] video state=stopped 
+[airplay] rtsp connection closed (192.168.1.15:38950)
+[airplay] pairing precompute done in 1882 ms
+[airplay] stats 10s: video frames=253 bytes=337741 audio pkts=0

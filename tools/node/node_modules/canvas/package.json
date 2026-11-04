@@ -1,0 +1,85 @@
+{
+  "name": "canvas",
+  "description": "Canvas graphics API backed by Cairo",
+  "version": "4.0.0-rc3",
+  "author": "TJ Holowaychuk <tj@learnboost.com>",
+  "main": "index.js",
+  "browser": "browser.js",
+  "types": "index.d.ts",
+  "contributors": [
+    "Nathan Rajlich <nathan@tootallnate.net>",
+    "Rod Vagg <r@va.gg>",
+    "Juriy Zaytsev <kangax@gmail.com>"
+  ],
+  "keywords": [
+    "canvas",
+    "graphic",
+    "graphics",
+    "pixman",
+    "cairo",
+    "image",
+    "images",
+    "pdf"
+  ],
+  "homepage": "https://github.com/Automattic/node-canvas",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Automattic/node-canvas"
+  },
+  "scripts": {
+    "prebenchmark": "zig build",
+    "benchmark": "node benchmarks/run.js",
+    "lint": "standard examples/*.js test/server.js test/public/*.js benchmarks/run.js lib/context2d.js util/has_lib.js browser.js index.js",
+    "test": "mocha test/*.test.js",
+    "pretest-server": "zig build",
+    "test-server": "node test/server.js",
+    "generate-wpt": "node ./test/wpt/generate.js",
+    "test-wpt": "mocha test/wpt/generated/*.js",
+    "tsd": "tsd"
+  },
+  "files": [
+    "build.zig",
+    "build.zig.zon",
+    "browser.js",
+    "index.d.ts",
+    "index.js",
+    "lib/",
+    "pkg/",
+    "src/",
+    "util/",
+    "!.zig-cache"
+  ],
+  "workspaces": [
+    "./npm/*"
+  ],
+  "devDependencies": {
+    "@types/node": "^10.12.18",
+    "assert-rejects": "^1.0.0",
+    "express": "^4.16.3",
+    "js-yaml": "^4.1.0",
+    "mocha": "^11.7.6",
+    "pixelmatch": "^4.0.2",
+    "standard": "^12.0.1",
+    "tsd": "^0.29.0",
+    "typescript": "^4.2.2"
+  },
+  "optionalDependencies": {
+    "canvas-darwin-arm64": "4.0.0-rc3",
+    "canvas-darwin-x64": "4.0.0-rc3",
+    "canvas-linux-arm-gnueabihf": "4.0.0-rc3",
+    "canvas-linux-x86-musl": "4.0.0-rc3",
+    "canvas-linux-x86-gnu": "4.0.0-rc3",
+    "canvas-linux-arm64-musl": "4.0.0-rc3",
+    "canvas-linux-arm64-gnu": "4.0.0-rc3",
+    "canvas-linux-riscv64-gnu": "4.0.0-rc3",
+    "canvas-linux-x64-musl": "4.0.0-rc3",
+    "canvas-linux-x64-gnu": "4.0.0-rc3",
+    "canvas-win32-arm64": "4.0.0-rc3",
+    "canvas-win32-x64": "4.0.0-rc3",
+    "canvas-win32-x86": "4.0.0-rc3"
+  },
+  "engines": {
+    "node": ">= 22"
+  },
+  "license": "MIT"
+}

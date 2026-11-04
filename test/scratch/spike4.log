@@ -1,0 +1,146 @@
+KE: [step  1 t= 81ms] video state=buffering err= 0 
+SPIKE: http req GET /vfrag.mp4 HTTP/1.1
+SPIKE: http req GET /vfrag.mp4 HTTP/1.1
+SPIKE: [step  1 t= 699ms] video state=playing err= 0 
+11-04 08:36:09.569 [beacon.signal] |VODStartInitiate ----------> TimeBase(19400 ms)
+11-04 08:36:09.572 [beacon.signal] |VODStartComplete ----------> Duration(680 ms), 10.89 KiP
+SPIKE: [step  1 t= 8661ms] video state=finished err= 0 
+SPIKE: [step  1 t= 10054ms] video state=stopped err= 0 
+SPIKE: step  2 video hls http://127.0.0.1:8888/f.m3u8
+SPIKE: [step  2 t= 70ms] video state=buffering err= 0 
+SPIKE: http req GET /f.m3u8 HTTP/1.1
+SPIKE: http req GET /init.mp4 HTTP/1.1
+SPIKE: http req GET /f0.m4s HTTP/1.1
+SPIKE: http req GET /f1.m4s HTTP/1.1
+SPIKE: http req GET /f2.m4s HTTP/1.1
+SPIKE: http req GET /f3.m4s HTTP/1.1
+SPIKE: [step  2 t= 619ms] video state=playing err= 0 
+11-04 08:36:19.546 [beacon.signal] |VODStartInitiate ----------> TimeBase(29465 ms)
+11-04 08:36:19.571 [beacon.signal] |VODStartComplete ----------> Duration(597 ms), 10.15 KiP
+SPIKE: [step  2 t= 8637ms] video state=finished err= 0 
+SPIKE: [step  2 t= 10079ms] video state=stopped err= 0 
+SPIKE: step  3 video mkv http://127.0.0.1:8888/live/live.mkv
+SPIKE: [step  3 t= 71ms] video state=buffering err= 0 
+SPIKE: http req GET /live/live.mkv HTTP/1.1
+SPIKE: http req GET /live/live.mkv HTTP/1.1
+SPIKE:   Range: bytes=182-
+SPIKE: http req GET /live/live.mkv HTTP/1.1
+SPIKE: [step  3 t= 10352ms] video state=playing err= 0 
+11-04 08:36:39.366 [beacon.signal] |VODStartInitiate ----------> TimeBase(39541 ms)
+11-04 08:36:39.377 [beacon.signal] |VODStartComplete ----------> Duration(10337 ms), 9.42 KiP
+SPIKE: [step  3 t= 25136ms] video state=stopped err= 0 
+SPIKE: step  4 video mp4 http://127.0.0.1:8888/live/vfrag.mp4
+SPIKE: [step  4 t= 56ms] video state=buffering err= 0 
+SPIKE: http req GET /live/vfrag.mp4 HTTP/1.1
+SPIKE: http req GET /live/vfrag.mp4 HTTP/1.1
+SPIKE: [step  4 t= 13464ms] video state=playing err= 0 
+11-04 08:37:07.615 [beacon.signal] |VODStartInitiate ----------> TimeBase(64684 ms)
+11-04 08:37:07.623 [beacon.signal] |VODStartComplete ----------> Duration(13445 ms), 8.68 KiP
+SPIKE: [step  4 t= 15128ms] video state=stopped err= 0 
+SPIKE: step  5 audio mka http://127.0.0.1:8888/a.mka
+SPIKE: [step  5 t= 61ms] audio state=buffering err= 0 
+SPIKE: http req GET /a.mka HTTP/1.1
+SPIKE: http req GET /a.mka HTTP/1.1
+SPIKE:   Range: bytes=365479-
+SPIKE: http req GET /a.mka HTTP/1.1
+SPIKE:   Range: bytes=535-
+SPIKE: http req GET /a.mka HTTP/1.1
+SPIKE: [step  5 t= 999ms] audio state=playing err= 0 
+11-04 08:37:10.289 [beacon.signal] |VODStartInitiate ----------> TimeBase(79808 ms)
+11-04 08:37:10.290 [beacon.signal] |VODStartComplete ----------> Duration(989 ms), 8.34 KiP
+SPIKE: [step  5 t= 8103ms] audio state=stopped err= 0 
+SPIKE: step  6 audio mkv http://127.0.0.1:8888/a.mka
+SPIKE: [step  6 t= 57ms] audio state=buffering err= 0 
+SPIKE: http req GET /a.mka HTTP/1.1
+SPIKE: http req GET /a.mka HTTP/1.1
+SPIKE:   Range: bytes=365479-
+SPIKE: http req GET /a.mka HTTP/1.1
+SPIKE:   Range: bytes=535-
+SPIKE: http req GET /a.mka HTTP/1.1
+SPIKE: [step  6 t= 1002ms] audio state=playing err= 0 
+11-04 08:37:18.396 [beacon.signal] |VODStartInitiate ----------> TimeBase(87918 ms)
+11-04 08:37:18.397 [beacon.signal] |VODStartComplete ----------> Duration(988 ms), 7.60 KiP
+SPIKE: [step  6 t= 8106ms] audio state=stopped err= 0 
+SPIKE: step  7 video mkv http://127.0.0.1:8888/a.mka
+SPIKE: [step  7 t= 45ms] video state=buffering err= 0 
+SPIKE: http req GET /a.mka HTTP/1.1
+SPIKE: http req GET /a.mka HTTP/1.1
+SPIKE:   Range: bytes=365479-
+SPIKE: http req GET /a.mka HTTP/1.1
+SPIKE:   Range: bytes=535-
+SPIKE: http req GET /a.mka HTTP/1.1
+SPIKE: [step  7 t= 1021ms] video state=playing err= 0 
+11-04 08:37:26.525 [beacon.signal] |VODStartInitiate ----------> TimeBase(96031 ms)
+11-04 08:37:26.528 [beacon.signal] |VODStartComplete ----------> Duration(1006 ms), 6.87 KiP
+SPIKE: [step  7 t= 8123ms] video state=stopped err= 0 
+SPIKE: all steps done
+11-04 08:39:47.292 [beacon.signal] |AppExitInitiate -----------> TimeBase(237813 ms)
+11-04 08:39:47.301 [beacon.signal] |AppExitComplete -----------> Duration(10 ms), 6.48 KiP
+11-04 08:39:47.307 [beacon.header] __________________________________________
+11-04 08:39:47.311 [beacon.report] |AppLaunchInitiate ---------> TimeBase(0)
+11-04 08:39:47.311 [beacon.report] |AppCompileInitiate --------> TimeBase(2 ms)
+11-04 08:39:47.313 [beacon.report] |AppCompileComplete --------> Duration(133 ms), 11.96 KiP
+11-04 08:39:47.314 [beacon.report] |VODStartInitiate ----------> TimeBase(64684 ms)
+11-04 08:39:47.315 [beacon.report] |VODStartComplete ----------> Duration(13445 ms), 8.68 KiP
+11-04 08:39:47.316 [beacon.report] |AppExitInitiate -----------> TimeBase(237813 ms)
+11-04 08:39:47.317 [beacon.report] |AppExitComplete -----------> Duration(10 ms), 6.48 KiP
+11-04 08:39:47.317 [beacon.footer] __________________________________________
+11-04 08:39:47.465 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+11-04 08:39:47.466 [beacon.signal] |AppCompileInitiate --------> TimeBase(1 ms)
+11-04 08:39:47.466 [scrpt.cmpl] Compiling 'AirPlay Spike2', id 'dev'
+11-04 08:39:47.485 [scrpt.load.mkup] Loading markup dev 'AirPlay Spike2'
+11-04 08:39:47.492 [scrpt.unload.mkup] Unloading markup dev 'AirPlay Spike2'
+11-04 08:39:47.501 [scrpt.parse.mkup.time] Parsed markup dev 'AirPlay Spike2' in 17 milliseconds
+
+------ Compiling dev 'AirPlay Spike2' ------
+11-04 08:39:47.508 [scrpt.ctx.cmpl.time] Compiled 'AirPlay Spike2', id 'dev' in 5 milliseconds
+11-04 08:39:47.586 [scrpt.proc.mkup.time] Processed markup dev 'AirPlay Spike2' in 75 milliseconds
+11-04 08:39:47.589 [beacon.signal] |AppCompileComplete --------> Duration(123 ms), 12.39 KiP
+11-04 08:39:47.634 [ui.frm.plugin.running.enter] Entering PLUGIN_RUNNING for dev
+11-04 08:39:50.588 [scrpt.ctx.run.enter] UI: Entering 'AirPlay Spike2', id 'dev'
+
+------ Running dev 'AirPlay Spike2' main ------
+SPIKE: [step -1 t= 126ms] video state=stopped err= 0 
+SPIKE: [step -1 t= 128ms] audio state=stopped err= 0 
+SPIKE: step  0 live=false video mkv http://127.0.0.1:8888/live/hi.mkv?rate=33250
+SPIKE: http req GET /live/hi.mkv?rate=33250 HTTP/1.1
+SPIKE: [step  0 t= 575ms] video state=buffering err= 0 
+SPIKE: http req GET /live/hi.mkv?rate=33250 HTTP/1.1
+SPIKE:   Range: bytes=182-
+SPIKE: http req GET /live/hi.mkv?rate=33250 HTTP/1.1
+SPIKE: [step  0 t= 6356ms] video state=playing err= 0 
+11-04 08:39:58.135 [beacon.signal] |VODStartInitiate ----------> TimeBase(4651 ms)
+11-04 08:39:58.141 [beacon.signal] |VODStartComplete ----------> Duration(6013 ms), 12.08 KiP
+SPIKE: [step  0 t= 20458ms] video state=stopped err= 0 
+SPIKE: step  1 live=true video mkv http://127.0.0.1:8888/live/hi.mkv?rate=33250
+SPIKE: [step  1 t= 62ms] video state=buffering err= 0 
+SPIKE: http req GET /live/hi.mkv?rate=33250 HTTP/1.1
+SPIKE: http req GET /live/hi.mkv?rate=33250 HTTP/1.1
+SPIKE:   Range: bytes=182-
+SPIKE: http req GET /live/hi.mkv?rate=33250 HTTP/1.1
+SPIKE: [step  1 t= 5000ms] video state=playing err= 0 
+11-04 08:40:17.251 [beacon.signal] |VODStartInitiate ----------> TimeBase(24795 ms)
+11-04 08:40:17.252 [beacon.signal] |VODStartComplete ----------> Duration(4979 ms), 11.36 KiP
+SPIKE: [step  1 t= 19942ms] video state=buffering err= 0 
+SPIKE: [step  1 t= 20182ms] video state=stopped err= 0 
+SPIKE: step  2 live=true video mkv http://127.0.0.1:8888/live/live.mkv?rate=3400
+SPIKE: [step  2 t= 51ms] video state=buffering err= 0 
+SPIKE: http req GET /live/live.mkv?rate=3400 HTTP/1.1
+SPIKE: http req GET /live/live.mkv?rate=3400 HTTP/1.1
+SPIKE:   Range: bytes=182-
+SPIKE: http req GET /live/live.mkv?rate=3400 HTTP/1.1
+SPIKE: [step  2 t= 10349ms] video state=playing err= 0 
+11-04 08:40:42.791 [beacon.signal] |VODStartInitiate ----------> TimeBase(44984 ms)
+11-04 08:40:42.792 [beacon.signal] |VODStartComplete ----------> Duration(10328 ms), 10.65 KiP
+SPIKE: [step  2 t= 20209ms] video state=stopped err= 0 
+SPIKE: step  3 live=false audio mka http://127.0.0.1:8888/live/a.mka?rate=1830
+SPIKE: [step  3 t= 57ms] audio state=buffering err= 0 
+SPIKE: http req GET /live/a.mka?rate=1830 HTTP/1.1
+SPIKE: http req GET /live/a.mka?rate=1830 HTTP/1.1
+SPIKE:   Range: bytes=365479-
+SPIKE: [step  3 t= 15101ms] audio state=stopped err= 0 
+SPIKE: step  4 live=true audio mka http://127.0.0.1:8888/live/a.mka?rate=1830
+SPIKE: [step  4 t= 54ms] audio state=buffering err= 0 
+SPIKE: http req GET /live/a.mka?rate=1830 HTTP/1.1
+SPIKE: http req GET /live/a.mka?rate=1830 HTTP/1.1
+SPIKE:   Range: bytes=365479-

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="MainScene" extends="Scene">
+  <script type="text/brightscript" uri="pkg:/components/MainScene.brs" />
+  <children>
+    <Rectangle id="bg" width="1280" height="720" color="0x101418FF" />
+    <Group id="idle">
+      <Label id="title" translation="[0,200]" width="1280" horizAlign="center" text="AirPlay Receiver" color="0xFFFFFFFF">
+        <Font role="font" uri="font:LargeBoldSystemFontFile" size="48" />
+      </Label>
+      <Label id="name" translation="[0,290]" width="1280" horizAlign="center" text="" color="0x8FD3FFFF">
+        <Font role="font" uri="font:MediumSystemFontFile" size="34" />
+      </Label>
+      <Label id="hint" translation="[140,360]" width="1000" height="120" wrap="true" horizAlign="center" color="0xB0B8C0FF"
+        text="On your iPhone, iPad or Mac open Control Center, choose Screen Mirroring, then pick this Roku. For music, use the AirPlay button in any audio app." />
+      <Label id="status" translation="[0,520]" width="1280" horizAlign="center" text="starting..." color="0xFFD479FF" />
+      <Label id="net" translation="[0,560]" width="1280" horizAlign="center" text="" color="0x707880FF" />
+    </Group>
+    <Video id="video" width="1280" height="720" translation="[0,0]" visible="false" enableUI="false" />
+    <Audio id="audio" />
+    <Label id="audioLabel" translation="[0,640]" width="1280" horizAlign="center" visible="false" text="Playing AirPlay audio" color="0xFFFFFFFF" />
+  </children>
+</component>

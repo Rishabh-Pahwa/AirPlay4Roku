@@ -1,0 +1,185 @@
+11-04 08:30:42.671 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+11-04 08:30:42.672 [beacon.signal] |AppCompileInitiate --------> TimeBase(2 ms)
+11-04 08:30:42.673 [scrpt.cmpl] Compiling 'AirPlay Spike', id 'dev'
+11-04 08:30:42.692 [scrpt.load.mkup] Loading markup dev 'AirPlay Spike'
+11-04 08:30:42.706 [scrpt.unload.mkup] Unloading markup dev 'AirPlay Spike'
+11-04 08:30:42.721 [scrpt.parse.mkup.time] Parsed markup dev 'AirPlay Spike' in 29 milliseconds
+
+------ Compiling dev 'AirPlay Spike' ------
+11-04 08:30:42.737 [scrpt.ctx.cmpl.time] Compiled 'AirPlay Spike', id 'dev' in 13 milliseconds
+11-04 08:30:42.816 [scrpt.proc.mkup.time] Processed markup dev 'AirPlay Spike' in 76 milliseconds
+11-04 08:30:42.819 [beacon.signal] |AppCompileComplete --------> Duration(147 ms), 13.96 KiP
+11-04 08:30:42.870 [ui.frm.plugin.running.enter] Entering PLUGIN_RUNNING for dev
+11-04 08:30:45.111 [scrpt.ctx.run.enter] UI: Entering 'AirPlay Spike', id 'dev'
+
+------ Running dev 'AirPlay Spike' main ------
+
+BrightScript Micro Debugger.
+Enter any BrightScript statement, debug commands, or HELP.
+
+Suspending threads...
+Thread selected:  1*   pkg:/components/SpikeTask.brs(14)       log("task start")
+
+Current Function:
+013:  sub run()
+014:*     log("task start")
+015:      testEnv()
+016:      testInts()
+017:      testCrypto()
+018:      bench()
+Type Mismatch. (runtime error &h18) in pkg:/components/SpikeTask.brs(14)
+014:     log("task start")
+Backtrace:
+#0  Function run() As Void
+   file/line: pkg:/components/SpikeTask.brs(14)
+Local Variables:
+global           Interface:ifGlobal
+m                roAssociativeArray refcnt=2 count:2
+Threads:
+ID    Location                                Source Code
+ 0    pkg:/source/main.brs(8)                 msg = wait(0, port)
+ 1*   pkg:/components/SpikeTask.brs(14)       log("task start")
+  *selected
+
+Brightscript Debugger> 11-04 08:31:55.213 [beacon.signal] |AppExitInitiate -----------> TimeBase(72542 ms)
+
+Thread detached
+
+Thread detached
+11-04 08:31:55.893 [beacon.signal] |AppExitComplete -----------> Duration(681 ms), 13.29 KiP
+11-04 08:31:55.895 [beacon.header] __________________________________________
+11-04 08:31:55.896 [beacon.report] |AppLaunchInitiate ---------> TimeBase(0)
+11-04 08:31:55.897 [beacon.report] |AppCompileInitiate --------> TimeBase(2 ms)
+11-04 08:31:55.897 [beacon.report] |AppCompileComplete --------> Duration(147 ms), 13.96 KiP
+11-04 08:31:55.898 [beacon.report] |AppExitInitiate -----------> TimeBase(72542 ms)
+11-04 08:31:55.900 [beacon.report] |AppExitComplete -----------> Duration(681 ms), 13.29 KiP
+11-04 08:31:55.901 [beacon.footer] __________________________________________
+11-04 08:31:55.989 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+11-04 08:31:55.990 [beacon.signal] |AppCompileInitiate --------> TimeBase(1 ms)
+11-04 08:31:55.991 [scrpt.cmpl] Compiling 'AirPlay Spike', id 'dev'
+11-04 08:31:56.008 [scrpt.load.mkup] Loading markup dev 'AirPlay Spike'
+11-04 08:31:56.017 [scrpt.unload.mkup] Unloading markup dev 'AirPlay Spike'
+11-04 08:31:56.027 [scrpt.parse.mkup.time] Parsed markup dev 'AirPlay Spike' in 18 milliseconds
+
+------ Compiling dev 'AirPlay Spike' ------
+11-04 08:31:56.037 [scrpt.ctx.cmpl.time] Compiled 'AirPlay Spike', id 'dev' in 7 milliseconds
+11-04 08:31:56.123 [scrpt.proc.mkup.time] Processed markup dev 'AirPlay Spike' in 83 milliseconds
+11-04 08:31:56.127 [beacon.signal] |AppCompileComplete --------> Duration(137 ms), 14.31 KiP
+11-04 08:31:56.181 [ui.frm.plugin.running.enter] Entering PLUGIN_RUNNING for dev
+11-04 08:31:58.968 [scrpt.ctx.run.enter] UI: Entering 'AirPlay Spike', id 'dev'
+
+------ Running dev 'AirPlay Spike' main ------
+SPIKE: task start
+SPIKE: model=3100X ver=029.10E05009A displayMode=720p
+SPIKE: ip eth1=192.168.1.16
+SPIKE: toStr int=42
+SPIKE: toStr long=1234567890123
+SPIKE: int ovf 2147483647+1=-2147483648
+SPIKE: int mul ovf= 2147483645
+SPIKE: int -8>>1= 2147483644
+SPIKE: int &H80000000>>31= 1
+SPIKE: int 1<<31=-2147483648
+SPIKE: long -8>>1=9223372036854775804
+SPIKE: long &HFFFFFFFF&=4294967295
+SPIKE: long mul=-8589934591
+SPIKE: long (1<<40)=1099511627776
+SPIKE: int and= 240 or= 65520 not0=-1
+SPIKE: long and=64677154575
+SPIKE: mixed long*int=35000000000 type=LongInteger
+SPIKE: int\int -7\2=-3 7 mod 3= 1 -7 mod 3=-1
+SPIKE: bytearray[0]= 200 getSignedByte=-56
+SPIKE: sha512 ok=true
+SPIKE: ctr setup ret= 0
+SPIKE: ctr split out=874d6191b620e3261bef6864990db6ce9806f66b7970fdff8617187bb9fffdff
+SPIKE: ctr ok=true
+SPIKE: ecb setup= 0 out=3ad77bb40d7a3660a89ecaf32466ef97 (want 3ad77bb40d7a3660a89ecaf32466ef97)
+SPIKE: cbc-dec setup= 0 out=6bc1bee22e409f96e93d7e117393172a (want 6bc1bee22e409f96e93d7e117393172a)
+SPIKE: roHMAC=roHMAC
+SPIKE: bench 100x 16x16 long mul:  1039 ms
+SPIKE: bench 100k bytearray reads:  304 ms
+SPIKE: bench 10k bytearray push:  52 ms
+SPIKE: bench 1000x Append(188k):  996 ms
+SPIKE: bench aes-ctr 2MB:  215 ms
+SPIKE: bench 1000 str concat:  21 ms
+SPIKE: tcp http port  8888 bind=true listen=true isListening=true
+SPIKE: tcp airplay port  7000 bind=true listen=true isListening=true
+SPIKE: tcp mirror port  7100 bind=true listen=true isListening=true
+SPIKE: mdns bind=true join=true status= 0
+SPIKE: scene starting local HLS playback
+SPIKE: video state=buffering err= 0 
+SPIKE: accept http from 127.0.0.1:51736
+SPIKE: http req GET /test.m3u8 HTTP/1.1
+SPIKE: accept http from 127.0.0.1:51737
+SPIKE: http req GET /seg0.ts HTTP/1.1
+SPIKE: accept http from 127.0.0.1:51738
+SPIKE: http req GET /seg1.ts HTTP/1.1
+SPIKE: accept http from 127.0.0.1:51740
+SPIKE: http req GET /seg2.ts HTTP/1.1
+SPIKE: accept http from 127.0.0.1:51741
+SPIKE: http req GET /seg3.ts HTTP/1.1
+SPIKE: accept http from 127.0.0.1:51742
+SPIKE: http req GET /seg4.ts HTTP/1.1
+SPIKE: accept http from 127.0.0.1:51743
+SPIKE: http req GET /seg5.ts HTTP/1.1
+SPIKE: accept http from 127.0.0.1:51744
+SPIKE: video state=playing err= 0 
+SPIKE: http req GET /seg6.ts HTTP/1.1
+11-04 08:32:03.991 [beacon.signal] |VODStartInitiate ----------> TimeBase(7122 ms)
+11-04 08:32:03.992 [beacon.signal] |VODStartComplete ----------> Duration(844 ms), 13.97 KiP
+SPIKE: accept http from 127.0.0.1:51746
+SPIKE: http req GET /seg7.ts HTTP/1.1
+SPIKE: video state=finished err= 0 
+SPIKE: video state=stopped err= 0 
+SPIKE: audio test ALAC via http
+SPIKE: accept http from 127.0.0.1:51749
+SPIKE: audio step= 1 state=buffering err= 0 
+SPIKE: http req GET /alac.m4a HTTP/1.1
+SPIKE: accept http from 127.0.0.1:51750
+SPIKE: http req GET /alac.m4a HTTP/1.1
+SPIKE: mdns pkt # 1 len= 61 from=192.168.1.9:5353 q0=_googlecast._tcp.local.
+SPIKE: audio step= 1 state=playing err= 0 
+11-04 08:32:15.794 [beacon.signal] |VODStartInitiate ----------> TimeBase(19225 ms)
+11-04 08:32:15.796 [beacon.signal] |VODStartComplete ----------> Duration(570 ms), 13.63 KiP
+SPIKE: audio step= 1 state=finished err= 0 
+SPIKE: audio test WAV via http
+SPIKE: accept http from 127.0.0.1:51754
+SPIKE: http req GET /pcm.wav HTTP/1.1
+SPIKE: conn http closed by peer
+SPIKE: audio step= 2 state=buffering err= 0 
+SPIKE: accept http from 127.0.0.1:51755
+SPIKE: http req GET /pcm.wav HTTP/1.1
+SPIKE: audio step= 2 state=playing err= 0 
+11-04 08:32:22.045 [beacon.signal] |VODStartInitiate ----------> TimeBase(25292 ms)
+11-04 08:32:22.048 [beacon.signal] |VODStartComplete ----------> Duration(754 ms), 13.28 KiP
+SPIKE: mdns pkt # 2 len= 80 from=192.168.1.20:5353 q0=_companion-link._tcp.local.
+SPIKE: audio step= 2 state=finished err= 0 
+SPIKE: mdns pkt # 3 len= 80 from=192.168.1.20:5353 q0=_companion-link._tcp.local.
+SPIKE: audio test ALAC via pkg:
+SPIKE: audio step= 3 state=buffering err= 0 
+SPIKE: audio step= 3 state=playing err= 0 
+11-04 08:32:27.888 [beacon.signal] |VODStartInitiate ----------> TimeBase(31328 ms)
+11-04 08:32:27.893 [beacon.signal] |VODStartComplete ----------> Duration(547 ms), 12.94 KiP
+SPIKE: audio step= 3 state=finished err= 0 
+SPIKE: video test TS (non-HLS) via http
+SPIKE: audio step= 4 state=stopped err= 0 
+SPIKE: video state=buffering err= 0 
+SPIKE: accept http from 127.0.0.1:51762
+SPIKE: http req GET /seg0.ts HTTP/1.1
+SPIKE: video state=playing err= 0 
+11-04 08:32:33.657 [beacon.signal] |VODStartInitiate ----------> TimeBase(37360 ms)
+11-04 08:32:33.658 [beacon.signal] |VODStartComplete ----------> Duration(295 ms), 12.21 KiP
+SPIKE: video state=finished err= 0 
+SPIKE: mdns pkt # 4 len= 61 from=192.168.1.9:5353 q0=_googlecast._tcp.local.
+SPIKE: video state=stopped err= 0 
+SPIKE: all media tests done
+SPIKE: mdns pkt # 5 len= 80 from=192.168.1.20:5353 q0=_companion-link._tcp.local.
+SPIKE: mdns pkt # 6 len= 80 from=192.168.1.20:5353 q0=_companion-link._tcp.local.
+SPIKE: mdns pkt # 7 len= 80 from=192.168.1.20:5353 q0=_companion-link._tcp.local.
+SPIKE: mdns pkt # 8 len= 284 from=192.168.1.5:5353 q0=0.E.B.B.F.6.9.6.5.6.B.B.5.D.8.0.0.0.0.0.
+SPIKE: mdns pkt # 9 len= 80 from=192.168.1.5:5353 q0=_companion-link._tcp.local.
+SPIKE: mdns pkt # 10 len= 290 from=192.168.1.5:5353 q0=9B3C9CF0-E3F3-4EE6-9CF9-2A6C915C4930._asquic._udp.local.
+SPIKE: mdns pkt # 11 len= 290 from=192.168.1.5:5353 q0=9B3C9CF0-E3F3-4EE6-9CF9-2A6C915C4930._asquic._udp.local.
+SPIKE: mdns pkt # 12 len= 290 from=192.168.1.5:5353 q0=9B3C9CF0-E3F3-4EE6-9CF9-2A6C915C4930._asquic._udp.local.
+SPIKE: mdns pkt # 13 len= 284 from=192.168.1.5:5353 q0=0.E.B.B.F.6.9.6.5.6.B.B.5.D.8.0.0.0.0.0.
+SPIKE: mdns pkt # 14 len= 80 from=192.168.1.5:5353 q0=_companion-link._tcp.local.
+SPIKE: mdns pkt # 15 len= 530 from=192.168.1.5:5353 q0=9B3C9CF0-E3F3-4EE6-9CF9-2A6C915C4930._asquic._udp.local.

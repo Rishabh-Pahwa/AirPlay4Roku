@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Background task running the whole AirPlay receiver (see source/receiver.brs) -->
+<component name="Receiver" extends="Task">
+  <interface>
+    <field id="status" type="string" value="" />
+    <field id="info" type="assocarray" />
+    <field id="client" type="string" value="" />
+    <field id="mirrorUrl" type="string" value="" />
+    <field id="mirrorSize" type="string" value="" />
+    <field id="audioUrl" type="string" value="" />
+    <field id="quit" type="boolean" value="false" />
+    <field id="volume" type="float" value="0" />
+    <field id="playerPos" type="float" value="0" />
+    <field id="playerState" type="string" value="" />
+    <field id="mirrorDepth" type="integer" value="0" />
+  </interface>
+  <script type="text/brightscript" uri="pkg:/source/util.brs" />
+  <script type="text/brightscript" uri="pkg:/source/plist.brs" />
+  <script type="text/brightscript" uri="pkg:/source/fe25519.brs" />
+  <script type="text/brightscript" uri="pkg:/source/curve25519.brs" />
+  <script type="text/brightscript" uri="pkg:/source/fairplay.brs" />
+  <script type="text/brightscript" uri="pkg:/source/mdns.brs" />
+  <script type="text/brightscript" uri="pkg:/source/mkv.brs" />
+  <script type="text/brightscript" uri="pkg:/source/fmp4.brs" />
+  <script type="text/brightscript" uri="pkg:/source/receiver.brs" />
+  <script type="text/brightscript">
+    <![CDATA[
+    sub init()
+        m.top.functionName = "rx_main"
+    end sub
+    ]]>
+  </script>
+</component>
