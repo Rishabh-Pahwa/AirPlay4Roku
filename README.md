@@ -151,7 +151,7 @@ python3 -I test/fake_sender.py ROKU_IP all 20
 MIRROR_RATE=6M MIRROR_NOISE=25 python3 -I test/fake_sender.py ROKU_IP mirror 30
 # iPhone-like pacing (bursts + still-screen pauses), optional rotation:
 MIRROR_RATE=1500k MIRROR_JITTER=1 MIRROR_ROTATE=1 python3 -I test/fake_sender.py ROKU_IP mirror 80
-curl http://ROKU_IP:8888/log         # receiver log: stalls, depth steering, sender gaps
+curl http://ROKU_IP:8888/log         # receiver log (test mode, or after launching with debuglog=1)
 ```
 
 `fake_sender.py` is a complete AirPlay client (discovery, info, pairing with

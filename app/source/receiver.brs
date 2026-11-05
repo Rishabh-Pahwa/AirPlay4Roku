@@ -38,6 +38,12 @@ sub rx_main()
     m.stats = {vframes: 0, vbytes: 0, apkts: 0}
 
     m.hlsTrace = (m.global.testMode = true)
+    ' Local media server access (port 8888): the live streams are for the
+    ' Roku's own players only (127.0.0.1); other devices on the network are
+    ' refused, except in test mode (fake_sender / capture tools). /log is off
+    ' unless test mode or registry "debuglog" (launch param debuglog=1).
+    m.testModeOn = (m.global.testMode = true)
+    m.logOn = m.testModeOn or CreateObject("roRegistrySection", "airplay").Exists("debuglog")
     GetGlobalAA().consolePrint = CreateObject("roRegistrySection", "airplay").Exists("console")
     rx_identity()
     rx_status("starting")
@@ -1325,6 +1331,15 @@ end sub
 
 sub http_serve(c as object, req as object)
     url = req.url
+    isLocal = (Left(c.peer, 4) = "127.")
+    allowed = isLocal or m.testModeOn
+    if url = "/log" then allowed = m.logOn
+    if not allowed then
+        if url <> "/favicon.ico" then dbg("refused " + req.method + " " + url.Split("?")[0] + " from " + c.peer)
+        sock_send_all(c.sock, ba_ascii("HTTP/1.1 403 Forbidden" + CRLF() + "Content-Length: 0" + CRLF() + "Connection: close" + CRLF() + CRLF()))
+        rx_close(c)
+        return
+    end if
     if Left(url, 5) = "/hls/" then
         http_serve_hls(c, req)
         return
@@ -1351,7 +1366,7 @@ sub http_serve(c as object, req as object)
         eq = Instr(1, r, "=")
         if eq > 0 then off = str_int(Mid(r, eq + 1).Split("-")[0])
     end if
-    dbg("player " + req.method + " " + url + " from " + off.toStr())
+    dbg("player " + req.method + " " + url + " from " + off.toStr() + " (" + c.peer + ")")
     if st = invalid then
         sock_send_all(c.sock, ba_ascii("HTTP/1.1 404 Not Found" + CRLF() + "Content-Length: 0" + CRLF() + "Connection: close" + CRLF() + CRLF()))
         rx_close(c)

@@ -83,6 +83,14 @@ Afterwards, read `/log`.
 
 ## Reading `/log`
 
+`/log` is off by default, because it names your devices and what you played. Test mode enables it. Outside test mode, launch with `debuglog=1` to read it, and `debuglog=0` to turn it off again:
+
+```sh
+curl -d '' "http://ROKU:8060/launch/dev?debuglog=1"
+curl http://ROKU:8888/log
+curl -d '' "http://ROKU:8060/launch/dev?debuglog=0"
+```
+
 | Line | Meaning |
 |---|---|
 | `rtsp connection from <ip>`, `pair-verify step 1 computed in N ms`, `fairplay decrypt ...`, `session from <name> model=...`, `mirror stream set up`, `audio stream ct=...` | Session progress and timings |

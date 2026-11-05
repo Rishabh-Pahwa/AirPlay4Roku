@@ -116,6 +116,8 @@ UDP 6002 RTP (PT 0x60) ─► AES-CBC on whole 16-byte blocks (fresh IV for each
 | `/hls/<gen>/init<N>.mp4` | init segment for each format |
 | `/hls/<gen>/s<N>.m4s` | media segment, served immediately or parked if it is one of the next three |
 | `/audio/<gen>.mka` (or `/audio/current.mka`) | live Matroska audio, held open and streamed |
-| `/log` | the receiver's ring-buffer log (last 2000 lines) |
+| `/log` | the receiver's ring-buffer log (last 2000 lines); only with `debuglog=1` or test mode |
+
+Access: the stream paths answer only connections from `127.0.0.1`, which is where the Roku's own Video and Audio nodes connect from. Requests from other devices get `403 Forbidden` and a `refused …` log line. Test mode lifts that, for `fake_sender.py` and `test/h264/capture_hls.py`. This keeps someone else on the network from watching a mirrored screen or reading the log, which names the user's devices and what they played.
 
 `<gen>` is a counter that increases with every new mirror or audio stream, so a player still holding a URL from an earlier session gets a 404 rather than the wrong stream. All sockets are non-blocking. A player that falls more than 4000 chunks behind is disconnected rather than allowed to grow memory without limit.

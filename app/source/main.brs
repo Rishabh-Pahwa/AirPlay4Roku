@@ -12,10 +12,16 @@ sub Main(args as dynamic)
     noPlayer = testMode and args.noplayer = "1"
     ' urlvideo=1 / urlvideo=0 (ECP launch param) switches AirPlay video-URL
     ' playback on/off; it is remembered in the registry (off by default).
-    if type(args) = "roAssociativeArray" and args.urlvideo <> invalid then
+    ' debuglog=1 / debuglog=0 likewise makes the receiver log readable from the
+    ' network at http://ROKU:8888/log (off by default; always on in test mode).
+    if type(args) = "roAssociativeArray" then
         reg = CreateObject("roRegistrySection", "airplay")
-        if args.urlvideo = "1" then reg.Write("urlvideo", "1") else reg.Delete("urlvideo")
-        reg.Flush()
+        for each opt in ["urlvideo", "debuglog"]
+            if args[opt] <> invalid then
+                if args[opt] = "1" then reg.Write(opt, "1") else reg.Delete(opt)
+                reg.Flush()
+            end if
+        end for
     end if
     screen.getGlobalNode().addFields({testMode: testMode, hlsTarget: hlsTarget, noFeedback: noFeedback, noPlayer: noPlayer})
     scene = screen.CreateScene("MainScene")

@@ -14,7 +14,8 @@ Device: the Roku is at `192.168.1.16` (override with `ROKU_IP`). Sideloading nee
 tools/deploy.sh app                  # zip + sideload app/ (only replaces the single "dev" channel slot; auto-launches)
 tools/deploy.sh --delete             # remove the dev channel
 curl -d '' "http://192.168.1.16:8060/launch/dev?testmode=1"   # relaunch in test mode (needed for fake_sender)
-curl http://192.168.1.16:8888/log    # receiver log ring buffer (2000 lines) - primary debugging channel
+curl -d '' "http://192.168.1.16:8060/launch/dev?debuglog=1"     # make /log readable from the network (remembered; debuglog=0 turns it off)
+curl http://192.168.1.16:8888/log    # receiver log ring buffer (2000 lines) - primary debugging channel; 403 unless debuglog or testmode
 tools/console.sh 60                  # BrightScript debug console (port 8085); see caveats below
 ```
 
@@ -64,7 +65,7 @@ Generators (outputs are committed): `tools/gen_fe25519.py` writes `app/source/fe
 - **Mirror, :7100 TCP.** Packets are a 128-byte header plus payload. Type 0 is AES-CTR video in AVCC form (one continuous keystream across packets); type 1 is an unencrypted avcC codec config.
 - **Audio, :6002/:6003 UDP.** RTP ALAC, with AES-CBC applied per packet over whole 16-byte blocks only.
 - **Other sockets.** NTP client on :6010, mDNS responder on :5353 (`mdns.brs`).
-- **Local media server, :8888.** It feeds the Roku player, which can only take container formats over HTTP. It also serves `/log`.
+- **Local media server, :8888.** It feeds the Roku player, which can only take container formats over HTTP. It also serves `/log`. Access control in `http_serve`: streams only to `127.0.0.1` (the Roku's own players) unless test mode; `/log` only with registry `debuglog` (launch param `debuglog=1`) or test mode; everything else gets 403 and a `refused` log line. Leave `debuglog` off when done: the log names the user's devices and what they played.
 
 The media pipelines keep bytes out of BrightScript loops: decryption is `roEVPCipher`, and muxing is small headers plus `roByteArray.Append`.
 

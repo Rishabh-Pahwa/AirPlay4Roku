@@ -14,7 +14,8 @@
 | AirPlay music (Spotify, Apple Music, and so on) | ✅ | ALAC 44.1 kHz/16-bit over RTP, AES-CBC |
 | AirPlay video from a link (`/play` with an http(s) MP4 or HLS URL) | ⚠️ off by default | Implemented and verified with the fake sender: the Roku plays the link itself **with sound**, with pause/seek/stop and progress on the sender. But **iOS 18 never sends the link**: before every `/play` it requires `POST /fp-setup2`, a FairPlay variant no open-source receiver implements (UxPlay and PhairPlay answer 421 too). Enable with launch param `urlvideo=1` to test other senders. |
 | Mute from the sender | ✅ | Bottom of the volume slider, or mute |
-| Logs without the debug console | ✅ | `http://ROKU:8888/log` |
+| Logs without the debug console | ✅ | `http://ROKU:8888/log`, **off by default**: enable with launch param `debuglog=1` (or test mode); otherwise 403 |
+| Private streams | ✅ | The live mirror and music streams on port 8888 are served only to the Roku's own players (`127.0.0.1`); other devices on the network get 403 (except in test mode) |
 | Clean install and removal | ✅ | Developer slot plus the channel's own registry section |
 
 ## Limitations of this receiver
