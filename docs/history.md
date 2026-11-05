@@ -111,3 +111,27 @@ Result: in the iPhone-like stress test (bursts, pauses, a rotation halfway throu
 | The channel showed as a blank tile in the home grid | Added `mm_icon_focus_hd`/`_sd` and a splash screen from `tools/gen_icons.py`. |
 | A request for the Apple TV logo | Declined, as a trademark. An original phone-to-TV glyph in a similar minimal black and graphite style, with "AirPlay4Roku" under it. |
 | The channel name | Renamed to **AirPlay4Roku** in the manifest and the idle screen. |
+
+## Stage 10: AirPlay video from a link (inspired by trimeplay)
+
+[trimeplay](../../trimeplay), a 2013 BrightScript receiver that stopped working with iOS 8, never mirrored. It implemented the *video URL* side of AirPlay: the sender passes a link and the Roku's own player plays it, with sound. It broke because it had no FairPlay or pairing, which AirPlay4Roku already has. The protocol is now taken from UxPlay's current implementation, and the code is new (`app/source/video.brs`).
+
+| Problem | Fix |
+|---|---|
+| Replies from the sender on the `/reverse` channel would have been parsed as requests and answered with 404s | Connections upgraded with `/reverse` are marked, and messages on them are ignored |
+| A second video with the same duration as the first never reported its duration, because the field only notifies on change, so `/playback-info` stayed "not ready" | `playerDuration` is `alwaysNotify`, is reset on each `play`, and is re-sent when playback starts |
+| The Video node is shared with mirroring: tearing down a mirror could stop a URL video, and vice versa | The scene tracks which mode owns the node (`m.mode`). Starting one mode stops the other, and the sender gets a `stopped` event. |
+| Back on the Roku remote exited the channel during a video | Back stops the video and returns to the idle screen. The sender is told through the `stopped` event. |
+
+Verified on the device with `fake_sender.py video`: local MP4 and HLS, and Apple's public HTTPS test stream. The Roku's ECP `query/media-player` reports `audio="aac"` / `"aac_adts"` while these play. A test with a real iPhone is pending.
+
+### Result with a real iPhone (iOS 18.7.8): blocked by `fp-setup2`
+
+| Problem | Finding |
+|---|---|
+| The iPhone said "playing on Roku" but the TV stayed on the idle screen | It never sent `/play`. On every new connection it does pair-verify, fp-setup, then `POST /fp-setup2` (FPLY version 1). Answered 404, it retried and gave up. |
+| Answering 421, as UxPlay does | The iPhone carries on (it sends the media's audio and subtitle choices through `/setProperty`), but still closes each connection after `fp-setup2` without sending `/play`, then sends `playlistRemove` and `/stop`. Same for NDTV and for Apple's own test stream. |
+| Clearing feature bit 2 ("video protected with FairPlay DRM") | No change: `fp-setup2` is still requested |
+| Each new connection took ~4 s to pair | The pairing pool now holds 3 precomputes and refills only after 4 s without control requests, because refilling while the sender computes its half of pair-verify delayed our reply by ~2 s |
+
+`fp-setup2` is a FairPlay variant no open-source receiver implements. A PhairPlay fork reports the same block for the YouTube app on iOS 27. Link playback is therefore **off by default**: feature bits 0 and 4 are advertised only after launching with `urlvideo=1`. The code stays, for senders that don't require the step.

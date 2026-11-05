@@ -10,6 +10,13 @@ sub Main(args as dynamic)
     if testMode and args.hlstarget <> invalid then hlsTarget = Val(args.hlstarget, 10)
     noFeedback = testMode and args.nofeedback = "1"
     noPlayer = testMode and args.noplayer = "1"
+    ' urlvideo=1 / urlvideo=0 (ECP launch param) switches AirPlay video-URL
+    ' playback on/off; it is remembered in the registry (off by default).
+    if type(args) = "roAssociativeArray" and args.urlvideo <> invalid then
+        reg = CreateObject("roRegistrySection", "airplay")
+        if args.urlvideo = "1" then reg.Write("urlvideo", "1") else reg.Delete("urlvideo")
+        reg.Flush()
+    end if
     screen.getGlobalNode().addFields({testMode: testMode, hlsTarget: hlsTarget, noFeedback: noFeedback, noPlayer: noPlayer})
     scene = screen.CreateScene("MainScene")
     screen.show()

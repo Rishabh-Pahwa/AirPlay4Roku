@@ -13,6 +13,10 @@
     <field id="playerPos" type="float" value="0" />
     <field id="playerState" type="string" value="" />
     <field id="mirrorDepth" type="integer" value="0" />
+    <!-- video-URL playback (source/video.brs): task -> scene commands, scene -> task feedback -->
+    <field id="videoCmd" type="assocarray" alwaysNotify="true" />
+    <field id="playerDuration" type="float" value="0" alwaysNotify="true" />
+    <field id="playerNote" type="string" value="" alwaysNotify="true" />
   </interface>
   <script type="text/brightscript" uri="pkg:/source/util.brs" />
   <script type="text/brightscript" uri="pkg:/source/plist.brs" />
@@ -23,6 +27,7 @@
   <script type="text/brightscript" uri="pkg:/source/mkv.brs" />
   <script type="text/brightscript" uri="pkg:/source/fmp4.brs" />
   <script type="text/brightscript" uri="pkg:/source/h264.brs" />
+  <script type="text/brightscript" uri="pkg:/source/video.brs" />
   <script type="text/brightscript" uri="pkg:/source/receiver.brs" />
   <script type="text/brightscript">
     <![CDATA[

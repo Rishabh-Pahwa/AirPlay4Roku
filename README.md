@@ -20,7 +20,8 @@ Architecture and protocol handling are adapted from
 | AirPlay music (ALAC over RTP/UDP, AES-CBC) | yes |
 | Volume from the iPhone/Mac | mute only: the bottom of the slider (or mute) silences the Roku. The Roku OS 9.1 Audio node has a `mute` field but no volume control, and this model has no volume output of its own, so use the TV's volume |
 | Audio while mirroring (AAC-ELD) | **no**: the Roku 2 XS has no AAC-ELD decoder and BrightScript is far too slow to decode it, so mirroring is video-only |
-| Video-URL AirPlay (YouTube "AirPlay" HLS casting) | not implemented |
+| AirPlay video (the sender passes a video URL; the Roku plays it itself, with sound) | implemented but **off by default** (`app/source/video.brs`, enable with launch param `urlvideo=1`): plays MP4/HLS/HTTPS links with sound from a test sender, but iOS 18 requires an unreversed FairPlay step (`/fp-setup2`) before it sends any link, so iPhones never use it |
+| YouTube app AirPlay (sender-provided HLS playlists) | not yet (planned, following UxPlay's `-hls`) |
 | Multiple simultaneous senders | no (one session at a time, like UxPlay) |
 
 Mirroring runs about 2 s behind the phone. How that's achieved on a player

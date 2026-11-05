@@ -10,7 +10,13 @@ FairPlay can't be emulated client-side, so the mirror/audio key is sent in
 the clear as `testAesKey`, which the receiver only honours when launched with
 testmode=1 (ECP: POST /launch/dev?testmode=1).
 
-usage: fake_sender.py ROKU_IP [discover|info|pair|mirror|audio|all] [seconds]
+usage: fake_sender.py ROKU_IP [discover|info|pair|mirror|audio|all|video] [seconds]
+
+"video" tests AirPlay video-URL playback (POST /play with a URL; no FairPlay
+key needed, so no test mode either). It serves a generated H.264+AAC MP4 from
+this computer (VIDEO_FMT=hls serves an HLS version instead), or plays
+VIDEO_URL if set, and drives /rate, /scrub, /playback-info and /stop.
+VIDEO_END=1 lets the clip play to its end instead of stopping it.
 """
 import os, socket, struct, sys, time, plistlib, hashlib, secrets, subprocess, threading
 from cryptography.hazmat.primitives.asymmetric.x25519 import X25519PrivateKey, X25519PublicKey
@@ -422,6 +428,208 @@ def do_audio(r, aeskey, shared, aesiv, seconds):
     log(f"audio: sent {i + 1} ALAC packets in {time.time() - t0:.1f}s")
 
 
+# ------------------------------------------------------------------ video URL
+
+def make_test_media(fmt, seconds=40):
+    """H.264 + AAC test clip (moving pattern + 440 Hz tone) under test/scratch/video."""
+    out = os.path.join(HERE, "scratch", "video")
+    os.makedirs(out, exist_ok=True)
+    src = ["-f", "lavfi", "-i", f"testsrc2=size=1280x720:rate=30:duration={seconds}",
+           "-f", "lavfi", "-i", f"sine=frequency=440:sample_rate=44100:duration={seconds}",
+           "-c:v", "libx264", "-profile:v", "high", "-pix_fmt", "yuv420p", "-g", "60", "-b:v", "2M",
+           "-c:a", "aac", "-b:a", "128k"]
+    if fmt == "hls":
+        name = "hls/master.m3u8"
+        if not os.path.exists(os.path.join(out, name)):
+            os.makedirs(os.path.join(out, "hls"), exist_ok=True)
+            subprocess.run(["ffmpeg", "-loglevel", "error", "-y"] + src +
+                           ["-f", "hls", "-hls_time", "4", "-hls_playlist_type", "vod",
+                            os.path.join(out, name)], check=True)
+    else:
+        name = "clip.mp4"
+        if not os.path.exists(os.path.join(out, name)):
+            subprocess.run(["ffmpeg", "-loglevel", "error", "-y"] + src +
+                           ["-movflags", "+faststart", os.path.join(out, name)], check=True)
+    return out, name
+
+
+def serve_dir(root, roku_ip):
+    """Threaded HTTP server with Range support (the Roku player seeks with Range)."""
+    import http.server, socketserver
+
+    class H(http.server.BaseHTTPRequestHandler):
+        def log_message(self, *a):
+            pass
+
+        def do_HEAD(self):
+            self.do_GET(head=True)
+
+        def do_GET(self, head=False):
+            path = os.path.normpath(os.path.join(root, self.path.split("?")[0].lstrip("/")))
+            if not path.startswith(root) or not os.path.isfile(path):
+                self.send_error(404)
+                return
+            size = os.path.getsize(path)
+            start, end = 0, size - 1
+            rng = self.headers.get("Range")
+            if rng and rng.startswith("bytes="):
+                a, _, b = rng[6:].partition("-")
+                start = int(a) if a else 0
+                end = int(b) if b else size - 1
+                self.send_response(206)
+                self.send_header("Content-Range", f"bytes {start}-{end}/{size}")
+            else:
+                self.send_response(200)
+            ctype = {".mp4": "video/mp4", ".m3u8": "application/vnd.apple.mpegurl", ".ts": "video/mp2t"}.get(
+                os.path.splitext(path)[1], "application/octet-stream")
+            self.send_header("Content-Type", ctype)
+            self.send_header("Content-Length", str(end - start + 1))
+            self.send_header("Accept-Ranges", "bytes")
+            self.end_headers()
+            log(f"media server: {self.command} {self.path} {rng or ''}")
+            if head:
+                return
+            with open(path, "rb") as f:
+                f.seek(start)
+                left = end - start + 1
+                try:
+                    while left > 0:
+                        chunk = f.read(min(65536, left))
+                        if not chunk:
+                            break
+                        self.wfile.write(chunk)
+                        left -= len(chunk)
+                except (BrokenPipeError, ConnectionResetError):
+                    pass
+
+    class S(socketserver.ThreadingMixIn, http.server.HTTPServer):
+        daemon_threads = True
+
+    probe = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    probe.connect((roku_ip, 9))
+    my_ip = probe.getsockname()[0]
+    probe.close()
+    srv = S(("0.0.0.0", 0), H)
+    threading.Thread(target=srv.serve_forever, daemon=True).start()
+    return f"http://{my_ip}:{srv.server_address[1]}"
+
+
+def event_listener(rc, events):
+    """Read POST /event requests on the reverse connection and answer them."""
+    s = rc.s
+    s.settimeout(None)
+    buf = b""
+    try:
+        while True:
+            while b"\r\n\r\n" not in buf:
+                chunk = s.recv(65536)
+                if not chunk:
+                    log("reverse connection closed by receiver")
+                    return
+                buf += chunk
+            head, buf = buf.split(b"\r\n\r\n", 1)
+            lines = head.decode().split("\r\n")
+            hdrs = {l.split(":", 1)[0].lower(): l.split(":", 1)[1].strip() for l in lines[1:] if ":" in l}
+            n = int(hdrs.get("content-length", 0))
+            while len(buf) < n:
+                buf += s.recv(65536)
+            body, buf = buf[:n], buf[n:]
+            try:
+                ev = plistlib.loads(body)
+            except Exception:
+                ev = body
+            log(f"EVENT from receiver: {lines[0]} {ev}")
+            events.append(ev)
+            s.sendall(b"HTTP/1.1 200 OK\r\nContent-Length: 0\r\n\r\n")
+    except OSError:
+        return
+
+
+def playback_info(r, sid):
+    code, h, body = r.req("GET", "/playback-info", headers={"X-Apple-Session-ID": sid}, proto="HTTP/1.1")
+    if not body:
+        return {}
+    return plistlib.loads(body)
+
+
+def do_video(host, r, seconds):
+    sid = "A1B2C3D4-0000-4000-8000-" + secrets.token_hex(6).upper()
+    url = os.environ.get("VIDEO_URL")
+    if not url:
+        root, name = make_test_media(os.environ.get("VIDEO_FMT", "mp4"))
+        url = serve_dir(os.path.realpath(root), host) + "/" + name
+    log("video URL:", url)
+    code, h, body = r.req("GET", "/server-info", headers={"X-Apple-Session-ID": sid}, proto="HTTP/1.1")
+    assert code == 200, "server-info failed"
+    log("server-info:", plistlib.loads(body))
+    rc = Rtsp(host)
+    code, h, body = rc.req("POST", "/reverse", headers={"Upgrade": "PTTH/1.0", "Connection": "Upgrade",
+                                                         "X-Apple-Purpose": "event", "X-Apple-Session-ID": sid},
+                           proto="HTTP/1.1")
+    assert code == 101, f"reverse failed ({code})"
+    events = []
+    threading.Thread(target=event_listener, args=(rc, events), daemon=True).start()
+    body = plist({"Content-Location": url, "Start-Position-Seconds": 0.0,
+                  "uuid": "F00DCAFE-0000-4000-8000-000000000001", "clientProcName": "fake_sender"})
+    code, h, resp = r.req("POST", "/play", body, "application/x-apple-binary-plist",
+                          headers={"X-Apple-Session-ID": sid}, proto="HTTP/1.1")
+    assert code == 200, f"play failed ({code})"
+    t0 = time.time()
+    script = [] if os.environ.get("VIDEO_END") == "1" else [
+        (12, "rate", "/rate?value=0.000000"), (16, "check-paused", None), (17, "rate", "/rate?value=1.000000"),
+        (20, "scrub", "/scrub?position=30.000000"), (24, "check-scrub", None)]
+    last_pos = None
+    paused_pos = None
+    results = {}
+    while time.time() - t0 < seconds:
+        el = time.time() - t0
+        while script and el >= script[0][0]:
+            _, what, path = script.pop(0)
+            if what in ("rate", "scrub"):
+                r.req("POST", path, headers={"X-Apple-Session-ID": sid}, proto="HTTP/1.1")
+                if path.endswith("value=0.000000"):
+                    paused_pos = "next"
+            elif what == "check-paused":
+                results["pause holds position"] = isinstance(paused_pos, float) and last_pos is not None and abs(last_pos - paused_pos) < 0.2
+            elif what == "check-scrub":
+                results["scrub reached ~30 s"] = last_pos is not None and 27 <= last_pos < 36  # HLS snaps to a keyframe
+                code, h, sb = r.req("GET", "/scrub", headers={"X-Apple-Session-ID": sid}, proto="HTTP/1.1")
+                log("GET /scrub:", sb.decode().strip().replace("\n", " | "))
+        try:
+            pi = playback_info(r, sid)
+        except (ConnectionError, OSError):
+            log("control connection closed by receiver (playback over)")
+            results["receiver ended playback"] = True
+            break
+        if pi and el >= 8 and not results.get("_ecp"):
+            results["_ecp"] = True
+            # what the Roku's own player reports (ECP), e.g. the audio codec it decodes
+            try:
+                import urllib.request
+                mp = urllib.request.urlopen(f"http://{host}:8060/query/media-player", timeout=3).read().decode()
+                log("ECP media-player:", " ".join(l.strip() for l in mp.splitlines()[1:]))
+            except OSError as e:
+                log("ECP media-player query failed:", e)
+        if pi:
+            last_pos = pi.get("position")
+            if paused_pos == "next":
+                paused_pos = last_pos
+            log(f"playback-info: pos={pi.get('position'):.2f} dur={pi.get('duration'):.2f} rate={pi.get('rate')} ready={pi.get('readyToPlay')}")
+            if pi.get("rate") == 1.0 and pi.get("position", 0) > 2:
+                results.setdefault("plays (position advances)", True)
+        else:
+            log("playback-info: (not ready)")
+        time.sleep(1)
+    if not results.get("receiver ended playback"):
+        r.req("POST", "/stop", headers={"X-Apple-Session-ID": sid}, proto="HTTP/1.1")
+    time.sleep(1)
+    log("events received:", [e.get("state") if isinstance(e, dict) else e for e in events])
+    for k, v in results.items():
+        if k.startswith("_"):
+            continue
+        log(f"CHECK {k}: {'PASS' if v else 'FAIL'}")
+
+
 def main():
     host = sys.argv[1]
     what = sys.argv[2] if len(sys.argv) > 2 else "all"
@@ -444,6 +652,9 @@ def main():
     if what == "pair":
         return
     do_fp(r)
+    if what == "video":
+        do_video(host, r, seconds)
+        return
     aeskey, aesiv = secrets.token_bytes(16), secrets.token_bytes(16)
     setup_session(r, aeskey, aesiv)
     if what in ("mirror", "all"):

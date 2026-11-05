@@ -42,6 +42,8 @@ The receiver and the scene talk only through fields on the `Receiver` node:
 | `volume` | task → UI | AirPlay volume in dB. The UI turns it into mute. |
 | `playerPos`, `playerState` | UI → task | Feedback for delay steering. The task observes these into its message port. |
 | `quit` | UI → task | Shutdown request. |
+| `videoCmd` | task → UI | URL playback commands: `play` (url, format, start), `pause`, `resume`, `seek`, `stop`. |
+| `playerDuration`, `playerNote` | UI → task | Duration of a URL video; player notes (errors, codecs) for the log. |
 
 **The task never reads `m.top.*` or `m.global.*` in its loop.** On Roku, a Task reading node fields is a blocking rendezvous with the UI thread, and that froze the whole receiver for seconds (see [history.md](history.md)). Values the task needs arrive as `roSGNodeEvent`s on its port instead.
 
@@ -73,6 +75,7 @@ loop:
 | `fmp4.brs` | Fragmented-MP4 init and media segments for live HLS |
 | `h264.brs` | SPS/PPS parsing, skip-frame generation (CABAC/CAVLC), in-place POC rewriting |
 | `mkv.brs` | Live Matroska muxer (ALAC audio; it originally handled video too) |
+| `video.brs` | AirPlay video-URL playback: `/play`, `/rate`, `/scrub`, `/stop`, `/playback-info`, `/server-info`, the `/reverse` event channel |
 | `util.brs` | Byte helpers (`ba_slice` via native base64), the log ring buffer (`dbg`) |
 
 ## Session lifecycle

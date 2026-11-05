@@ -100,6 +100,25 @@ The RTP header is 12 bytes; payload type `0x60` is audio data. In the payload, e
 | `TEARDOWN` | The plist `streams` lists types: 96 stops audio, 110 stops mirroring; with no streams, the session ends. The reply carries `Connection: close`. |
 | anything else | 404, logged as `unhandled` |
 
-## 9. Timing
+## 9. AirPlay video (URL playback, `video.brs`)
+
+Advertised only when enabled (launch param `urlvideo=1`): feature bits 0 and 4 (`features=0x5A7FFEF7`). Off by default, because iOS 18 sends `POST /fp-setup2` (FPLY version 1, 120 bytes) on every new connection before `/play`. It's answered `421 Misdirected Request` as in UxPlay, and the iPhone then closes the connection without sending `/play`. It still sends `/setProperty` (media selection) and finally `/action` `playlistRemove` and `/stop`. Clearing bit 2 doesn't avoid it. These are `HTTP/1.1` requests on the same :7000 connections, usually after pair-verify and fp-setup:
+
+| Request | Handling |
+|---|---|
+| `GET /server-info` | XML plist: `deviceid`, `features`, `macAddress`, `model`, `osBuildVersion`, `protovers`, `srcvers`, `vv` |
+| `POST /reverse` | `101 Switching Protocols`, `Upgrade: PTTH/1.0`. This connection becomes the receiver → sender channel. The sender's replies on it are ignored. |
+| `POST /play` | bplist `Content-Location` (URL), `Start-Position-Seconds` (or `Start-Position` as a fraction), `uuid`, `clientProcName`; older senders use `text/parameters`. http(s) URLs are played (`streamFormat` guessed from the URL: `.m3u8` → HLS, otherwise MP4); anything else gets 400. Replaces screen mirroring on the Video node. |
+| `POST /rate?value=0` / `1` | pause / resume |
+| `POST /scrub?position=s`, `GET /scrub` | seek; `duration: … position: …` as `text/parameters` |
+| `GET /playback-info` | XML plist `duration`, `position`, `rate`, `readyToPlay`, buffer flags, `loadedTimeRanges`, `seekableTimeRanges`. Empty while loading. After the video ends: an empty reply, then the connection is closed, which is how UxPlay signals the end. |
+| `POST /stop` | stop and return to the idle screen |
+| `PUT /setProperty?…` | `{errorCode: 0}` |
+
+Events go to the sender as `POST /event` with an XML plist `{category: video, state: loading|playing|paused|stopped, uuid}` whenever the player's state changes, including changes made with the Roku remote.
+
+Not handled yet: the YouTube app's playlists, which the receiver has to request from the sender (FCUP `unhandledURLRequest` events, answered with `POST /action`), and `/photo`.
+
+## 10. Timing
 
 The receiver acts as the NTP client: it sends a 32-byte `0x80 0xD2` request with its transmit time to the sender's `timingPort` every 3 s and ignores the replies. The mirror timeline uses frame timestamps and the receiver's own clock rather than synchronised NTP time, so clock offset estimation isn't needed.

@@ -29,7 +29,7 @@ Compile check of the receiver sources (there is no lint script; this is the esta
 
 ```sh
 T=test/build/lint; rm -rf $T; mkdir -p $T/source
-for f in util plist fe25519 curve25519 fairplay mdns mkv fmp4 h264 receiver; do cp app/source/$f.brs $T/source/; done
+for f in util plist fe25519 curve25519 fairplay mdns mkv fmp4 h264 video receiver; do cp app/source/$f.brs $T/source/; done
 printf 'sub Main()\n print "COMPILED_OK"\nend sub\n' > $T/source/lintmain.brs
 (cd $T && ~/.nvm/versions/node/v22.23.3/bin/node ../../../tools/node/node_modules/brs-node/bin/brs.cli.js --root . source/lintmain.brs $(cd source && ls *.brs | grep -v lintmain | sed 's|^|source/|'))
 ```
@@ -48,11 +48,11 @@ test/fairplay/run.sh [N] [SEED]      # playfair port vs the original C (builds h
 On-device end-to-end with the fake sender (channel launched with `testmode=1`):
 
 ```sh
-python3 -I test/fake_sender.py 192.168.1.16 discover|info|pair|mirror|audio|all [seconds]
+python3 -I test/fake_sender.py 192.168.1.16 discover|info|pair|mirror|audio|all|video [seconds]
 MIRROR_RATE=1500k MIRROR_JITTER=1 MIRROR_ROTATE=1 python3 -I test/fake_sender.py 192.168.1.16 mirror 80
 ```
 
-`MIRROR_JITTER=1|2|3` gives iPhone-like bursty pacing with still-screen pauses, and `MIRROR_ROTATE=1` switches to a portrait stream halfway through. Test-mode launch params: `hlstarget=<ms>`, `nofeedback=1`, `noplayer=1`. While a session runs, `http://ROKU:8888/hls/current/live.m3u8` and `/audio/current.mka` can be pulled for inspection, and `test/h264/capture_hls.py` saves the live HLS for ffmpeg checks. Judge mirroring changes by the `/log` lines `player buffering` (stalls), `hls depth ... -> rate`, `slow wait` and `stats 10s`.
+`video` tests AirPlay video-URL playback and needs no test mode (it serves a generated H.264+AAC clip from this machine; `VIDEO_FMT=hls`, `VIDEO_URL=<url>`, `VIDEO_END=1` to let it finish) and prints PASS/FAIL checks plus the Roku's ECP `query/media-player` report (shows the audio/video codecs the player decodes). `MIRROR_JITTER=1|2|3` gives iPhone-like bursty pacing with still-screen pauses, and `MIRROR_ROTATE=1` switches to a portrait stream halfway through. Test-mode launch params: `hlstarget=<ms>`, `nofeedback=1`, `noplayer=1`. While a session runs, `http://ROKU:8888/hls/current/live.m3u8` and `/audio/current.mka` can be pulled for inspection, and `test/h264/capture_hls.py` saves the live HLS for ffmpeg checks. Judge mirroring changes by the `/log` lines `player buffering` (stalls), `hls depth ... -> rate`, `slow wait` and `stats 10s`.
 
 Generators (outputs are committed): `tools/gen_fe25519.py` writes `app/source/fe25519.brs` and self-checks its overflow bounds, `tools/gen_ed25519_table.py` writes `app/assets/ed25519_base.bin`, `tools/gen_fairplay_tables.py` writes `app/assets/fairplay/`, and `tools/gen_icons.py` writes `app/images/`. Never hand-edit `fe25519.brs`.
 
@@ -73,6 +73,7 @@ The media pipelines keep bytes out of BrightScript loops: decryption is `roEVPCi
   - **Rate steering.** `hls_steer` reads the player position (pushed by the scene as port events) and scales sample durations by 75–115% to hold about 1.8 s behind live. The Roku player starts about 3.4 s behind and rebuffers if its buffer dips below about 1 s.
   - **Skip frames.** `h264.brs` handles still screens, when iOS sends no frames and repeats the codec config about 30 times a second. After 100 ms without a frame it inserts a non-reference all-P_Skip slice (CABAC payload computed once per config) and shifts `pic_order_cnt_lsb` of later real frames in place. The newest unit is always held back one step (`vs.pend`) so its duration is known.
   - **Format changes.** Rotation or a resolution change does not restart the player. The promised segments are finished in the old format, then come `EXT-X-DISCONTINUITY` and a new `initN.mp4` at the next IDR (`hls_switch_format`).
+- **AirPlay video (URL playback)** is `source/video.brs`, reached from `rtsp_handle` via `vid_handle`. HTTP/1.1 requests on :7000: `/server-info`, `/play` (bplist `Content-Location`), `/rate`, `/scrub`, `/stop`, `/playback-info` (polled by the sender), `/setProperty`. `POST /reverse` upgrades a second connection to PTTH; state events go to the sender over it as `POST /event`. The scene plays the URL on the same Video node as mirroring (`videoCmd` field task -> scene; `m.mode` in MainScene says who owns the node), so starting one stops the other. Only direct http(s) locations are handled; YouTube's FCUP/`/action` flow (see `../UxPlay/lib/http_handlers.h`) is not. Feature bits 0 + 4 (video, HLS) are **off by default**: iOS 18 demands `POST /fp-setup2` (an unreversed FairPlay variant, answered 421 as UxPlay does) before every `/play`, never sends the URL, and shows "playing" while nothing plays. Launch with `urlvideo=1` (stored in registry key `urlvideo`; `urlvideo=0` clears it) to advertise them for testing.
 - **Music goes into live Matroska** (`mkv.brs`, unknown-size Segment and Clusters, A_ALAC), served to the `Audio` node. Mirroring audio (AAC-ELD, ct=8) is not playable on this hardware and is ignored. Volume control is mute only: the Audio node has no volume field.
 
 `spike*/` are standalone feasibility probes kept for reference. `test/latency/gen.py` generates spike3's media.

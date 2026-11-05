@@ -16,4 +16,4 @@ AirPlay4Roku is an AirPlay receiver written in BrightScript. It runs entirely on
 
 Status at the time of writing:
 - **Tested on a real iPhone:** discovery, pairing, FairPlay, music, mute, and mirroring at about 2 s delay.
-- **Tested with the fake sender only:** skip frames and seamless format changes, which address the remaining freezes and black screens. They have not yet been confirmed on a real iPhone.
+- **Tested with the fake sender only:** skip frames and seamless format changes, which address the remaining freezes and black screens, and AirPlay video from a link (play, pause, seek, stop, with sound). Skip frames and format changes are still to be confirmed on a real iPhone. Link playback can't be: iOS 18 never sends the link (see history.md, stage 10), so it is off by default.

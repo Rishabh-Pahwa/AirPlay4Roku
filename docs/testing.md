@@ -44,6 +44,7 @@ python3 -I test/fake_sender.py ROKU discover|info|pair|mirror|audio|all [seconds
 | `MIRROR_JITTER=2` | Same, with pauses of up to 2.5 s |
 | `MIRROR_JITTER=3` | Steady 30 fps with an exact 0.8 s pause every 6 s (reproducible) |
 | `MIRROR_ROTATE=1` | Switch to a portrait stream halfway through, to test format changes |
+| `VIDEO_FMT=hls` / `VIDEO_URL=<url>` / `VIDEO_END=1` | `video` mode: serve an HLS copy of the test clip, play any URL instead, or let the clip finish |
 | `MIRROR_IOS_LAYOUT=1` (default) | Re-encode and renumber to match iOS's stream: High profile, CABAC, POC type 0, `frame_num` behaviour, no weighted prediction |
 
 Test-mode launch parameters:
@@ -53,6 +54,8 @@ Test-mode launch parameters:
 | `hlstarget=<ms>` | Override the 1800 ms steering target |
 | `nofeedback=1` | Don't observe player position, so steering is off (measures the raw player) |
 | `noplayer=1` | Don't start the Video node (shows whether a freeze comes from the player) |
+
+`video` mode needs no test mode, because URL playback doesn't use the FairPlay key. It serves a generated 40 s H.264 + AAC clip from this computer, sends `/play`, then pauses, resumes and seeks, polling `/playback-info` and printing the events received on the reverse channel. It ends with PASS/FAIL checks and the Roku's own ECP `query/media-player` report, which names the audio and video codecs the player is decoding.
 
 Typical stress run:
 

@@ -22,9 +22,12 @@ sub rx_main()
     m.handlers = {}
     m.conns = {}
     m.pool = []
+    m.lastRtspMs = -100000
     m.session = invalid
     m.vs = invalid
     m.aud = invalid
+    m.url = invalid
+    m.reverse = invalid
     m.players = {}
     m.gen = 0
     m.nextAnnounceMs = 0
@@ -60,6 +63,13 @@ sub rx_main()
         m.top.observeField("playerPos", m.port)
         m.top.observeField("playerState", m.port)
     end if
+    ' video-URL playback (video.brs) needs player feedback even with nofeedback
+    m.top.observeField("playerDuration", m.port)
+    m.top.observeField("playerNote", m.port)
+    if m.global.noFeedback = true then
+        m.top.observeField("playerPos", m.port)
+        m.top.observeField("playerState", m.port)
+    end if
     m.top.observeField("quit", m.port)
     rx_status("ready")
     dbg("ready as '" + m.cfg.name + "' on " + m.cfg.ip)
@@ -82,9 +92,21 @@ sub rx_main()
         else if mt = "roSGNodeEvent" then
             fld = msg.getField()
             if fld = "playerPos" then
-                m.playerPos = msg.getData()
+                if m.url <> invalid then
+                    m.url.pos = msg.getData()
+                else if m.global.noFeedback <> true then
+                    m.playerPos = msg.getData()
+                end if
             else if fld = "playerState" then
-                m.playerState = msg.getData()
+                if m.url <> invalid then
+                    vid_on_player_state(msg.getData())
+                else if m.global.noFeedback <> true then
+                    m.playerState = msg.getData()
+                end if
+            else if fld = "playerDuration" then
+                if m.url <> invalid then m.url.dur = msg.getData()
+            else if fld = "playerNote" then
+                dbg("player: " + msg.getData())
             else if fld = "quit" then
                 m.quit = msg.getData()
             end if
@@ -128,13 +150,16 @@ sub rx_identity()
         if ip = "" then ip = ips[k]
     end for
     pk = LCase(m.edkey.pub.ToHexString())
-    features = "0x5A7FFEE6,0x0"
-    m.features& = 1518337766&
-    if reg.Exists("nopair") then
-        ' bit 27 (legacy pairing) off: clients skip pair-setup/verify
-        features = "0x527FFEE6,0x0"
-        m.features& = 1384120038&
-    end if
+    ' UxPlay's feature set; bit 27: legacy pairing. Bits 0 + 4 (AirPlay video
+    ' incl. HLS, video.brs) are OFF by default: iOS 18 asks for POST
+    ' /fp-setup2 (an unreversed FairPlay variant) before every /play, so the
+    ' iPhone shows "playing" while nothing plays. Registry "urlvideo" (launch
+    ' param urlvideo=1) turns them on, for senders that don't do that.
+    f& = 1518337766&
+    if reg.Exists("urlvideo") then f& = f& + 17&
+    if reg.Exists("nopair") then f& = f& - 134217728&
+    m.features& = f&
+    features = "0x" + UCase(vid_hex32(f&)) + ",0x0"
     host = "roku-airplay-" + LCase(Right(devid.Split(":").Join(""), 6))
     m.cfg = {
         name: name, host: host, ip: ip, port: 7000, deviceId: devid,
@@ -225,6 +250,10 @@ sub rx_close(c as object)
     m.handlers.Delete(c.id)
     if c.kind = "rtsp" then
         dbg("rtsp connection closed (" + c.peer + ")")
+        if c.reverse = true and m.reverse <> invalid and m.reverse.id = c.id then
+            m.reverse = invalid
+            if m.url <> invalid then vid_stop("sender closed the event connection", false)
+        end if
         if m.session <> invalid and m.session.connId = c.id then session_end("control connection closed")
     else if c.kind = "mirror" then
         dbg("mirror stream closed")
@@ -249,7 +278,12 @@ sub rx_timers()
         ntp_send_request()
         m.nextNtpMs = t + 3000
     end if
-    if m.session = invalid and m.pool.Count() < 1 and not rx_has_rtsp() then
+    ' Keep a few pairing precomputes ready: a video-URL sender opens several
+    ' connections in a row and pair-verifies on each (4 s each without one).
+    ' A refill blocks the loop ~1.9 s, so never while media is streaming, and
+    ' only after 4 s without control requests (a sender takes ~2 s for its
+    ' half of pair-verify; refilling then would delay our reply by ~2 s).
+    if m.vs = invalid and m.aud = invalid and m.pool.Count() < 3 and t - m.lastRtspMs > 4000 then
         pool_refill()
     end if
     if m.vs <> invalid then hls_tick(m.vs)
@@ -358,6 +392,7 @@ sub rtsp_reply(c as object, req as object, code as integer, extra as object, cty
     if code = 404 then reason = "Not Found"
     if code = 400 then reason = "Bad Request"
     if code = 500 then reason = "Internal Server Error"
+    if code = 421 then reason = "Misdirected Request"
     proto = req.proto
     if Left(proto, 4) <> "RTSP" and Left(proto, 4) <> "HTTP" then proto = "RTSP/1.0"
     h = proto + " " + code.toStr() + " " + reason + CRLF()
@@ -394,7 +429,21 @@ end sub
 sub rtsp_handle(c as object, req as object)
     meth = req.method
     url = req.url
-    dbg(meth + " " + url + " (" + req.body.Count().toStr() + " bytes)")
+    if c.reverse = true then
+        ' the sender's replies to our /event requests on the reverse channel
+        return
+    end if
+    m.lastRtspMs = now_ms()
+    if url <> "/playback-info" then dbg(meth + " " + url + " (" + req.body.Count().toStr() + " bytes)")
+    ' headers of video-mode (HTTP/1.1) requests, to follow what the sender does
+    if Left(req.proto, 4) = "HTTP" and url <> "/playback-info" and Left(url, 9) <> "/fp-setup" and Left(url, 12) <> "/pair-verify" then
+        hl = []
+        for each k in req.headers
+            hl.push(k + "=" + req.headers[k])
+        end for
+        dbg("  headers " + req.proto + " " + hl.Join(" | "))
+    end if
+    if vid_handle(c, req) then return
     if meth = "GET" and Instr(1, url, "/info") > 0 then
         h_info(c, req)
     else if meth = "POST" and url = "/pair-setup" then
@@ -571,6 +620,7 @@ end function
 sub h_setup(c as object, req as object)
     p = plist_parse(req.body)
     if p = invalid then p = {}
+    dbg("  setup " + pl_dump(p, 0))
     res = pl_dict()
     if type(p["ekey"]) = "roByteArray" and type(p["eiv"]) = "roByteArray" then
         if c.fpKeyMsg = invalid then
@@ -699,6 +749,10 @@ sub mirror_setup(streamId as dynamic)
     ciph = CreateObject("roEVPCipher")
     ciph.Setup(false, "aes-128-ctr", ba_slice(hk, 0, 16).ToHexString(), ba_slice(hv, 0, 16).ToHexString(), 0)
     m.gen = m.gen + 1
+    if m.url <> invalid then
+        vid_event("stopped")
+        vid_stop("screen mirroring started", false)
+    end if
     m.vs = {kind: "video", gen: m.gen, cipher: ciph, init: invalid, avcc: invalid, clients: {}, w: 0, h: 0, lastCfgHex: ""}
     dbg("  mirror stream set up, id=" + idstr)
 end sub

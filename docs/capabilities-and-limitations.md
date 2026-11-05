@@ -12,6 +12,7 @@
 | Still screens (Photos, home screen) | ✅* | Skip frames keep the player fed. *Verified with the fake sender; a retest on a real iPhone is pending. |
 | Rotation and format changes | ✅* | `EXT-X-DISCONTINUITY` with no player restart. *Same pending status as still screens. |
 | AirPlay music (Spotify, Apple Music, and so on) | ✅ | ALAC 44.1 kHz/16-bit over RTP, AES-CBC |
+| AirPlay video from a link (`/play` with an http(s) MP4 or HLS URL) | ⚠️ off by default | Implemented and verified with the fake sender: the Roku plays the link itself **with sound**, with pause/seek/stop and progress on the sender. But **iOS 18 never sends the link**: before every `/play` it requires `POST /fp-setup2`, a FairPlay variant no open-source receiver implements (UxPlay and PhairPlay answer 421 too). Enable with launch param `urlvideo=1` to test other senders. |
 | Mute from the sender | ✅ | Bottom of the volume slider, or mute |
 | Logs without the debug console | ✅ | `http://ROKU:8888/log` |
 | Clean install and removal | ✅ | Developer slot plus the channel's own registry section |
@@ -26,7 +27,7 @@
 | **A rare ~5 s freeze if the player rebuffers anyway** | While the Roku video player rebuffers, it can starve the receiver task for about 5 s. It was never seen with the player off, and isn't controllable from the channel. | Only by preventing stalls, which skip frames and steering do. |
 | **Only while the channel is open** | Roku channels can't run in the background or start on an incoming connection. | No. The channel can be started remotely with ECP: `curl -d '' http://ROKU:8060/launch/dev`. |
 | **One sender at a time** | Single-session design, like UxPlay. A new sender ends the current session. | Possible, but there is only one player to show it on. |
-| **No "AirPlay video URL" casting** (`/play`, `/scrub`, `/rate`), photos or slideshows | Not implemented. YouTube-style "AirPlay a URL" uses a separate HTTP API. | Partly: the Roku could play many HLS URLs directly. This is the most promising future feature. |
+| **YouTube app AirPlay, photos, slideshows** | Direct-link AirPlay video works (see above), but the YouTube app hands over playlists through the sender (FCUP requests on the reverse channel, `POST /action`, condensed `#YT-EXT-CONDENSED-URL` playlists), which isn't implemented yet. `/photo` and slideshows aren't either. | Yes for YouTube: UxPlay's `-hls` mode shows how, and the Roku plays the resulting HLS natively. |
 | **No AirPlay 2 buffered audio, PTP timing or multi-room** | Needs HomeKit pairing (SRP-6a, ChaCha20-Poly1305) and stream type 103. iOS falls back to realtime ALAC for this receiver. | Impractical in BrightScript. |
 | **DRM-protected video shows black** | iOS itself blanks protected content (Netflix and others) when mirroring to non-Apple receivers. | No. This is sender-side policy. |
 | **No access control** | Transient pairing with no PIN: anyone on the LAN can mirror while the channel is open. | A PIN-based (SRP) pairing would be too slow. Registry `nopair` makes it even more open, not less. |
